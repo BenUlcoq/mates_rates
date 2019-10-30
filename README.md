@@ -1,5 +1,5 @@
 # Mates Rates
-## T2A2 - Marketplace Project
+## T2A2 Coder Academy - Marketplace Project 
 ---
 
 Link to Application published on Heroku 
@@ -35,38 +35,82 @@ The application has a number of high-level components that compliment one anothe
 
 ### MVP Features
 
-##### User Sign-In and Sign-Up
+<details>
+	<summary>
+		<b>User Sign-In and Sign-Up</b>
+	</summary>
 The application allows users to create an account using their email address as a unique identifier. Users are authenticated and authorised for accessing certain information as outlined below.
+</details>
 
-##### Authentication
+<details>
+	<summary>
+		<b>Authentication</b>
+	</summary>
 Although Users who aren’t signed in can browse and view product listings, the ability to rent tools is restricted to those with an account in order to track user interactions with the application and have information relating to a user should issues arise.
+</details>
 
-##### Authorisation
+<details>
+	<summary>
+		<b>Authorisation</b>
+	</summary>
 Within the application, users can have different roles with appropriate permissions. A Renter is the base role assigned to all accounts. In addition to non-user permissions, they have the ability to rent tools from owners. On top of this, Owners have the ability to list tools that they own as available for rent.  Admins have the ability to manipulate all listings on the site, even if they don’t own the tool.
+</details>
 
-##### Tool CRUD
+<details>
+	<summary>
+		<b>Tool CRUD</b>
+	</summary>
 The ability to create, read, update and destroy tools is part of the core functionality behind Mates Rates. Without the ability to manipulate tool listings, there is no reason for a user to come to the platform.
+</details>
 
-##### Rental CRUD
+<details>
+	<summary>
+		<b>Rental CRUD</b>
+	</summary>
 Similarly to the above, the ability to create, read, update and destroy rentals is critical to the Mates Rates functionality. Even if an owner can list a tool, if no one can rent it, there is no reason for either user to access the platform.
-
-##### Rental Pricing and Duration
+</details>
+		
+<details>
+	<summary>
+		<b>Rental Pricing and Duration</b>
+	</summary>
 As one of the goals of the application is to make tool owners easy money, it was important for the tool management system to be worth their while so that their ROI is suitable. As such, the application only allows for daily rentals. If products were able to be rented out at smaller intervals, a tool owner may have to undertake too much work in order to rent out a tool.
+</details>
 
-##### Product Searching
+<details>
+	<summary>
+		<b>Product Searching</b>
+	</summary>
 In order to provide a better experience for users, tools will be able to be searched using keywords. This means that rather than scrolling through a potentially huge list of products, users can narrow down what they see to a specific group of products relevant to their needs.
+</details>
 
-##### Product Filtering
+<details>
+	<summary>
+		<b>Product Filtering</b>
+	</summary>
 Working alongside product searching, users will be able to search products using different categories. Tools will be able to be assigned categories during creation or modification.
+</details>
 
-##### Image Upload
+<details>
+	<summary>
+		<b>Image Upload</b>
+	</summary>
 Users and products will be able to have images uploaded to a server and displayed alongside other information. Users will have a profile picture which will aid in verification when transferring tools in person, while tools will have images for Renters to look at before choosing to rent the product.
+</details>
 
-##### Stripe Payment Processing
+<details>
+	<summary>
+		<b>Stripe Payment Processing</b>
+	</summary>
 In order to handle monetary exchange, a payment processing system has to be implemented. Stripe is extremely powerful, secure and easy to use and served as the perfect starting point for payment processing.
+</details>
 
-##### Admin dashboard
+<details>
+	<summary>
+		<b>Admin dashboard</b>
+	</summary>
 For site moderation purposes, admins have the ability to manipulate other users listings. A dashboard allows admins to quickly browse listings without bloat. As their purpose for browsing listings is different to a regular user, a different interface is required which is more efficient.
+</details>
 
 ### Extensibility
 
@@ -75,46 +119,79 @@ Providing a platform for tool rental is valuable to users, but without proper ch
 
 ### Extensible Features
 
-#### Security Deposits
+<details>
+	<summary>
+		<b>Security Deposits</b>
+	</summary>
 Provides protection for tool Owners.
+</details>
 
-#### Image Upload Date
+<details>
+	<summary>
+		<b>Image Upload Date</b>
+	</summary>
 By tracking image upload date, we can let a Renter know when an image might be out of date/misleading. Additionally, Owners can be notified that an image needs updating after X amount of time.
+</details>
 
-#### Custom Rental Periods
+<details>
+	<summary>
+		<b>Custom Rental Periods</b>
+	</summary>
 Some Owners may like the flexibility that hourly rentals allow - some products are more suited to this system also.
+</details>
 
-#### Cool-down Periods
+<details>
+	<summary>
+		<b>Cool-down Periods</b>
+	</summary>
 Some tools may require minor maintenance after use which only the owner can conduct/the tool had been returned in an unusable state and the issue is being resolved. In order to prevent compounding issues, an owner could specify a cool down period in which a tool can no longer be used.
+</details>
 
-#### Application Walkthrough/Guide/How-to-Use
+<details>
+	<summary>
+		<b>Application Walkthrough/Guide/How-to-Use</b>
+	</summary>
 Having an application walkthrough would be extremely useful in increasing adoption. An application that is difficult to use is unlikely to garner widespread attention.
+</details>
 
-#### User/Tool Reviews and Ratings
+<details>
+	<summary>
+		<b>User/Tool Reviews and Ratings</b>
+	</summary>
 Once a tool rental has been completed, it would be beneficial for tool owners and renters to be able to review or rate one another and the tools. Other users could then see these reviews before committing to rentals.
+</details>
 
-#### User/Tool Real Time Locations
+<details>
+	<summary>
+		<b>User/Tool Real Time Locations</b>
+	</summary>
 Using the user address information more effectively to notify users of an approximate location and distance for pick-up or delivery of a tool would allow them to make more informed decisions about the tools they want to hire.
+</details>
 
-#### User Messaging
+<details>
+	<summary>
+		<b>User Messaging</b>
+	</summary>
 User messaging would facilitate the organisation of rentals by allowing Owners and Renters to communicate in real-time, without the need to use third-party applications.
+</details>
+		
 
 ## Tech Stack
-#### Ruby on Rails
+### Ruby on Rails
 **[Rails Version: 5.2.3](https://guides.rubyonrails.org/v5.2/getting_started.html)**
 **[Ruby Version: 2.6.4](https://ruby-doc.org/stdlib-2.6.4/)**
 Ruby on Rails (Rails) is a web application framework built using the Ruby programming language. Rails uses what is known as the Model-View-Controller (MVC) software architecture pattern. The MVC structure breaks code down into individual pieces to maintain separation of concerns. The model stores our data, the view displays it and the controller connects the two and contains most of the logic in an application. 
 
 Within Rails, there are a number of different pieces that were used to handle certain parts of the application.
 
-#### PostgreSQL
+### PostgreSQL
 **[PostgreSQL version: 10.10](https://www.postgresql.org/docs/10/index.html)**
 An object-relational database system based on the SQL language, PostgreSQL was selected for **database management.**
 
-#### Ruby Gems
+### Ruby Gems
 The Ruby language (and by extension, Rails) uses Gems as a way of easily using preexisting code to implement certain functionality within an application. Rails uses a whole host of Gems  by default, below is a list of Gems installed in addition to the defaults to assist with the development of *Mates Rates*.
 
-###### List of Gems
+#### List of Gems
 1. **Bundler**
 [Bundler](https://bundler.io/) is a **Gem management system** that allows for quick and easy management of other Gems, including installation and updates.
 
@@ -137,7 +214,7 @@ The Stripe Gem allows us to quickly and easily integrate the [Stripe](https://st
 Using ActiveStorage we can implement **file uploads** using [Cloudinary](https://cloudinary.com/) - a cloud based asset management software. (See below)
 
 
-#### Third Party Services
+### Third Party Services
 
 * **Stripe**
  [Stripe](https://stripe.com/au)  is a secure payment processing application that is easy to use through API calls. By directing users through Stripe (which is [PCI](https://www.pcisecuritystandards.org/) compliant), it means the complexity of payment processing is handled outside of our application.

@@ -1,10 +1,54 @@
 # Mates Rates
-## T2A2 - Marketplace Project
+## T2A2 Coder Academy - Marketplace Project 
 ---
 
 Link to Application published on Heroku 
 
 [Link to Github Repo](https://github.com/BenUlcoq/mates_rates)
+
+
+<details>
+	<summary>
+		<b>Table of Contents</b>
+	</summary>
+	
+- [Application Purpose](#application-purpose)
+- [Application Description](#application-description)
+  * [Functionality and Features](#functionality-and-features)
+    + [MVP Features](#mvp-features)
+    + [Extensibility](#extensibility)
+      - [Insurance and Legal Research](#insurance-and-legal-research)
+      - [Extensible Features](#extensible-features)
+  * [Tech Stack](#tech-stack)
+    + [Ruby on Rails](#ruby-on-rails)
+    + [PostgreSQL](#postgresql)
+    + [Ruby Gems](#ruby-gems)
+    + [Third Party Services](#third-party-services)
+- [Database Structure](#database-structure)
+  * [Database Relations](#database-relations)
+    + [User Model](#user-model)
+    + [Tool Model](#tool-model)
+    + [Rental Model](#rental-model)
+    + [Role Model](#role-model)
+    + [RolesUsers Join Table](#rolesusers-join-table)
+    + [Category Model](#category-model)
+    + [CategoriesTools Join Table](#categoriestools-join-table)
+  * [Rails Active Record Associations](#rails-active-record-associations)
+    + [Mates Rates Associations](#mates-rates-associations)
+      - [User Model](#user-model-1)
+      - [Tool Model](#tool-model-1)
+      - [Rental Model](#rental-model-1)
+      - [Category Model](#category-model-1)
+      - [Role Model](#role-model-1)
+  * [Project Plan and Task Allocation](#project-plan-and-task-allocation)
+    + [Brainstorming and Overall Plan](#brainstorming-and-overall-plan)
+    + [Sprints](#sprints)
+    + [User Stories](#user-stories)
+    + [Github Projects](#github-projects)
+      - [Screenshots](#screenshots)
+    + [Project Timeline](#project-timeline)
+      - [Sprints Design](#sprints-design)
+</details>
 
 # Application Purpose
 This application has been developed as part of the requirements of T2A2 at Coder Academy in Brisbane. The assignment involved the development of a two-sided marketplace platform as a way of demonstrating ability to design and develop an application from the ground up, through to deployment. Part of the requirements for this assignment involved solving some kind of problem that exists in the world today.
@@ -35,127 +79,236 @@ The application has a number of high-level components that compliment one anothe
 
 ### MVP Features
 
-##### User Sign-In and Sign-Up
+<details>
+	<summary>
+		<b>User Sign-In and Sign-Up</b>
+	</summary>
 The application allows users to create an account using their email address as a unique identifier. Users are authenticated and authorised for accessing certain information as outlined below.
+</details>
 
-##### Authentication
+<details>
+	<summary>
+		<b>Authentication</b>
+	</summary>
 Although Users who aren’t signed in can browse and view product listings, the ability to rent tools is restricted to those with an account in order to track user interactions with the application and have information relating to a user should issues arise.
+</details>
 
-##### Authorisation
+<details>
+	<summary>
+		<b>Authorisation</b>
+	</summary>
 Within the application, users can have different roles with appropriate permissions. A Renter is the base role assigned to all accounts. In addition to non-user permissions, they have the ability to rent tools from owners. On top of this, Owners have the ability to list tools that they own as available for rent.  Admins have the ability to manipulate all listings on the site, even if they don’t own the tool.
+</details>
 
-##### Tool CRUD
+<details>
+	<summary>
+		<b>Tool CRUD</b>
+	</summary>
 The ability to create, read, update and destroy tools is part of the core functionality behind Mates Rates. Without the ability to manipulate tool listings, there is no reason for a user to come to the platform.
+</details>
 
-##### Rental CRUD
+<details>
+	<summary>
+		<b>Rental CRUD</b>
+	</summary>
 Similarly to the above, the ability to create, read, update and destroy rentals is critical to the Mates Rates functionality. Even if an owner can list a tool, if no one can rent it, there is no reason for either user to access the platform.
-
-##### Rental Pricing and Duration
+</details>
+		
+<details>
+	<summary>
+		<b>Rental Pricing and Duration</b>
+	</summary>
 As one of the goals of the application is to make tool owners easy money, it was important for the tool management system to be worth their while so that their ROI is suitable. As such, the application only allows for daily rentals. If products were able to be rented out at smaller intervals, a tool owner may have to undertake too much work in order to rent out a tool.
+</details>
 
-##### Product Searching
+<details>
+	<summary>
+		<b>Product Searching</b>
+	</summary>
 In order to provide a better experience for users, tools will be able to be searched using keywords. This means that rather than scrolling through a potentially huge list of products, users can narrow down what they see to a specific group of products relevant to their needs.
+</details>
 
-##### Product Filtering
+<details>
+	<summary>
+		<b>Product Filtering</b>
+	</summary>
 Working alongside product searching, users will be able to search products using different categories. Tools will be able to be assigned categories during creation or modification.
+</details>
 
-##### Image Upload
+<details>
+	<summary>
+		<b>Image Upload</b>
+	</summary>
 Users and products will be able to have images uploaded to a server and displayed alongside other information. Users will have a profile picture which will aid in verification when transferring tools in person, while tools will have images for Renters to look at before choosing to rent the product.
+</details>
 
-##### Stripe Payment Processing
+<details>
+	<summary>
+		<b>Stripe Payment Processing</b>
+	</summary>
 In order to handle monetary exchange, a payment processing system has to be implemented. Stripe is extremely powerful, secure and easy to use and served as the perfect starting point for payment processing.
+</details>
 
-##### Admin dashboard
+<details>
+	<summary>
+		<b>Admin dashboard</b>
+	</summary>
 For site moderation purposes, admins have the ability to manipulate other users listings. A dashboard allows admins to quickly browse listings without bloat. As their purpose for browsing listings is different to a regular user, a different interface is required which is more efficient.
+</details>
+
+
 
 ### Extensibility
 
 #### Insurance and Legal Research
 Providing a platform for tool rental is valuable to users, but without proper channels for users to report and record issues that they may have (such as stolen tools), the application should not be developed beyond the scope of this assignment. In the event that this does happen, additional authorisation would be required on sign-up for different users depending on what is required.
 
+
 ### Extensible Features
 
-#### Security Deposits
+<details>
+	<summary>
+		<b>Security Deposits</b>
+	</summary>
 Provides protection for tool Owners.
+</details>
 
-#### Image Upload Date
+<details>
+	<summary>
+		<b>Image Upload Date</b>
+	</summary>
 By tracking image upload date, we can let a Renter know when an image might be out of date/misleading. Additionally, Owners can be notified that an image needs updating after X amount of time.
+</details>
 
-#### Custom Rental Periods
+<details>
+	<summary>
+		<b>Custom Rental Periods</b>
+	</summary>
 Some Owners may like the flexibility that hourly rentals allow - some products are more suited to this system also.
+</details>
 
-#### Cool-down Periods
+<details>
+	<summary>
+		<b>Cool-down Periods</b>
+	</summary>
 Some tools may require minor maintenance after use which only the owner can conduct/the tool had been returned in an unusable state and the issue is being resolved. In order to prevent compounding issues, an owner could specify a cool down period in which a tool can no longer be used.
+</details>
 
-#### Application Walkthrough/Guide/How-to-Use
+<details>
+	<summary>
+		<b>Application Walkthrough/Guide/How-to-Use</b>
+	</summary>
 Having an application walkthrough would be extremely useful in increasing adoption. An application that is difficult to use is unlikely to garner widespread attention.
+</details>
 
-#### User/Tool Reviews and Ratings
+<details>
+	<summary>
+		<b>User/Tool Reviews and Ratings</b>
+	</summary>
 Once a tool rental has been completed, it would be beneficial for tool owners and renters to be able to review or rate one another and the tools. Other users could then see these reviews before committing to rentals.
+</details>
 
-#### User/Tool Real Time Locations
+<details>
+	<summary>
+		<b>User/Tool Real Time Locations</b>
+	</summary>
 Using the user address information more effectively to notify users of an approximate location and distance for pick-up or delivery of a tool would allow them to make more informed decisions about the tools they want to hire.
+</details>
 
-#### User Messaging
+<details>
+	<summary>
+		<b>User Messaging</b>
+	</summary>
 User messaging would facilitate the organisation of rentals by allowing Owners and Renters to communicate in real-time, without the need to use third-party applications.
+</details>
+		
 
 ## Tech Stack
-#### Ruby on Rails
+### Ruby on Rails
 **[Rails Version: 5.2.3](https://guides.rubyonrails.org/v5.2/getting_started.html)**
+
 **[Ruby Version: 2.6.4](https://ruby-doc.org/stdlib-2.6.4/)**
+
 Ruby on Rails (Rails) is a web application framework built using the Ruby programming language. Rails uses what is known as the Model-View-Controller (MVC) software architecture pattern. The MVC structure breaks code down into individual pieces to maintain separation of concerns. The model stores our data, the view displays it and the controller connects the two and contains most of the logic in an application. 
 
 Within Rails, there are a number of different pieces that were used to handle certain parts of the application.
 
-#### PostgreSQL
+### PostgreSQL
 **[PostgreSQL version: 10.10](https://www.postgresql.org/docs/10/index.html)**
+
 An object-relational database system based on the SQL language, PostgreSQL was selected for **database management.**
 
-#### Ruby Gems
+### Ruby Gems
 The Ruby language (and by extension, Rails) uses Gems as a way of easily using preexisting code to implement certain functionality within an application. Rails uses a whole host of Gems  by default, below is a list of Gems installed in addition to the defaults to assist with the development of *Mates Rates*.
 
-###### List of Gems
-1. **Bundler**
+<details>
+	<summary>
+		<b>List of Gems</b>
+	</summary>
+
+**Bundler**
+
 [Bundler](https://bundler.io/) is a **Gem management system** that allows for quick and easy management of other Gems, including installation and updates.
 
-2. **Devise**
+
+**Devise**
+
 [Devise](https://github.com/plataformatec/devise/wiki) allows for **easy, secure authentication** of users in an application using sessions and password encryption.
 
-4. **Rolify**
+
+**Rolify**
+
 [Rolify](https://github.com/RolifyCommunity/rolify/wiki) is used for authorisation by allowing **users to be assigned roles** which can then be used as the basis for setting user permissions regarding data access and management.
 
-6. **CanCanCan**
+
+**CanCanCan**
+
 [CanCanCan](https://github.com/CanCanCommunity/cancancan/wiki) is used in conjunction with Rolify to streamline setting and determining user **permissions**.
 
-8. **RSpec**
+
+**RSpec**
+
 [RSpec](https://rspec.info/) allows for efficient **testing** of classes to support Test Driven Development (TDD). It allows us to simulate user requests in order to determine whether our application is returning the desired output.
 
-10. **Stripe**
+
+**Stripe**
+
 The Stripe Gem allows us to quickly and easily integrate the [Stripe](https://stripe.com/au) **payment service** into our application. (See below)
 
-12. **Cloudinary**
+
+**Cloudinary**
+
 Using ActiveStorage we can implement **file uploads** using [Cloudinary](https://cloudinary.com/) - a cloud based asset management software. (See below)
 
+</details>
 
-#### Third Party Services
 
-* **Stripe**
+### Third Party Services
+
+
+**Stripe**
+
  [Stripe](https://stripe.com/au)  is a secure payment processing application that is easy to use through API calls. By directing users through Stripe (which is [PCI](https://www.pcisecuritystandards.org/) compliant), it means the complexity of payment processing is handled outside of our application.
 
-* **Cloudinary**
+
+
+**Cloudinary**
+
 [Cloudinary](https://cloudinary.com/) is an asset hosting and management tool that utilises a Content Delivery Network (CDN) for improved and automated file handling within our application.
 
 Cloudinary’s CDN offloads the bandwidth-hungry process of delivering assets to a user away from your website and into the cloud, where it is delivered and optimised dynamically. Cloudinary optimises for device, browser and bandwidth requirements.[(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
 
-> Assets are delivered securely over Transport Layer Security (TLS)  or Security Sockets Layer (SSL). [(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
+> Assets are delivered securely over Transport Layer Security (TLS)  or Security Sockets Layer (SSL). - [(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
 
 
-* **Heroku**
-> Heroku is a platform as a service (PaaS) based on a managed container system with integrated data services. [(Heroku)](https://www.heroku.com/platform)
+
+**Heroku**
+
+> Heroku is a platform as a service (PaaS) based on a managed container system with integrated data services. - [(Heroku)](https://www.heroku.com/platform)
 > 
 Heroku supports a wide range of languages and frameworks and allows developers to quickly and easily host their application on a live server using containers. [(Heroku Platform)](https://www.heroku.com/platform) Containers are used to host multiple applications on a single server, while keeping them completely separate from one another. In Heroku’s case, these containers are known as “Dynos”.
 
-> Dynos are isolated, virtualized Linux containers that are designed to execute code based on a user-specified command. [(Heroku - Dynos)](https://www.heroku.com/dynos)
+> Dynos are isolated, virtualized Linux containers that are designed to execute code based on a user-specified command.  - [(Heroku - Dynos)](https://www.heroku.com/dynos)
 
 Dynos are incredibly useful for scaling applications depending on how much traffic your application is seeing, and subsequently how many resources you require. [(Heroku - Dyno Scaling)](https://www.heroku.com/dynos/scaling)
 
@@ -167,14 +320,19 @@ This means Heroku also has the ability to rollback the application to a previous
 
 Heroku also provides a whole host of other services and features for developers to use, but given the relatively simple nature of the *Mates Rates* MVP, most of these were not needed for this stage of development and deployment. [(Heroku - Managed Data Services)](https://www.heroku.com/managed-data-services)
 
-* **Github**
+
+
+**Github**
+
 [Github](https://github.com/) is a company that provides free remote repository hosting utilising the Git version control system.
 
 Git tracks changes in the application source code in order to manage project development and smooth developer collaboration by automatically handling merges and updates to the code base.
 
 As this project only had a single developer, Github was purely used as a remote storage solution and version control system.
 
-* **Google Fonts**
+
+**Google Fonts**
+
 [Google Fonts](https://fonts.google.com/) is a service provided by Google that allows for developers to use different fonts within their applications distributed across the web.
 
 Google fonts are optimised for speed using caching across websites that make use of the service. If a user has visited a website making use of a Google font that you are using as part of your application, the font will just be loaded from the user’s cache.  [(Google Fonts - About)](https://fonts.google.com/about)
@@ -194,23 +352,23 @@ As can be seen in the ERD above, within Mates Rates the User is the foundational
 
 The User model contains data relating to personal information of a user. As shown in the ERD above, this information is as follows;
 
-##### user_id, type: integer, primary key
+#### user_id, type: integer, primary key
 The `user_id` is automatically generated as part of Rails and Devise and used to distinguish instances of the User model. Because `user_id` will be unique, it is a great way of referencing specific user instances. As such, the `user_id` is used as the primary key (represented as ‘PK’ in the left-most column of the User table within the ERD).
 
-##### encrypted_password, type: string
+#### encrypted_password, type: string
 When signing up, users will need to specify a password used for logging in to the application. This password is automatically encrypted by Devise using bcrypt, meaning that the password is never stored in plain text.
 Within PostgreSQL strings are stored under ‘character varying’ columns within the table.
 
-##### email, type: string
+#### email, type: string
 Each user will sign up using their email address, this email address will need to be unique amongst users.
 
-##### first_name, type: string
+#### first_name, type: string
 User’s will also be required to set a `first_name` when signing up so that other users will know who they are when renting tools to one another.
 
-##### last_name, type: string
+#### last_name, type: string
 User’s also set a `last_name`  when signing up. Both `first_name` and `last_name` are used to identify users as they use the application. These fields do not need to be unique amongst users.
 
-##### ADDRESS
+#### ADDRESS
 HOW WE DOING ADDRESSES?
 
 ### Tool Model
@@ -218,91 +376,91 @@ Similarly to the User model, the tool model is also critical to the functionalit
 
 Much like User, there are other models that are dependent on the existence of the Tool model also.
 
-##### tool_id, type: integer, primary key
+#### tool_id, type: integer, primary key
 The `tool_id` behaves in an identical fashion to the `user_id`. It is used to keep track of and identify instances of the Tool. As can be seen in the ERD, this is also the primary key for this table.
 
-##### price, type: integer
+#### price, type: integer
 Each Tool must have a price associated with it so that users will know how much it will cost them to rent the tool. As outlined in features, tools are rented out for a minimum of a day to keep it easy for owners to manage their tools. Therefore, the `price` data will refer to the cost per day of a rental. Because of this, we can be sure that the overwhelming majority of prices will be able to be represented as a whole dollar value, meaning we can store prices as an integer, rather than a decimal.
 
-##### name, type: string
+#### name, type: string
 Fairly self explanatory, this refers to the name (or type) of product. If you have a power drill, this will be ‘Power Drill’. This data is mandatory - although an argument could be made that an image is enough of an identifier, the user experience would be less than optimal.
 
-##### brand, type: string
+#### brand, type: string
 Many different products make many different and overlapping products, as such we need to allow the user to specify who produces the tool they want to rent out. Similarly to the `name` field, this data is mandatory so that people can easily see what they are renting.
 
-##### model, type: string
+#### model, type: string
 Different brands often produce different types of the same product to cater to different audiences. The drill that a professional tradesperson uses will likely be different from the average consumer-level drill, despite being produced by the same brand. As such, we need to allow users to specify a model name or number. However, unlike name and brand, this information is not mandatory. Sometimes the model number is unknown, but more importantly, not every product will have a model number!
 
-##### description, type: text
+#### description, type: text
 In the likely event that there needs to be some more identifying information posted about the tool, a description field is provided so that user can enter in any information that they want. The text type specification allows for larger amounts of text to be input when compared to a string. This is used as it is more than possible for a description to become quite lengthy.
 
-##### availability, type: boolean
+#### availability, type: boolean
 A user may want to perform some kind of admin/preparation work before allowing their tools to be rented out. As such, allowing them to specify whether the tool is available will be used to prevent it from showing up to other users. Given that this is only a yes or no option, we can represent this data with a boolean. 
 
-##### delivery_options, type: string
+#### delivery_options, type: string
 If a user is willing to deliver their tool to someone who is renting it, we can let them specify that delivery is available. However, there may also be instances where delivery is the only option - the tool may need to be transported in a specific manner. If this is the case then users will also need to be able to specify that only delivery is available. Although this could be stored differently, storing it as a string allows for easy validation. 
 
-##### delivery_fee, type: decimal
+#### delivery_fee, type: decimal
 If a tool has a delivery option users need to know how much it will cost to have it delivered. Therefore, a delivery fee is needed. A tool owner will not know the delivery distance before someone rents the tool so users will need to specify a fee per km. Given that the distances will vary and be much more specific compared to rental days, this fee will be stored as a decimal.
 
-##### min_delivery_fee, type: decimal
+#### min_delivery_fee, type: decimal
 It may be unfeasible for someone to deliver a tool across a short distance if there is a lot of setup that goes into transporting it. As such, users will be able to specify a minimum to make sure each delivery is worth their while. As with the `delivery_fee` itself, this is also stored as a decimal.
 
-##### user_id, type: integer, foreign key
+#### user_id, type: integer, foreign key
 Finally, as each tool must belong to a user, being able to identify which user the tool belongs to is critical. As such, the `user_id` (with the integer type), is stored in the Tool table. As can be seen in the ERD, this is a foreign key. The foreign key points to the `user_id` of the tool owner.
 
 
 ### Rental Model
-##### rental_id, type: integer, primary key
+#### rental_id, type: integer, primary key
 As with the previous models, rentals have a unique id that is used for identification of certain instances of Rental. As shown in the left hand column of the ERD, this is also the primary key for Rentals.
 
-##### start_date, type: date
+#### start_date, type: date
 Rentals are only allowed to go for a certain amount of time, as such dates need to be specified to indicate when this period is. As dates are often used in databases, a `date` type exists, which is what will be used to store the start date.
 
-##### end_date, type: date
+#### end_date, type: date
 The end date behaves in exactly the same way as the start date, but (as the name suggests) specifies the end of the rental period, not the start.
 
-##### returned, type: boolean
+#### returned, type: boolean
 Given that the rental transaction is not an immediate, single event trigger, there needs to be some way of specifying that the rental period has been completed successfully. As such, a boolean value will be set to track this status. Once the tool owner has indicated that the tool is returned, this value will update - allowing payment to happen using Stripe.
 
-##### tool_id, type: integer, foreign key
+#### tool_id, type: integer, foreign key
 Each rental must reference a tool, because if there is no Tool being referenced, there is no reason for the rental to exist. The `tool_id` is tracked as a foreign key with the type integer to identify which tool the rental refers to. The label ‘FK’ in the table represents that this is a foreign key.
 
-##### user_id, type: integer, foreign key
+#### user_id, type: integer, foreign key
 As with the `tool_id`, each rental must belong to a user, so that the person renting the tool can be identified. In the same way as the `tool_id`, the `user_id` is tracked as a foreign key with the type integer, as can be seen in the ERD. As two separate foreign keys are referenced within the Rental table, it is technically a join table. However, as there is additional information that it also holds it is used slightly differently when compared to other join tables (such as RolesUsers and CategoriesTools). This has been identified in the ERD by using a slightly different colour to the other join tables.
 
 ### Role Model
-##### role_id, type: integer, primary key
+#### role_id, type: integer, primary key
 As with all models, Roles have a unique id that is an integer and functions as the primary key. This can be seen in the ERD left-most column, where it is specified as PK.
 
-##### name, type: string
+#### name, type: string
 In order to track and manage specified roles in an easy to understand way, a name is assigned with the type string to each Role.
 
-##### resource_type, type: string
+#### resource_type, type: string
 Rolify allows Roles to be assigned to multiple different models. In the case where this happens, the resource type indicates which model the role is being applied to. This model name is stored as a string.
 
-##### resource_id, type: integer
+#### resource_id, type: integer
 In order to identify which instance of a `resource_type` the role is being applied to, the resource id references the id of this instance, stored as an integer.
 
 ### RolesUsers Join Table
-##### user_id, type: integer, foreign key
+#### user_id, type: integer, foreign key
 As a user can have many roles and a role can be assigned to many users, a join table is required to indicate all of the assignments. Within the table, a column containing `user_id`’s matches up to the a column containing the `role_id` to indicate which role and which user are linked (and vice versa). The ERD shows that the `user_id` is a foreign key (FK), to indicate that it points to the `user_id` primary key.
 
-##### role_id, type: integer, foreign key
+#### role_id, type: integer, foreign key
 All of the above relating to `user_id` also applies to the `role_id`. As can be seen in the ERD, it is also a foreign key.
 
 ### Category Model
-##### category_id, type: integer, primary key
+#### category_id, type: integer, primary key
 As can be seen in the ERD, like the other models, categories also have a unique id that serves as the primary key for the category table.
 
-##### name, type:  string
+#### name, type:  string
 In order to identify the category, a name is stored as a string to easily track and manage the different categories that are created.
 
 ### CategoriesTools Join Table
-##### category_id, type: integer, foreign key
+#### category_id, type: integer, foreign key
 As a category can have many tools and a tool can be assigned to many categories, a join table is required to indicate all of the assignments. Within the table, a column containing `category_id`’s matches up to the a column containing the `tool_id` to indicate which category and which tool are linked (and vice versa). The ERD shows that the `category_id` is a foreign key (FK), to indicate that it points to the `category_id` primary key.
 
-##### tool_id, type: integer, foreign key
+#### tool_id, type: integer, foreign key
 All of the above relating to `category_id` also applies to the `category_id`. As can be seen in the ERD, it is also a foreign key.
 
 
@@ -310,75 +468,76 @@ All of the above relating to `category_id` also applies to the `category_id`. As
 
 Within Rails, there are six different types of associations that can be used.  [Rails Active Record Associations](https://guides.rubyonrails.org/association_basics.html#choosing-between-belongs-to-and-has-one)
 
-* belongs_to
+### belongs_to
 The `belongs_to` association is used to set up one side of a model association such that one instance of a model (as the name suggests) belongs to an instance of a different model.
 
-* has_one
+### has_one
 In the case where a `belongs_to` association is being used to set-up a one-to-one exclusive relationship, the `has_one` association can be used to signify that a model owns or contains an instance of another model. In other words, it is used to specify the `belongs_to` association from the opposite perspective.
 
-* has_many
+### has_many
 In the case where a one-to-many relationship is required, the `has_many` association is used. It functions in the same way as a `has_one`, in that it specifies the `belongs_to` association from the opposite side, but instead of referencing only a singular instance, the model that `has_many` of another can contain or own multiple instances of the other model.
 
-* has_many :through
+### has_many :through
 By specifying that a model `has_many :through` a different model, it indicates that the first model `has_many` instances of a second model by referencing a third model which has identifying information relating to the other models. Typically, this is used to set up what is known as a many-to-many relationship.
 
 The `has_many :through` association can also be used to set up quick references through other `has_many` associations that may already exist between models.
 
-* has_one :through
+### has_one :through
 Similarly to the `has_many :through` association, `has_one :through` specifies a one-to-one relationship between two models using a third, intermediary model that references the other model.
 
-* has_and_belongs_to_many
+### has_and_belongs_to_many
 A `has_and_belongs_to_many` association specifies a many-to-many connection without the need for the third model to exist. It uses what is known as a join-table to indicate which instances of each model relate to which. Active Record handles all of the ‘joining’ automatically when using a `has_and_belongs_to_many` association.  `has_many :through` associations also use join tables also, but they are manually specified and will hold other pieces of data.
 
-### Mates Rates Associations
+## Mates Rates Associations
 
-#### User Model
-	* devise
-	Devise is used to generate the User model with certain attributes for the purposes of authentication. 
+### User Model
+#### devise
+
+Devise is used to generate the User model with certain attributes for the purposes of authentication. 
 **Authenticatable, Recoverable, Registerable, Rememberable, Validateable**
 **LIST OF DEVISE IMPLEMENTATIONS AND DESCRIPTIONS HERE.**
 
-	* has_many :tools
-	A User can have many Tools that they own and wish to rent out. The ability to create and manage tools is restricted to a User with the role of ‘Owner’.  This relationship specifies that a User does not need to have Tools (they may just be looking to rent tools). However, if they do have tools to rent out, they can have many tools associated in the model.
+#### has_many :tools
+A User can have many Tools that they own and wish to rent out. The ability to create and manage tools is restricted to a User with the role of ‘Owner’.  This relationship specifies that a User does not need to have Tools (they may just be looking to rent tools). However, if they do have tools to rent out, they can have many tools associated in the model.
 
-	* has_many :rentals
-	Users also have the ability to rent out many	different tools from other users.  They do not need to have rentals, as they may be inactive within the application if they have no projects to complete, and thus no need to rent any tools.
+#### has_many :rentals
+Users also have the ability to rent out many	different tools from other users.  They do not need to have rentals, as they may be inactive within the application if they have no projects to complete, and thus no need to rent any tools.
 
-	* has_many :rented_tools, through: :rentals, class_name: ‘Tool’
-	Used as an easy way to keep track of the tools that a user has, is, or will be renting.  It assigns a rented tool to a user by referencing the tool through the rental model. Although the relationship is similar to the `has_many :tools` relationship, this is distinct in that it tracks and associates a different type of (ie: rented, not owned) tool.
+#### has_many :rented_tools, through: :rentals, class_name: ‘Tool’
+Used as an easy way to keep track of the tools that a user has, is, or will be renting.  It assigns a rented tool to a user by referencing the tool through the rental model. Although the relationship is similar to the `has_many :tools` relationship, this is distinct in that it tracks and associates a different type of (ie: rented, not owned) tool.
 
 Note that this relationship is represented differently within the ERD. Because the relationship is only specified for ease of information access the application, and not actually required at all.
 	
-	* has_and_belongs_to_many :roles
-	As outlined above, the ability create and manage tools is restricted to a User with the role of ‘Owner’.  Although the distinction between an ‘Owner’ and a ‘Renter’ is only used to improve user experience as part of the MVP, the requirements and details required for signing up as either an ‘Owner’ or a ‘Renter’ may differ in future and so was built for extensibility. Therefore, a user can have many roles, while each role can also contain many users.
+#### has_and_belongs_to_many :roles
+As outlined above, the ability create and manage tools is restricted to a User with the role of ‘Owner’.  Although the distinction between an ‘Owner’ and a ‘Renter’ is only used to improve user experience as part of the MVP, the requirements and details required for signing up as either an ‘Owner’ or a ‘Renter’ may differ in future and so was built for extensibility. Therefore, a user can have many roles, while each role can also contain many users.
 
 On top of this, an ‘Admin’ role exists that allows the management of all listings on the site.
 
 Roles are created and assigned using Rolify. Users and their roles are stored in a join table generated by Rolify called UsersRoles. 
 
 
-#### Tool Model
-	* belongs_to :user
-	Each and every tool must have an associated user to be able to be created, and thus a Tool belongs to a User. Without a user to reference, the tool would not have details for where or how to rent the tool.
+### Tool Model
+#### belongs_to :user
+Each and every tool must have an associated user to be able to be created, and thus a Tool belongs to a User. Without a user to reference, the tool would not have details for where or how to rent the tool.
 
-	* has_many :rentals
-	Although a Tool obviously can’t be rented out by multiple people at the same time, future, past and current rentals can all apply to a single tool. As such, Tools can have many Rentals.  Additionally, a tool does not necessarily need a rental to exist.
+#### has_many :rentals
+Although a Tool obviously can’t be rented out by multiple people at the same time, future, past and current rentals can all apply to a single tool. As such, Tools can have many Rentals.  Additionally, a tool does not necessarily need a rental to exist.
 
 
-	* has_and_belongs_to_many :categories
-	A tool can fall under a wide range of different categories, but categories can also contain a wide range of different tools! As such, tools have and belong to many different categories. Using a CategoriesTools join table, tools, their categories and vice versa can be tracked.
+#### has_and_belongs_to_many :categories
+A tool can fall under a wide range of different categories, but categories can also contain a wide range of different tools! As such, tools have and belong to many different categories. Using a CategoriesTools join table, tools, their categories and vice versa can be tracked.
 
-	* has_many :renters, through: :rentals, class_name: ‘User’
-	Much like a user can have rented many tools, a tool will also keep track of the users that have rented the tool by referencing those users through the rental model.
+#### has_many :renters, through: :rentals, class_name: ‘User’
+Much like a user can have rented many tools, a tool will also keep track of the users that have rented the tool by referencing those users through the rental model.
 
 Note that this relationship is represented differently within the ERD. Because the relationship is only specified for ease of information access the application, and not actually required at all.
 	
-#### Rental Model
-	* belongs_to :tool
-	A rental must reference a tool, otherwise there is no way of knowing what the rental refers to at all. Therefore, each rental must belong to a tool. 
+### Rental Model
+#### belongs_to :tool
+A rental must reference a tool, otherwise there is no way of knowing what the rental refers to at all. Therefore, each rental must belong to a tool. 
 
-	* belongs_to :user
-	A rental must also reference the user that is renting the tool (Note - this is different to the tool owner!). Without someone paying money to rent the tool, there is no rental. As such, a rental must belong to a user.
+#### belongs_to :user
+A rental must also reference the user that is renting the tool (Note - this is different to the tool owner!). Without someone paying money to rent the tool, there is no rental. As such, a rental must belong to a user.
 
 #### Category Model
 * has_and_belongs_to_many :tools
@@ -389,17 +548,6 @@ As discussed in the tool model section, a tool can fall under a wide range of di
 Users can be assigned different roles which will determine what they can see and do within the application. Roles can also have many different users. Although this functionality is not utilised as part of the MVP, it was included for easy extensibility in the future.
 
 Roles are created and assigned using Rolify. Users and their roles are stored in a join table generated by Rolify called UsersRoles. 
-
-
-
-
-
-
-
-6.1 - User Stories - Github Projects 
-Unresolved and Extensible Features
-
-6.2 Wireframes
 
 
 ## Project Plan and Task Allocation
@@ -442,9 +590,14 @@ Github Projects was chosen for the direct association and linking capabilities i
 
 Screenshots of the initial setup for the Github Projects kanban board, including documentation and user stories.
 
-**Github Projects Initial Setup**
-[image:3A584DD6-8E07-47EB-A68B-42B906DC32A0-54208-00010C81ACF9019D/Projects Cards Initial.png]
-
+<details>
+	<summary>
+		<b>Github Projects Initial Setup</b>
+	</summary>
+	
+![Initial Github Projects](docs/progress/ProjectsCardsInitial.png)
+	
+</details>
 
 **Documentation Goals**
 [image:02D2117A-8033-47EF-8B1F-F55A425E2862-54208-00010C5C7B352AA7/Documentation.png]

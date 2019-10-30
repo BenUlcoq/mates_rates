@@ -2,9 +2,6 @@
 ## T2A2 - Marketplace Project
 ---
 
-# Documentation
-
-
 Link to Application published on Heroku 
 
 [Link to Github Repo](https://github.com/BenUlcoq/mates_rates)
@@ -395,11 +392,7 @@ Roles are created and assigned using Rolify. Users and their roles are stored in
 
 
 
-3.3 - Description of project models in terms of active record associations (relationships)
 
-4.2 - Discuss the database relations to be implemented with reference to ERD.
-
-4.3 - ERD Diagram
 
 
 
@@ -409,60 +402,189 @@ Unresolved and Extensible Features
 6.2 Wireframes
 
 
-6.3 Planning of tasks
+## Project Plan and Task Allocation
+### Brainstorming and Overall Plan
+Before any work was undertaken, a thorough review and analysis of the project requirements and rubric was undertaken. Each task and requirement was written down and stored in a markdown file. From here, a number of notes were made about each requirement to more clearly define what was needed to fulfil the requirement. 
+
+After completing this list of needs, brainstorming was conducted to design a platform which would solve all of the items in the list. Mates Rates, a tool rental platform was decided upon as a way to satisfy all criteria and solve a real world problem.
+
+Once the idea was solidified, the rest of the initial planning was done. Given the relatively large scope of the project given the timeframe, a rigorous plan needed to be implemented in order to ensure deadlines and goals would be met and the project would stay on track.
+
+It was decided that the project would be broken down into sprints.
+
+### Sprints
+
+> A sprint is a short, time-boxed period when a scrum team works to complete a set amount of work. [Atlassian Agile Coach - Sprints](https://www.atlassian.com/agile/scrum/sprints)
+
+By breaking the project down using sprints, the project became much more manageable. Rather than jump from goal to goal and task to task constantly, focusing intensely on a certain problem for a relatively short amount of time would allow for a far more streamlined, less disruptive process.
+
+If everything goes according to plan, goals will be kicked regularly and progress will be constant., following along with Agile principles. [Atlassian - Agile Manifesto](https://www.atlassian.com/agile/manifesto)However, if something goes wrong, the next sprint can be adjusted to cater to the new problem. This would essentially be combining the sprint retrospective and the new sprint planning all rolled together.
+
+Although the project does not involve working as a team, following along with Agile concepts and using sprints proved extremely useful for project management by allowing the development process to remain fluid.
+
+As a part of sprints, stand up meetings are typical to help with any blocks or challenges that might have arisen in the current sprint by sharing with the team. As outlined above, there was no team for this project. However, as part of learning in Coder Academy’s collaborative environment, the developers held daily morning stand up meetings to help each other with these problems. That way, if someone had previously solved the problem that a certain developer was having, they could help quickly solve the problem in order to remove the block and then continue with making progress.
+
+### User Stories
+
+In order to set clear goals for sprints and turn the application into something achievable, user stories were generated for Mates Rates. 
+
+Each application feature and user interaction with the feature was planned and mapped to a user story. On top of actually providing a goal for sprints, creating user stories helped form a foundational idea for how to achieve certain goals using code.
+
+The user stories would form the foundation of the goals that needed to be achieved in each sprint, with each story having a list of tasks associated with it that would need to be completed in order to fulfil that story.
+
+### Github Projects
+
+[Github Projects](https://help.github.com/en/github/managing-your-work-on-github/about-project-boards) was used as a project management tool in order to track user stories and sprints.  Github Projects is a kanban style scheduling system that allocates tasks (In this case - user stories), represented by cards on the board, into columns indicating what stage of development each task is in. For example, it is common to have ‘To do’, ‘In Progress’ and ‘Done’ columns which a card will move through as tasks are checked off. 
+
+Github Projects was chosen for the direct association and linking capabilities it has with Github itself, which was used as a remote source code repository for version control.
+
+#### Screenshots
+
+Screenshots of the initial setup for the Github Projects kanban board, including documentation and user stories.
+
+**Github Projects Initial Setup**
+[image:3A584DD6-8E07-47EB-A68B-42B906DC32A0-54208-00010C81ACF9019D/Projects Cards Initial.png]
 
 
+**Documentation Goals**
+[image:02D2117A-8033-47EF-8B1F-F55A425E2862-54208-00010C5C7B352AA7/Documentation.png]
 
-	Sprints Design
-		Initial Documentation and Project Set-up - Monday 28/10
-		Database Research, Design and Documentation - Tuesday 29/10
-		Wire-framing and Design - Wednesday 30/10
-		Model/Database TDD - Thursday 31/10 - Saturday 2/11
-		Controller TDD - Sunday 3/11 - Monday 4/11
-		View TDD - Tuesday 5/11 - Thursday 7/11
-		Styling - Friday 8/11
-		Documentation Updates - Saturday 9/11
-		Complete Project Review - 10/11
-		
-		
-		
-		
-		
-
-		
-		
-	
-		
-	TDD
+**User Stories**
+[image:883D4B6D-5C67-48C4-8A7C-A377A529130D-54208-00010C2AE84BBA4D/User Stories copy.png]
 
 
-1.1 ERD represents a normalised database model
+### Project Timeline
 
+Based on this initial setup, a number of rough goals were laid out and mapped to dates, which were to form the foundation for the project sprints. 
 
+These sprints were designed to be extremely flexible - without a wealth of experience to draw on it is difficult to provide time estimates. As discussed above, the sprints were designed more so for the goals and direction that they would provide. Having said that, the periods of time were still important to observe as they were balanced well for sprint retrospectives throughout the project. 
 
-Sprints plan
+The initial design for the project sprints are as follows:
 
+#### Sprints Design
+1. **Sprint 1**
+**Initial Documentation and Project Set-up**
+*Monday 28/10*
+		* Map Rubric to tasks
+		* Brainstorm Idea
+		* Plan Project
+			* Design Sprints
+			* Record User Stories
+			* Set up Github Projects
+		* Research and Plan Documentation
 
+2. **Sprint 2**
+**Database Research, Design and Documentation**
+*Tuesday 29/10*
+		* 	Application Design
+			* Purpose
+			* Description
+			* Tech Stack
+				* Third Party Services
+			* Features
+		* Database
+			* Design Models
+			* ERD
+			* Active Record Associations Documentation
+			* Database Relations Documentations
 
+3. **Sprint 3**
+**Application Design and Wireframing**
+*Wednesday 30/10*
+		* 	Wireframe Sketching
+			* Pages
+				* Home Page
+				* Sign Up Page
+				* Sign In Page
+				* User Dashboard
+					* Owner Dashboard
+						* Upcoming Rentals
+						* Current Rentals
+					* Renter Dashboard
+						* Upcoming Rentals
+						* Current Rentals
+					* Edit Account
+					* Rental History
+						* Owner History
+						* Renter History
+					* Manage Items
+						* Edit Item
+						* New Item
+				* Browse Results
+					* Categories
+					* Search Term
+					* All
+				* Item Page
+				* Rental Page
+				* User Page
+		* Design
+			* Branding
+			* Framework Research
+				* Components Needed
+					* Complexity
 
+4. **Sprint 4**
+**Model and Database TDD**
+*Thursday 31/10 - Saturday 2/11*
+		* Rails Setup
+		* Gem Bundling
+		* Stripe Setup
+		* Cloudinary Setup
+		* RSpec Tests
+		* Model Generation
+			* User
+			* Role
+			* Tool
+			* Rental
+			* Category
+			* Image Upload via Cloudinary
+			* Stripe Payment Processing
+		* Deployment
 
+5.  **Sprint 5**
+**Controller TDD**
+*Sunday 3/11 - Tuesday 5/11*
+		* RSpec Tests
+		* Controller Generation
+			* User
+			* Tool
+			* Rental
+		* View Generation
+			* Testing Purposes, no. styling.
+		* Deployment
 
+6.  **Sprint 6**
+**View TDD and Styling**
+*Wednesday 6/11- Friday 8/11*
+		* CSS Framework Setup
+		* View Modification / Updates
+			* Page Structure
+			* Framework Classes
+		* Styling Updates
+			* Framework Variable Edits
+		* Deployment
 
- Identify the problem
-	Why is it a problem
-	Description of app
-		Purpose
-		Functionality /features
-		Sitemap
-		Screenshots
-		Target Audience
-		Tech Stack
-	User Stories
-	Wireframes for your app
-	ERD Diagram
-	High level component descriptions
-	Third Party Services
-	Model descriptions any relationships
-	Database relations to be implemented
-	Provide your database schema design
-	Description of the way tasks are allocated and tracked in your project
+7. **Sprint 7**
+**Documentation Updates**
+*Saturday 9/11*
+		* Review Documentation
+		* Update Documentation
+			* Assemble Assets
+				* Wireframes
+				* Screenshots
+			* Finalise README
+				* Write New Content
+				* Update Old Content
+
+8. **Sprint 8**
+**Project Review**
+*Sunday 10/11*
+		* 	Review Project
+			* Rubric Comparison
+				* Updates as necessary
+			* Tests
+				* Github
+				* Heroku Deployment
+				* Updates as necessary
+		* Assemble Submission File
+		* Submit!

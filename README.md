@@ -6,6 +6,50 @@ Link to Application published on Heroku
 
 [Link to Github Repo](https://github.com/BenUlcoq/mates_rates)
 
+
+<details>
+	<summary>
+		<b>Table of Contents</b>
+	</summary>
+	
+- [Application Purpose](#application-purpose)
+- [Application Description](#application-description)
+  * [Functionality and Features](#functionality-and-features)
+    + [MVP Features](#mvp-features)
+    + [Extensibility](#extensibility)
+      - [Insurance and Legal Research](#insurance-and-legal-research)
+      - [Extensible Features](#extensible-features)
+  * [Tech Stack](#tech-stack)
+    + [Ruby on Rails](#ruby-on-rails)
+    + [PostgreSQL](#postgresql)
+    + [Ruby Gems](#ruby-gems)
+    + [Third Party Services](#third-party-services)
+- [Database Structure](#database-structure)
+  * [Database Relations](#database-relations)
+    + [User Model](#user-model)
+    + [Tool Model](#tool-model)
+    + [Rental Model](#rental-model)
+    + [Role Model](#role-model)
+    + [RolesUsers Join Table](#rolesusers-join-table)
+    + [Category Model](#category-model)
+    + [CategoriesTools Join Table](#categoriestools-join-table)
+  * [Rails Active Record Associations](#rails-active-record-associations)
+    + [Mates Rates Associations](#mates-rates-associations)
+      - [User Model](#user-model-1)
+      - [Tool Model](#tool-model-1)
+      - [Rental Model](#rental-model-1)
+      - [Category Model](#category-model-1)
+      - [Role Model](#role-model-1)
+  * [Project Plan and Task Allocation](#project-plan-and-task-allocation)
+    + [Brainstorming and Overall Plan](#brainstorming-and-overall-plan)
+    + [Sprints](#sprints)
+    + [User Stories](#user-stories)
+    + [Github Projects](#github-projects)
+      - [Screenshots](#screenshots)
+    + [Project Timeline](#project-timeline)
+      - [Sprints Design](#sprints-design)
+</details>
+
 # Application Purpose
 This application has been developed as part of the requirements of T2A2 at Coder Academy in Brisbane. The assignment involved the development of a two-sided marketplace platform as a way of demonstrating ability to design and develop an application from the ground up, through to deployment. Part of the requirements for this assignment involved solving some kind of problem that exists in the world today.
 
@@ -112,10 +156,13 @@ In order to handle monetary exchange, a payment processing system has to be impl
 For site moderation purposes, admins have the ability to manipulate other users listings. A dashboard allows admins to quickly browse listings without bloat. As their purpose for browsing listings is different to a regular user, a different interface is required which is more efficient.
 </details>
 
+
+
 ### Extensibility
 
 #### Insurance and Legal Research
 Providing a platform for tool rental is valuable to users, but without proper channels for users to report and record issues that they may have (such as stolen tools), the application should not be developed beyond the scope of this assignment. In the event that this does happen, additional authorisation would be required on sign-up for different users depending on what is required.
+
 
 ### Extensible Features
 

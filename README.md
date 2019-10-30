@@ -241,7 +241,10 @@ An object-relational database system based on the SQL language, PostgreSQL was s
 ### Ruby Gems
 The Ruby language (and by extension, Rails) uses Gems as a way of easily using preexisting code to implement certain functionality within an application. Rails uses a whole host of Gems  by default, below is a list of Gems installed in addition to the defaults to assist with the development of *Mates Rates*.
 
-#### List of Gems
+<details>
+	<summary>
+		<b>List of Gems</b>
+	</summary>
 
 **Bundler**
 
@@ -276,6 +279,8 @@ The Stripe Gem allows us to quickly and easily integrate the [Stripe](https://st
 **Cloudinary**
 
 Using ActiveStorage we can implement **file uploads** using [Cloudinary](https://cloudinary.com/) - a cloud based asset management software. (See below)
+
+</details>
 
 
 ### Third Party Services

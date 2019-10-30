@@ -226,60 +226,84 @@ User messaging would facilitate the organisation of rentals by allowing Owners a
 ## Tech Stack
 ### Ruby on Rails
 **[Rails Version: 5.2.3](https://guides.rubyonrails.org/v5.2/getting_started.html)**
+
 **[Ruby Version: 2.6.4](https://ruby-doc.org/stdlib-2.6.4/)**
+
 Ruby on Rails (Rails) is a web application framework built using the Ruby programming language. Rails uses what is known as the Model-View-Controller (MVC) software architecture pattern. The MVC structure breaks code down into individual pieces to maintain separation of concerns. The model stores our data, the view displays it and the controller connects the two and contains most of the logic in an application. 
 
 Within Rails, there are a number of different pieces that were used to handle certain parts of the application.
 
 ### PostgreSQL
 **[PostgreSQL version: 10.10](https://www.postgresql.org/docs/10/index.html)**
+
 An object-relational database system based on the SQL language, PostgreSQL was selected for **database management.**
 
 ### Ruby Gems
 The Ruby language (and by extension, Rails) uses Gems as a way of easily using preexisting code to implement certain functionality within an application. Rails uses a whole host of Gems  by default, below is a list of Gems installed in addition to the defaults to assist with the development of *Mates Rates*.
 
 #### List of Gems
-1. **Bundler**
+
+**Bundler**
+
 [Bundler](https://bundler.io/) is a **Gem management system** that allows for quick and easy management of other Gems, including installation and updates.
 
-2. **Devise**
+
+**Devise**
+
 [Devise](https://github.com/plataformatec/devise/wiki) allows for **easy, secure authentication** of users in an application using sessions and password encryption.
 
-4. **Rolify**
+
+**Rolify**
+
 [Rolify](https://github.com/RolifyCommunity/rolify/wiki) is used for authorisation by allowing **users to be assigned roles** which can then be used as the basis for setting user permissions regarding data access and management.
 
-6. **CanCanCan**
+
+**CanCanCan**
+
 [CanCanCan](https://github.com/CanCanCommunity/cancancan/wiki) is used in conjunction with Rolify to streamline setting and determining user **permissions**.
 
-8. **RSpec**
+
+**RSpec**
+
 [RSpec](https://rspec.info/) allows for efficient **testing** of classes to support Test Driven Development (TDD). It allows us to simulate user requests in order to determine whether our application is returning the desired output.
 
-10. **Stripe**
+
+**Stripe**
+
 The Stripe Gem allows us to quickly and easily integrate the [Stripe](https://stripe.com/au) **payment service** into our application. (See below)
 
-12. **Cloudinary**
+
+**Cloudinary**
+
 Using ActiveStorage we can implement **file uploads** using [Cloudinary](https://cloudinary.com/) - a cloud based asset management software. (See below)
 
 
 ### Third Party Services
 
-* **Stripe**
+
+**Stripe**
+
  [Stripe](https://stripe.com/au)  is a secure payment processing application that is easy to use through API calls. By directing users through Stripe (which is [PCI](https://www.pcisecuritystandards.org/) compliant), it means the complexity of payment processing is handled outside of our application.
 
-* **Cloudinary**
+
+
+**Cloudinary**
+
 [Cloudinary](https://cloudinary.com/) is an asset hosting and management tool that utilises a Content Delivery Network (CDN) for improved and automated file handling within our application.
 
 Cloudinary’s CDN offloads the bandwidth-hungry process of delivering assets to a user away from your website and into the cloud, where it is delivered and optimised dynamically. Cloudinary optimises for device, browser and bandwidth requirements.[(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
 
-> Assets are delivered securely over Transport Layer Security (TLS)  or Security Sockets Layer (SSL). [(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
+> Assets are delivered securely over Transport Layer Security (TLS)  or Security Sockets Layer (SSL). - [(Cloudinary - File Upload Storage)](https://cloudinary.com/features/file_upload_storage)
 
 
-* **Heroku**
-> Heroku is a platform as a service (PaaS) based on a managed container system with integrated data services. [(Heroku)](https://www.heroku.com/platform)
+
+**Heroku**
+
+> Heroku is a platform as a service (PaaS) based on a managed container system with integrated data services. - [(Heroku)](https://www.heroku.com/platform)
 > 
 Heroku supports a wide range of languages and frameworks and allows developers to quickly and easily host their application on a live server using containers. [(Heroku Platform)](https://www.heroku.com/platform) Containers are used to host multiple applications on a single server, while keeping them completely separate from one another. In Heroku’s case, these containers are known as “Dynos”.
 
-> Dynos are isolated, virtualized Linux containers that are designed to execute code based on a user-specified command. [(Heroku - Dynos)](https://www.heroku.com/dynos)
+> Dynos are isolated, virtualized Linux containers that are designed to execute code based on a user-specified command.  - [(Heroku - Dynos)](https://www.heroku.com/dynos)
 
 Dynos are incredibly useful for scaling applications depending on how much traffic your application is seeing, and subsequently how many resources you require. [(Heroku - Dyno Scaling)](https://www.heroku.com/dynos/scaling)
 
@@ -291,14 +315,19 @@ This means Heroku also has the ability to rollback the application to a previous
 
 Heroku also provides a whole host of other services and features for developers to use, but given the relatively simple nature of the *Mates Rates* MVP, most of these were not needed for this stage of development and deployment. [(Heroku - Managed Data Services)](https://www.heroku.com/managed-data-services)
 
-* **Github**
+
+
+**Github**
+
 [Github](https://github.com/) is a company that provides free remote repository hosting utilising the Git version control system.
 
 Git tracks changes in the application source code in order to manage project development and smooth developer collaboration by automatically handling merges and updates to the code base.
 
 As this project only had a single developer, Github was purely used as a remote storage solution and version control system.
 
-* **Google Fonts**
+
+**Google Fonts**
+
 [Google Fonts](https://fonts.google.com/) is a service provided by Google that allows for developers to use different fonts within their applications distributed across the web.
 
 Google fonts are optimised for speed using caching across websites that make use of the service. If a user has visited a website making use of a Google font that you are using as part of your application, the font will just be loaded from the user’s cache.  [(Google Fonts - About)](https://fonts.google.com/about)

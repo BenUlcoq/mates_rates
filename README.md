@@ -1,8 +1,9 @@
 # Mates Rates
 ## T2A2 - Marketplace Project
 ---
+
 # Documentation
----
+
 
 Link to Application published on Heroku 
 
@@ -186,10 +187,129 @@ As a bonus, the vast range of fonts that Google provides allows applications to 
 ---
 
 # Database Structure
-## Rails Active Record Associations 
 Rails uses Active Record associations to set up and determine the relationships between models in our database.
 
-Relational databases use what are known as **foreign** and **primary keys** to help establish these connections between models.
+Relational databases use what are known as foreign and primary keys to help establish these connections between models.
+
+## Database Relations
+### User Model
+As can be seen in the ERD above, within Mates Rates the User is the foundational model upon which the application is built. Without the User model as a starting point, all other models have no point of ownership for their existence, whether direct or indirect. In the context of Mates Rates, a Tool must be owned by a User, it doesn’t make sense for a tool to exist without one. Subsequently, if Tools don’t exist, Rentals and Categories existing also doesn’t make sense. In much the same way, if Users didn’t exist, the Role model has no point of reference either.
+
+The User model contains data relating to personal information of a user. As shown in the ERD above, this information is as follows;
+
+##### user_id, type: integer, primary key
+The `user_id` is automatically generated as part of Rails and Devise and used to distinguish instances of the User model. Because `user_id` will be unique, it is a great way of referencing specific user instances. As such, the `user_id` is used as the primary key (represented as ‘PK’ in the left-most column of the User table within the ERD).
+
+##### encrypted_password, type: string
+When signing up, users will need to specify a password used for logging in to the application. This password is automatically encrypted by Devise using bcrypt, meaning that the password is never stored in plain text.
+Within PostgreSQL strings are stored under ‘character varying’ columns within the table.
+
+##### email, type: string
+Each user will sign up using their email address, this email address will need to be unique amongst users.
+
+##### first_name, type: string
+User’s will also be required to set a `first_name` when signing up so that other users will know who they are when renting tools to one another.
+
+##### last_name, type: string
+User’s also set a `last_name`  when signing up. Both `first_name` and `last_name` are used to identify users as they use the application. These fields do not need to be unique amongst users.
+
+##### ADDRESS
+HOW WE DOING ADDRESSES?
+
+### Tool Model
+Similarly to the User model, the tool model is also critical to the functionality of Mates Rates. Without Tools, there is no reason for the application to exist.
+
+Much like User, there are other models that are dependent on the existence of the Tool model also.
+
+##### tool_id, type: integer, primary key
+The `tool_id` behaves in an identical fashion to the `user_id`. It is used to keep track of and identify instances of the Tool. As can be seen in the ERD, this is also the primary key for this table.
+
+##### price, type: integer
+Each Tool must have a price associated with it so that users will know how much it will cost them to rent the tool. As outlined in features, tools are rented out for a minimum of a day to keep it easy for owners to manage their tools. Therefore, the `price` data will refer to the cost per day of a rental. Because of this, we can be sure that the overwhelming majority of prices will be able to be represented as a whole dollar value, meaning we can store prices as an integer, rather than a decimal.
+
+##### name, type: string
+Fairly self explanatory, this refers to the name (or type) of product. If you have a power drill, this will be ‘Power Drill’. This data is mandatory - although an argument could be made that an image is enough of an identifier, the user experience would be less than optimal.
+
+##### brand, type: string
+Many different products make many different and overlapping products, as such we need to allow the user to specify who produces the tool they want to rent out. Similarly to the `name` field, this data is mandatory so that people can easily see what they are renting.
+
+##### model, type: string
+Different brands often produce different types of the same product to cater to different audiences. The drill that a professional tradesperson uses will likely be different from the average consumer-level drill, despite being produced by the same brand. As such, we need to allow users to specify a model name or number. However, unlike name and brand, this information is not mandatory. Sometimes the model number is unknown, but more importantly, not every product will have a model number!
+
+##### description, type: text
+In the likely event that there needs to be some more identifying information posted about the tool, a description field is provided so that user can enter in any information that they want. The text type specification allows for larger amounts of text to be input when compared to a string. This is used as it is more than possible for a description to become quite lengthy.
+
+##### availability, type: boolean
+A user may want to perform some kind of admin/preparation work before allowing their tools to be rented out. As such, allowing them to specify whether the tool is available will be used to prevent it from showing up to other users. Given that this is only a yes or no option, we can represent this data with a boolean. 
+
+##### delivery_options, type: string
+If a user is willing to deliver their tool to someone who is renting it, we can let them specify that delivery is available. However, there may also be instances where delivery is the only option - the tool may need to be transported in a specific manner. If this is the case then users will also need to be able to specify that only delivery is available. Although this could be stored differently, storing it as a string allows for easy validation. 
+
+##### delivery_fee, type: decimal
+If a tool has a delivery option users need to know how much it will cost to have it delivered. Therefore, a delivery fee is needed. A tool owner will not know the delivery distance before someone rents the tool so users will need to specify a fee per km. Given that the distances will vary and be much more specific compared to rental days, this fee will be stored as a decimal.
+
+##### min_delivery_fee, type: decimal
+It may be unfeasible for someone to deliver a tool across a short distance if there is a lot of setup that goes into transporting it. As such, users will be able to specify a minimum to make sure each delivery is worth their while. As with the `delivery_fee` itself, this is also stored as a decimal.
+
+##### user_id, type: integer, foreign key
+Finally, as each tool must belong to a user, being able to identify which user the tool belongs to is critical. As such, the `user_id` (with the integer type), is stored in the Tool table. As can be seen in the ERD, this is a foreign key. The foreign key points to the `user_id` of the tool owner.
+
+
+### Rental Model
+##### rental_id, type: integer, primary key
+As with the previous models, rentals have a unique id that is used for identification of certain instances of Rental. As shown in the left hand column of the ERD, this is also the primary key for Rentals.
+
+##### start_date, type: date
+Rentals are only allowed to go for a certain amount of time, as such dates need to be specified to indicate when this period is. As dates are often used in databases, a `date` type exists, which is what will be used to store the start date.
+
+##### end_date, type: date
+The end date behaves in exactly the same way as the start date, but (as the name suggests) specifies the end of the rental period, not the start.
+
+##### returned, type: boolean
+Given that the rental transaction is not an immediate, single event trigger, there needs to be some way of specifying that the rental period has been completed successfully. As such, a boolean value will be set to track this status. Once the tool owner has indicated that the tool is returned, this value will update - allowing payment to happen using Stripe.
+
+##### tool_id, type: integer, foreign key
+Each rental must reference a tool, because if there is no Tool being referenced, there is no reason for the rental to exist. The `tool_id` is tracked as a foreign key with the type integer to identify which tool the rental refers to. The label ‘FK’ in the table represents that this is a foreign key.
+
+##### user_id, type: integer, foreign key
+As with the `tool_id`, each rental must belong to a user, so that the person renting the tool can be identified. In the same way as the `tool_id`, the `user_id` is tracked as a foreign key with the type integer, as can be seen in the ERD. As two separate foreign keys are referenced within the Rental table, it is technically a join table. However, as there is additional information that it also holds it is used slightly differently when compared to other join tables (such as RolesUsers and CategoriesTools). This has been identified in the ERD by using a slightly different colour to the other join tables.
+
+### Role Model
+##### role_id, type: integer, primary key
+As with all models, Roles have a unique id that is an integer and functions as the primary key. This can be seen in the ERD left-most column, where it is specified as PK.
+
+##### name, type: string
+In order to track and manage specified roles in an easy to understand way, a name is assigned with the type string to each Role.
+
+##### resource_type, type: string
+Rolify allows Roles to be assigned to multiple different models. In the case where this happens, the resource type indicates which model the role is being applied to. This model name is stored as a string.
+
+##### resource_id, type: integer
+In order to identify which instance of a `resource_type` the role is being applied to, the resource id references the id of this instance, stored as an integer.
+
+### RolesUsers Join Table
+##### user_id, type: integer, foreign key
+As a user can have many roles and a role can be assigned to many users, a join table is required to indicate all of the assignments. Within the table, a column containing `user_id`’s matches up to the a column containing the `role_id` to indicate which role and which user are linked (and vice versa). The ERD shows that the `user_id` is a foreign key (FK), to indicate that it points to the `user_id` primary key.
+
+##### role_id, type: integer, foreign key
+All of the above relating to `user_id` also applies to the `role_id`. As can be seen in the ERD, it is also a foreign key.
+
+### Category Model
+##### category_id, type: integer, primary key
+As can be seen in the ERD, like the other models, categories also have a unique id that serves as the primary key for the category table.
+
+##### name, type:  string
+In order to identify the category, a name is stored as a string to easily track and manage the different categories that are created.
+
+### CategoriesTools Join Table
+##### category_id, type: integer, foreign key
+As a category can have many tools and a tool can be assigned to many categories, a join table is required to indicate all of the assignments. Within the table, a column containing `category_id`’s matches up to the a column containing the `tool_id` to indicate which category and which tool are linked (and vice versa). The ERD shows that the `category_id` is a foreign key (FK), to indicate that it points to the `category_id` primary key.
+
+##### tool_id, type: integer, foreign key
+All of the above relating to `category_id` also applies to the `category_id`. As can be seen in the ERD, it is also a foreign key.
+
+
+## Rails Active Record Associations 
 
 Within Rails, there are six different types of associations that can be used.  [Rails Active Record Associations](https://guides.rubyonrails.org/association_basics.html#choosing-between-belongs-to-and-has-one)
 
@@ -228,7 +348,9 @@ A `has_and_belongs_to_many` association specifies a many-to-many connection with
 	Users also have the ability to rent out many	different tools from other users.  They do not need to have rentals, as they may be inactive within the application if they have no projects to complete, and thus no need to rent any tools.
 
 	* has_many :rented_tools, through: :rentals, class_name: ‘Tool’
-	Used as an easy way to keep track of the tools that a user has, is, or will be renting.  It assigns a rented tool to a user by referencing the tool through the rental model.
+	Used as an easy way to keep track of the tools that a user has, is, or will be renting.  It assigns a rented tool to a user by referencing the tool through the rental model. Although the relationship is similar to the `has_many :tools` relationship, this is distinct in that it tracks and associates a different type of (ie: rented, not owned) tool.
+
+Note that this relationship is represented differently within the ERD. Because the relationship is only specified for ease of information access the application, and not actually required at all.
 	
 	* has_and_belongs_to_many :roles
 	As outlined above, the ability create and manage tools is restricted to a User with the role of ‘Owner’.  Although the distinction between an ‘Owner’ and a ‘Renter’ is only used to improve user experience as part of the MVP, the requirements and details required for signing up as either an ‘Owner’ or a ‘Renter’ may differ in future and so was built for extensibility. Therefore, a user can have many roles, while each role can also contain many users.
@@ -251,6 +373,8 @@ Roles are created and assigned using Rolify. Users and their roles are stored in
 
 	* has_many :renters, through: :rentals, class_name: ‘User’
 	Much like a user can have rented many tools, a tool will also keep track of the users that have rented the tool by referencing those users through the rental model.
+
+Note that this relationship is represented differently within the ERD. Because the relationship is only specified for ease of information access the application, and not actually required at all.
 	
 #### Rental Model
 	* belongs_to :tool

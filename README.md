@@ -599,11 +599,23 @@ Screenshots of the initial setup for the Github Projects kanban board, including
 	
 </details>
 
-**Documentation Goals**
-[image:02D2117A-8033-47EF-8B1F-F55A425E2862-54208-00010C5C7B352AA7/Documentation.png]
+<details>
+	<summary>
+		<b>Documentation Goals</b>
+	</summary>
+	
+![Documentation Goals](docs/Documentation.png)
+	
+</details>
 
-**User Stories**
-[image:883D4B6D-5C67-48C4-8A7C-A377A529130D-54208-00010C2AE84BBA4D/User Stories copy.png]
+<details>
+	<summary>
+		<b>User Stories</b>
+	</summary>
+	
+![User Stories](docs/UserStories.png)
+	
+</details>
 
 
 ### Project Timeline
@@ -616,128 +628,145 @@ The initial design for the project sprints are as follows:
 
 #### Sprints Design
 1. **Sprint 1**
-**Initial Documentation and Project Set-up**
-*Monday 28/10*
-		* Map Rubric to tasks
-		* Brainstorm Idea
-		* Plan Project
-			* Design Sprints
-			* Record User Stories
-			* Set up Github Projects
-		* Research and Plan Documentation
+
+   **Initial Documentation and Project Set-up**
+   
+   *Monday 28/10*
+   
+    - Map Rubric to tasks
+    - Brainstorm Idea
+    - Plan Project
+      - Design Sprints
+      - Record User Stories
+      - Set up Github Projects
+    - Research and Plan Documentation
 
 2. **Sprint 2**
-**Database Research, Design and Documentation**
-*Tuesday 29/10*
-		* 	Application Design
-			* Purpose
-			* Description
-			* Tech Stack
-				* Third Party Services
-			* Features
-		* Database
-			* Design Models
-			* ERD
-			* Active Record Associations Documentation
-			* Database Relations Documentations
+
+   **Database Research, Design and Documentation**
+   
+   *Tuesday 29/10*
+   - Application Design
+     - Purpose
+     - Description
+     - Tech Stack
+       - Third Party Services
+     - Features
+   - Database
+     - Design Models
+     - ERD
+     - Active Record Associations Documentation
+     - Database Relations Documentations
 
 3. **Sprint 3**
-**Application Design and Wireframing**
-*Wednesday 30/10*
-		* 	Wireframe Sketching
-			* Pages
-				* Home Page
-				* Sign Up Page
-				* Sign In Page
-				* User Dashboard
-					* Owner Dashboard
-						* Upcoming Rentals
-						* Current Rentals
-					* Renter Dashboard
-						* Upcoming Rentals
-						* Current Rentals
-					* Edit Account
-					* Rental History
-						* Owner History
-						* Renter History
-					* Manage Items
-						* Edit Item
-						* New Item
-				* Browse Results
-					* Categories
-					* Search Term
-					* All
-				* Item Page
-				* Rental Page
-				* User Page
-		* Design
-			* Branding
-			* Framework Research
-				* Components Needed
-					* Complexity
+   
+   **Application Design and Wireframing**
+
+   *Wednesday 30/10*
+   - Wireframe Sketching
+     - Pages
+       - Home Page
+       - Sign Up Page
+       - Sign In Page
+       - User Dashboard
+         - Owner Dashboard
+           - Upcoming Rentals
+	   - Current Rentals
+         - Renter Dashboard
+	   - Upcoming Rentals
+           - Current Rentals
+         - Edit Account
+         - Rental History
+           - Owner History
+           - Renter History
+         - Manage Items
+           - Edit Item
+           - New Item
+       - Browse Results
+         - Categories
+         - Search Term
+	 - All
+       - Item Page
+       - Rental Page
+       - User Page
+   - Design
+     - Branding
+     - Framework Research
+       - Components Needed
+       - Complexity
 
 4. **Sprint 4**
-**Model and Database TDD**
-*Thursday 31/10 - Saturday 2/11*
-		* Rails Setup
-		* Gem Bundling
-		* Stripe Setup
-		* Cloudinary Setup
-		* RSpec Tests
-		* Model Generation
-			* User
-			* Role
-			* Tool
-			* Rental
-			* Category
-			* Image Upload via Cloudinary
-			* Stripe Payment Processing
-		* Deployment
+
+  **Model and Database TDD**
+  
+  *Thursday 31/10 - Saturday 2/11*
+  - Rails Setup
+  - Gem Bundling
+  - Stripe Setup
+  - Cloudinary Setup
+  - RSpec Tests
+  - Model Generation
+    - User
+    - Role
+    - Tool
+    - Rental
+    - Category
+    - Image Upload via Cloudinary
+    - Stripe Payment Processing
+  - Deployment
 
 5.  **Sprint 5**
-**Controller TDD**
-*Sunday 3/11 - Tuesday 5/11*
-		* RSpec Tests
-		* Controller Generation
-			* User
-			* Tool
-			* Rental
-		* View Generation
-			* Testing Purposes, no. styling.
-		* Deployment
+
+    **Controller TDD**
+
+    *Sunday 3/11 - Tuesday 5/11*
+    - RSpec Tests
+    - Controller Generation
+      - User
+      - Tool
+      - Rental
+    - View Generation
+      - Testing Purposes, no. styling.
+    - Deployment
 
 6.  **Sprint 6**
-**View TDD and Styling**
-*Wednesday 6/11- Friday 8/11*
-		* CSS Framework Setup
-		* View Modification / Updates
-			* Page Structure
-			* Framework Classes
-		* Styling Updates
-			* Framework Variable Edits
-		* Deployment
+
+    **View TDD and Styling**
+
+    *Wednesday 6/11- Friday 8/11*
+    - CSS Framework Setup
+    - View Modification / Updates
+      - Page Structure
+      - Framework Classes
+    - Styling Updates
+      - Framework Variable Edits
+    - Deployment
 
 7. **Sprint 7**
-**Documentation Updates**
-*Saturday 9/11*
-		* Review Documentation
-		* Update Documentation
-			* Assemble Assets
-				* Wireframes
-				* Screenshots
-			* Finalise README
-				* Write New Content
-				* Update Old Content
+
+   **Documentation Updates**
+
+   *Saturday 9/11*
+    - Review Documentation
+    - Update Documentation
+      - Assemble Assets
+        - Wireframes
+        - Screenshots
+    - Finalise README
+      - Write New Content
+      - Update Old Content
 
 8. **Sprint 8**
-**Project Review**
-*Sunday 10/11*
-		* 	Review Project
-			* Rubric Comparison
-				* Updates as necessary
-			* Tests
-				* Github
-				* Heroku Deployment
-				* Updates as necessary
-		* Assemble Submission File
-		* Submit!
+
+   **Project Review**
+   
+   *Sunday 10/11*
+    - Review Project
+      - Rubric Comparison
+        - Updates as necessary
+      - Tests
+        - Github
+        - Heroku Deployment
+        - Updates as necessary
+    - Assemble Submission File
+    - Submit!

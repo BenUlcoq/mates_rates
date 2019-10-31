@@ -630,7 +630,7 @@ The initial design for the project sprints are as follows:
 
 <details>
 	<summary><b>
-1. Sprint 1 - Initial Documentation and Project Set-u
+1. Sprint 1 - Initial Documentation and Project Set-up
 	</summary></b>
   
 *Monday 28/10*

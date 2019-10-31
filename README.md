@@ -627,25 +627,30 @@ These sprints were designed to be extremely flexible - without a wealth of exper
 The initial design for the project sprints are as follows:
 
 #### Sprints Design
-1. **Sprint 1**
 
-   **Initial Documentation and Project Set-up**
+<details>
+	<summary><b>
+1. Sprint 1 - Initial Documentation and Project Set-u
+	</summary></b>
+  
+*Monday 28/10*
    
-   *Monday 28/10*
+- Map Rubric to tasks
+- Brainstorm Idea
+- Plan Project
+  - Design Sprints
+  - Record User Stories
+  - Set up Github Projects
+- Research and Plan Documentation
+</details>
+    
+<details>
+	<summary><b>
+2. Sprint 2 - Database Research, Design and Documentation
+	</summary></b>
    
-    - Map Rubric to tasks
-    - Brainstorm Idea
-    - Plan Project
-      - Design Sprints
-      - Record User Stories
-      - Set up Github Projects
-    - Research and Plan Documentation
-
-2. **Sprint 2**
-
-   **Database Research, Design and Documentation**
+*Tuesday 29/10*
    
-   *Tuesday 29/10*
    - Application Design
      - Purpose
      - Description
@@ -657,12 +662,15 @@ The initial design for the project sprints are as follows:
      - ERD
      - Active Record Associations Documentation
      - Database Relations Documentations
+</details>
 
-3. **Sprint 3**
+<details>
+	<summary><b>
+3. Sprint 3 - Application Design and Wireframing
+	</summary></b>
+
+*Wednesday 30/10*
    
-   **Application Design and Wireframing**
-
-   *Wednesday 30/10*
    - Wireframe Sketching
      - Pages
        - Home Page
@@ -694,12 +702,15 @@ The initial design for the project sprints are as follows:
      - Framework Research
        - Components Needed
        - Complexity
+</details>
 
-4. **Sprint 4**
-
-  **Model and Database TDD**
+<details>
+	<summary><b>
+4. Sprint 4 - Model and Database TDD
+	</summary></b>
   
-  *Thursday 31/10 - Saturday 2/11*
+*Thursday 31/10 - Saturday 2/11*
+  
   - Rails Setup
   - Gem Bundling
   - Stripe Setup
@@ -714,59 +725,74 @@ The initial design for the project sprints are as follows:
     - Image Upload via Cloudinary
     - Stripe Payment Processing
   - Deployment
+</details>
 
-5.  **Sprint 5**
+<details>
+	<summary><b>
+5.  Sprint 5 - Controller TDD
+	</summary></b>
 
-    **Controller TDD**
+ *Sunday 3/11 - Tuesday 5/11*
+    
+   - RSpec Tests
+   - Controller Generation
+     - User
+     - Tool
+     - Rental
+   - View Generation
+     - Testing Purposes, no. styling.
+   - Deployment
+</details>
 
-    *Sunday 3/11 - Tuesday 5/11*
-    - RSpec Tests
-    - Controller Generation
-      - User
-      - Tool
-      - Rental
-    - View Generation
-      - Testing Purposes, no. styling.
-    - Deployment
 
-6.  **Sprint 6**
+<details>
+	<summary><b>
+6.  Sprint 6 - View TDD and Styling
+	</summary></b>
 
-    **View TDD and Styling**
+*Wednesday 6/11- Friday 8/11*
+    
+   - CSS Framework Setup
+   - View Modification / Updates
+     - Page Structure
+     - Framework Classes
+   - Styling Updates
+     - Framework Variable Edits
+   - Deployment
+</details>
 
-    *Wednesday 6/11- Friday 8/11*
-    - CSS Framework Setup
-    - View Modification / Updates
-      - Page Structure
-      - Framework Classes
-    - Styling Updates
-      - Framework Variable Edits
-    - Deployment
 
-7. **Sprint 7**
+<details>
+	<summary><b>
+7. Sprint 7 - Documentation Updates
+	</summary></b>
 
-   **Documentation Updates**
+*Saturday 9/11*
+   
+   - Review Documentation
+   - Update Documentation
+     - Assemble Assets
+       - Wireframes
+       - Screenshots
+   - Finalise README
+     - Write New Content
+     - Update Old Content
+</details>
 
-   *Saturday 9/11*
-    - Review Documentation
-    - Update Documentation
-      - Assemble Assets
-        - Wireframes
-        - Screenshots
-    - Finalise README
-      - Write New Content
-      - Update Old Content
-
-8. **Sprint 8**
-
-   **Project Review**
+<details>
+	<summary><b>
+8. Sprint 8 - Project Review
+	</summary></b>
    
    *Sunday 10/11*
-    - Review Project
-      - Rubric Comparison
-        - Updates as necessary
-      - Tests
-        - Github
-        - Heroku Deployment
-        - Updates as necessary
-    - Assemble Submission File
-    - Submit!
+   
+   - Review Project
+     - Rubric Comparison
+       - Updates as necessary
+     - Tests
+       - Github
+       - Heroku Deployment
+       - Updates as necessary
+   - Assemble Submission File
+   - Submit!
+</details>

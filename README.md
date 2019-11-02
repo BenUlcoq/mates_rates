@@ -634,6 +634,32 @@ The initial design for the project sprints are as follows:
 	</summary></b>
   
 *Monday 28/10*
+
+
+<details>
+	<summary><b>
+		Sprint 1 Screenshots
+	</summary></b>
+		
+<b>Projects Cards</b>
+<img src="docs/progress/ProjectsCardsInitial.png" alt="Initial Projects Cards" width="auto" height="500">
+
+<br>
+<b>User Stories</b>
+<br>
+<img src="docs/UserStories.png" alt="User Stories" width="auto" height="500">
+
+
+<br>
+<b>Documentation Cards</b>
+<br>
+<img src="docs/Documentation.png" alt="User Stories" width="auto" height="500">
+
+
+
+
+
+</details>
    
 - Map Rubric to tasks
 - Brainstorm Idea
@@ -642,7 +668,12 @@ The initial design for the project sprints are as follows:
   - Record User Stories
   - Set up Github Projects
 - Research and Plan Documentation
+
+
 </details>
+
+
+
     
 <details>
 	<summary><b>
@@ -650,6 +681,16 @@ The initial design for the project sprints are as follows:
 	</summary></b>
    
 *Tuesday 29/10*
+   
+   
+   <details>
+	<summary><b>
+		Sprint 2 Screenshots
+	</summary></b>
+	
+<img src="docs/progress/ProjectsCardsDocs.png" alt="Documentation Project Cards" width="auto" height="500">
+
+</details>
    
    - Application Design
      - Purpose
@@ -662,6 +703,10 @@ The initial design for the project sprints are as follows:
      - ERD
      - Active Record Associations Documentation
      - Database Relations Documentations
+     
+
+     
+     
 </details>
 
 <details>
@@ -669,7 +714,82 @@ The initial design for the project sprints are as follows:
 3. Sprint 3 - Application Design and Wireframing
 	</summary></b>
 
+
 *Wednesday 30/10*
+   
+       
+<details>
+	<summary><b>
+		Sprint 3 Screenshots
+	</summary></b>
+<b> Sketches </b>
+<br>
+<img src="docs/Wireframes/Sketches/homepage.JPG" alt="Home Page Sketch" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Sketches/homepage-sketch.JPG" alt="Home Page Mobile Sketch" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Sketches/browse-sketch.JPG" alt="Browse Page Sketch" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Sketches/RentalsSketch.JPG" alt="Rentals Page Sketch" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Sketches/signup-sketch.JPG" alt="Signup Page Sketch" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Sketches/UserDashboard-Sketch.JPG" alt="Dashboard Page Sketch" width="auto" height="500">
+<br>	
+
+<b> Designs </b>
+<br>
+<b> Home </b>
+<br>
+<img src="docs/Wireframes/Designs/Home.jpg" alt="Home Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/HomeMob1.jpg" alt="Home Page Mobile Design 1" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/HomeMob2.jpg" alt="Home Page Mobile Design 2" width="auto" height="500">
+<br>
+
+
+<b> Rentals </b>
+<br>
+<img src="docs/Wireframes/Designs/Rentals.jpg" alt="Rentals Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/RentalsMob.jpg" alt="Rentals Page Mobile Design" width="auto" height="500">
+<br>
+
+
+<b> Tools </b>
+<br>
+<img src="docs/Wireframes/Designs/Tool.jpg" alt="Tool Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/ToolMob.jpg" alt="Tool Page Mobile Design" width="auto" height="500">
+<br>
+
+<b> Browse </b>
+<br>
+<img src="docs/Wireframes/Designs/Browse.jpg" alt="Browse Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/BrowseMob.jpg" alt="Browse Page Mobile Design" width="auto" height="500">
+<br>
+
+<b> Sign Up </b>
+<br>
+<img src="docs/Wireframes/Designs/SignUp.jpg" alt="Sign Up Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/SignUpMob1.jpg" alt="Sign Up Page Mobile Design 1" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/SignUpMob2.jpg" alt="Sign Up Page Mobile Design 2" width="auto" height="500">
+<br>
+
+
+<b> User Dashboard </b>
+<br>
+<img src="docs/Wireframes/Designs/UserDashboard.jpg" alt="Dashboard Page Design" width="auto" height="500">
+<br>
+<img src="docs/Wireframes/Designs/UserDashboardMob.jpg" alt="Dashboard Page Mobile Design" width="auto" height="500">
+<br>
+
+</details>
+   
    
    - Wireframe Sketching
      - Pages
@@ -702,6 +822,9 @@ The initial design for the project sprints are as follows:
      - Framework Research
        - Components Needed
        - Complexity
+   
+       
+       
 </details>
 
 <details>

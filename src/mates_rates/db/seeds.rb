@@ -16,6 +16,7 @@ users = [
   last_name: 'Ulcoq',
   password: 'n8baodawd87',
   email: 'spam.ulcoq@gmail.com',
+  address: '123 Herbert Way, Brisbane',
   tools: Tool.create([
     {
     price: 10,
@@ -46,6 +47,7 @@ users = [
     last_name: 'Epstein',
     password: 'nfb3oywd87',
     email: 'jeffpring@gmail.com',
+    address: '123 Murderered place, Suicidenot',
     tools: Tool.create([
       {
       price: 15,
@@ -86,4 +88,11 @@ users = [
     end_date: Date.new(2019,12,18),
     returned: false,
     tool: Tool.first
+  )
+
+  User.first.rentals.create!(
+    start_date: Date.new(2019,12,12),
+    end_date: Date.new(2019,12,15),
+    returned: false,
+    tool: Tool.last
   )

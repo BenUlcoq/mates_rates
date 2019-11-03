@@ -1,6 +1,9 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
+  // document.on("pagecreate", function () {
+  
+
   var placeSearch, autocomplete;
 
   var componentForm = {
@@ -11,9 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
     country: 'long_name',
     postal_code: 'short_name'
   };
-  
+
+// window.onload = function() {
   function initAutocomplete() {
-    
+    console.log('yeet')
+
     // Create the autocomplete object, restricting the search predictions to
     // geographical location types.
     autocomplete = new google.maps.places.Autocomplete(

@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= require_autocomplete
+//= require_turbolinks_disable

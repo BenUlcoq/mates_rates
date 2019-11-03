@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_044706) do
+ActiveRecord::Schema.define(version: 2019_11_03_051629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,6 @@ ActiveRecord::Schema.define(version: 2019_11_02_044706) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "tests", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tools", force: :cascade do |t|
     t.integer "price"
     t.string "name"
@@ -63,8 +58,8 @@ ActiveRecord::Schema.define(version: 2019_11_02_044706) do
     t.text "description"
     t.boolean "availability"
     t.string "delivery_options"
-    t.decimal "delivery_fee"
-    t.decimal "min_delivery_fee"
+    t.decimal "delivery_fee", precision: 5, scale: 2
+    t.decimal "min_delivery_fee", precision: 7, scale: 2
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -81,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_044706) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

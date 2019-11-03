@@ -246,6 +246,12 @@ The Ruby language (and by extension, Rails) uses Gems as a way of easily using p
 		<b>List of Gems</b>
 	</summary>
 
+**Geocoder**
+TODO - Update
+
+**jQuery Rails**
+TODO - Update
+
 **Bundler**
 
 [Bundler](https://bundler.io/) is a **Gem management system** that allows for quick and easy management of other Gems, including installation and updates.

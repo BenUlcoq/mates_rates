@@ -1,3 +1,9 @@
+<% provide :head_tags do %>
+    <script>
+        initAutoComplete()
+    </script>
+<% end %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -23,12 +29,17 @@
 
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.email_field :address, autofocus: true, autocomplete: "email" %>
+    <%= f.text_field :address,
+    id: 'autocomplete', placeholder: 'Enter your address' %>
   </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+
+  
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+

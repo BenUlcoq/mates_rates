@@ -68,3 +68,5 @@ gem "rspec-rails", "~> 3.9"
 gem "rolify", "~> 5.2"
 
 gem "cancancan", "~> 3.0"
+
+gem "gmaps-autocomplete-rails", "~> 0.3.1"

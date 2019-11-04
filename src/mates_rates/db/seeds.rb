@@ -17,6 +17,7 @@ users = [
   password: 'n8baodawd87',
   email: 'spam.ulcoq@gmail.com',
   address: '123 Herbert Way, Brisbane',
+  # roles: Role.create('admin'),
   tools: Tool.create([
     {
     price: 10,

@@ -3,5 +3,9 @@
   "private": true,
   "dependencies": {
     "flatpickr": "^4.6.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-dev-server": "^3.9.0"
   }
 }

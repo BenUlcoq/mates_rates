@@ -1,0 +1,30 @@
+<h1>Rentals#new</h1>
+<p>Find me in app/views/rentals/new.html.erb</p>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  var dates = JSON.parse('<%= @unavailable_dates.to_json.html_safe %>')
+  const el = document.getElementById('bar');
+  flatpickr(el, {
+    mode: "range",
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    disable: dates,
+    "locale": {
+        "firstDayOfWeek": 1 
+    }
+  })
+})
+</script>
+
+<%= form_with url: user_tool_rentals_path(@user), local: true do |form| %>
+
+<div class="field">
+  <%= form.label :start_date %><br>
+  <%= form.text_field :start_date, id: 'bar' %>
+</div>
+
+<% end %>
+

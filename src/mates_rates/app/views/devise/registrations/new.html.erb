@@ -1,8 +1,6 @@
-<% provide :head_tags do %>
-    <script>
-        initAutoComplete()
-    </script>
-<% end %>
+<%= content_for :page_scripts do %>
+    <%= javascript_include_tag "autocomplete" %>
+  <% end %>
 
 <h2>Sign up</h2>
 

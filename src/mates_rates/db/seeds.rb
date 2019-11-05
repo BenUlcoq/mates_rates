@@ -17,7 +17,6 @@ users = [
   password: 'n8baodawd87',
   email: 'spam.ulcoq@gmail.com',
   address: '123 Herbert Way, Brisbane',
-  # roles: Role.create('admin'),
   tools: Tool.create([
     {
     price: 10,
@@ -76,6 +75,8 @@ users = [
   ]
 
   User.create(users)
+
+  User.first.add_role('admin')
 
   User.first.rentals.create!(
     start_date: Date.new(2019,12,12),

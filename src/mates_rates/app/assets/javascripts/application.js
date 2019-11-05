@@ -13,6 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-//= require_autocomplete
-//= require_turbolinks_disable
+//= require turbolinks_disable
+//= require flatpickr
+

@@ -23,4 +23,12 @@ class Tool < ApplicationRecord
     end
   end
 
+  def self.search(query)
+    if query
+      find(:all, :conditions => ['item_name LIKE ?', "% #{params[query]} %"] )
+    else
+      return nil
+    end
+  end
+
 end

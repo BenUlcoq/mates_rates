@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // window.onload = function() {
   function initAutocomplete() {
-    console.log('yeet')
 
     // Create the autocomplete object, restricting the search predictions to
     // geographical location types.
@@ -39,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var place = autocomplete.getPlace();
 
     document.getElementById('autocomplete').value = place.formatted_address
-
-    console.log(place.formatted_address)
   
     // for (var component in componentForm) {
     //   document.getElementById(component).value = '';

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-var links = document.querySelectorAll("[href='/user/sign_up']")
+var links = document.querySelectorAll("[href='/users/sign_up']")
 // console.log(links)
 // console.log('here')
 

@@ -2,28 +2,17 @@ class RentalsController < ApplicationController
   
   
   def new
-    @rental = Rental.new
-    @user = Tool.find(params[:tool_id]).user
-    @tool = Tool.find(params[:tool_id])
-    @renter = current_user
-    @unavailable_dates = Rental.unavailable_dates
+   @tool = Tool.find(params[:tool_id])
+   @rental = @tool.rentals.new
+   @user = @tool.user
+   @unavailable_dates = @tool.unavailable_dates
   end
 
   def create
-    @rental = Rental.new(params)
-    @tweet.user = current_user
-
-    respond_to do |format|
-      if @rental.save
-        format.html { redirect_to @rental, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: @rental }
-      else
-        format.html { render :new }
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
-      end
-    end
+    rental = current_user.rentals.new(rental_params)
+    rental.tool = Tool.find(params[:tool_id])
+    rental.save
   end
-  
 
   def edit
   end
@@ -34,4 +23,13 @@ class RentalsController < ApplicationController
   def index
 
   end
+
+
+
+  private
+
+  def rental_params
+    params.require(:rental).permit(:start_date, :end_date)
+  end
+
 end

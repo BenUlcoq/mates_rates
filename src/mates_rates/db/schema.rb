@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_051629) do
   create_table "rentals", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.boolean "returned"
+    t.boolean "returned", default: false, null: false
     t.bigint "tool_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false

@@ -8,9 +8,8 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-Rails.application.config.assets.precompile += %w( autocomplete.js )
+Rails.application.config.assets.precompile += %w[ rentals.js autocomplete.js turbolinks_disable.js auto_dates.js ]
 
-Rails.application.config.assets.precompile += %w( turbolinks_disable.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

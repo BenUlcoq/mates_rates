@@ -1,8 +1,6 @@
 
-
 document.addEventListener("DOMContentLoaded", function() {
   // document.on("pagecreate", function () {
-  
 
   var placeSearch, autocomplete;
 

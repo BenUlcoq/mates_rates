@@ -10,12 +10,10 @@ Rails.application.routes.draw do
     root "users/registrations#edit"
   end
 
-  resources :users, only: [:show] do
-    resources :tools do
-      resources :rentals
-    end
-    resources :rentals
+  resources :tools do
+    resources :rentals, only: [:new, :create]
   end
+  resources :rentals, only: [:index, :show, :update, :destroy, :edit]
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

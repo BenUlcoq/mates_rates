@@ -1,30 +1,25 @@
+
+<%= javascript_include_tag 'rentals' %>
+<%= javascript_include_tag 'auto_dates' %>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    createDatePicker(JSON.parse('<%= @unavailable_dates.to_json.html_safe %>'))
+  })
+</script>
+
 <h1>Rentals#new</h1>
 <p>Find me in app/views/rentals/new.html.erb</p>
 
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function() {
-  var dates = JSON.parse('<%= @unavailable_dates.to_json.html_safe %>')
-  const el = document.getElementById('bar');
-  flatpickr(el, {
-    mode: "range",
-    altInput: true,
-    altFormat: "F j, Y",
-    dateFormat: "Y-m-d",
-    minDate: "today",
-    disable: dates,
-    "locale": {
-        "firstDayOfWeek": 1 
-    }
-  })
-})
-</script>
-
-<%= form_with url: user_tool_rentals_path(@user), local: true do |form| %>
-
+<%= form_with model: @rental, url: tool_rentals_path(@tool), local: true do |form| %>
+<%= form.hidden_field :start_date, id: 'start_date' %>
+<%= form.hidden_field :end_date, id: 'end_date' %>
 <div class="field">
-  <%= form.label :start_date %><br>
-  <%= form.text_field :start_date, id: 'bar' %>
+  <%= form.label :dates %><br>
+  <%= form.text_field :dates, id:'dates' %>
 </div>
+<%= form.submit %>
+
 
 <% end %>
 

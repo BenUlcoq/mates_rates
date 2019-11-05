@@ -6,14 +6,6 @@ class Rental < ApplicationRecord
   validates :start_date, :end_date, presence: true, availability: true
   validate :end_date_after_start_date
 
-  
-  
-  def self.unavailable_dates
-    Rental.pluck(:start_date, :end_date).map do |range|
-      { from: range[0].to_s, to: range[1].to_s }
-    end
-  end
-
   private
 
   def end_date_after_start_date

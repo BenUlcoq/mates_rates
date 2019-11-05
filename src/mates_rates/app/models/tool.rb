@@ -15,6 +15,12 @@ class Tool < ApplicationRecord
   validates :delivery_fee, numericality: { less_than: 100 }, if: :includes_delivery
   validates :min_delivery_fee, presence: true, if: :includes_delivery
 
+  def unavailable_dates
+    rentals.pluck(:start_date, :end_date).map do |range|
+      { from: range[0].to_s, to: range[1].to_s }
+    end
+  end
+
   def includes_delivery 
     if :delivery_options == 'Delivery' || :delivery_options == 'Both'
       return true

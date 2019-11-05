@@ -9,19 +9,32 @@ class RentalsController < ApplicationController
   end
 
   def create
-    rental = current_user.rentals.new(rental_params)
-    rental.tool = Tool.find(params[:tool_id])
-    rental.save
+    @rental = current_user.rentals.new(rental_params)
+    @rental.tool = Tool.find(params[:tool_id])
+
+    respond_to do |format|
+      if @rental.save
+        format.html { redirect_to @rental, notice: 'Your rental has been approved!' }
+        format.json { render :show, status: :created, location: @rental }
+      else
+        format.html { render :new }
+        format.json { render json: @rental.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
+
+
   def edit
+    @rental = Rental.find(params[:id])
   end
 
   def show
+    @rental = Rental.find(params[:id])
   end
 
   def index
-
+    @rentals = current_user.rentals
   end
 
 

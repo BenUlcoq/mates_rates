@@ -255,7 +255,7 @@ DEPENDENCIES
   cancancan (~> 3.0)
   capybara (>= 2.15)
   chromedriver-helper
-  cloudinary
+  cloudinary (~> 1.12)
   coffee-rails (~> 4.2)
   devise (~> 4.7)
   flatpickr_rails (~> 1.1)

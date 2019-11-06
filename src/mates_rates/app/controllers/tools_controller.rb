@@ -23,7 +23,7 @@ class ToolsController < ApplicationController
   end
 
   def index
-    @tools = Tool.all
+      @tools = Tool.all
     # if browse page
     #     @tools = Tool.all
     # elsif search page

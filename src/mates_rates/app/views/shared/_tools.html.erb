@@ -1,0 +1,20 @@
+<% @tools.each do |tool| %>
+    
+  <%= tool.price %>
+  <br>
+  <%= link_to tool.name, tool_url(tool) %>
+  <br>
+  <%= tool.brand %>
+  <br><%= tool.model %> <br>
+  <%= tool.description %><br>
+  <%= tool.availability %><br>
+  <%= tool.delivery_options %><br> 
+  <%= tool.delivery_fee %><br>
+  <%= tool.min_delivery_fee %><br>
+  <%= link_to 'User', user_path_url(tool.user) %><br>
+  <% if can? :edit, tool %>
+    <%= link_to 'Edit', edit_tool_url(tool)%>
+    <br>
+  <% end %>
+  <hr>
+<% end %>

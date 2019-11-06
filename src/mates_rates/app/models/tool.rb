@@ -21,7 +21,7 @@ class Tool < ApplicationRecord
     end
   end
 
-  def includes_delivery 
+  def includes_delivery
     if :delivery_options == 'Delivery' || :delivery_options == 'Both'
       return true
     else
@@ -31,9 +31,9 @@ class Tool < ApplicationRecord
 
   def self.search(query)
     if query
-      find(:all, :conditions => ['item_name LIKE ?', "% #{params[query]} %"] )
+      where("(availability = 'true') AND (name ILIKE ? OR brand ILIKE ? OR model ILIKE ?)", "%#{query}%", "%#{query}%", "%#{query}%")
     else
-      return nil
+      # flash error
     end
   end
 

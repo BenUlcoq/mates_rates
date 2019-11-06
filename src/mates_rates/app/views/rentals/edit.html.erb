@@ -12,14 +12,5 @@
 <p>Find me in app/views/rentals/new.html.erb</p>
 
 <%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
-<%= form.hidden_field :start_date, id: 'start_date' %>
-<%= form.hidden_field :end_date, id: 'end_date' %>
-<div class="field">
-  <%= form.label :dates %><br>
-  <%= form.text_field :dates, id:'dates' %>
-</div>
-<%= form.submit %>
-
-
+  <%= render 'form' %>
 <% end %>
-

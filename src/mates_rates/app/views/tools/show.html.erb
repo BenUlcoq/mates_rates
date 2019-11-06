@@ -3,7 +3,7 @@
 <%= link_to 'Browse Tools', tools_path %>
 <%= @tool.price %>
 <br>
-<%= @tool.name %>
+<%= link_to @tool.name, tool_url(@tool) %>
 <br>
 <%= @tool.brand %>
 <br><%= @tool.model %> <br>

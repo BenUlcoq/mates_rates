@@ -27,8 +27,12 @@ class RentalsController < ApplicationController
 
 
   def edit
-    @rental = Rental.find(params[:id])
-    @unavailable_dates = @rental.tool.unavailable_dates
+    if can? :edit, Rental.find(params[:id])
+      @rental = Rental.find(params[:id])
+      @unavailable_dates = @rental.tool.unavailable_dates
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def show

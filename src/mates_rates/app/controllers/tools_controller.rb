@@ -1,5 +1,4 @@
 class ToolsController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
 
   def new
@@ -12,7 +11,11 @@ class ToolsController < ApplicationController
   end
 
   def edit
-    @tool = Tool.find(params[:id])
+    if can? :edit, Tool.find(params[:id])
+      @tool = Tool.find(params[:id])
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def show

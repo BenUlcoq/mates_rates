@@ -2,10 +2,31 @@ class ToolsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
 
   def new
-    @tool = Tool.new(tool_params)
+    @tool = Tool.new
   end
 
   def create
+    pp params
+    @tool = Tool.new(tool_params)
+    # @tool.price = params[:price].to_i
+    # @tool.delivery_fee = params[:delivery_fee].to_i
+    # @tool.min_delivery_fee = params[:min_delivery_fee].to_i
+    # @tool.availability = !params[:availability].to_i.zero?
+    @tool.photo.attach(tool_params[:photo])
+    @tool.user = current_user
+
+    pp @tool
+
+    respond_to do |format|
+      if @tool.save
+        format.html { redirect_to @tool, notice: 'Tool was successfully created.' }
+        format.json { render :show, status: :created, location: @tool }
+      else
+        format.html { render :new }
+        format.json { render json: @tool.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
+
     # if @tool.save
 
   end
@@ -45,7 +66,7 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id)
+    params.require(:tool).permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id, :photo)
   end
 
 

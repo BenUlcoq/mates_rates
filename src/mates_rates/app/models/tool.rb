@@ -3,11 +3,13 @@ class Tool < ApplicationRecord
   has_many :rentals
   has_and_belongs_to_many :categories, presence: true
   has_many :renters, through: :rentals, class_name: 'User'
+  has_one_attached :photo
 
   validates_associated :user
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :name, presence: true, length: { maximum: 20 }
   validates :brand, presence: true
+  validates :photo, presence: true
   # validates :model ??
   # validates :description ??
   validates :availability, inclusion: { in: [true,false] }

@@ -1,10 +1,10 @@
-<%= @user.first_name %>
+<%= current_user.first_name %>
 <br>
-<%= @user.last_name %>
+<%= current_user.last_name %>
 <br>
 <%= link_to 'Browse Tools', tools_path %>
 <hr>
-<% @user.tools.each do |tool| %>
+<% current_user.tools.each do |tool| %>
 
   <%= tool.price %>
   <br>

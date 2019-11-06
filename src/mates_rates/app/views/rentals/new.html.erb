@@ -12,6 +12,7 @@
 <p>Find me in app/views/rentals/new.html.erb</p>
 
 <%= form_with model: @rental, url: tool_rentals_path(@tool), local: true do |form| %>
-  <%= render 'form' %>
+  <%= render 'form', form: form %>
+  <%= form.submit %>
 <% end %>
 

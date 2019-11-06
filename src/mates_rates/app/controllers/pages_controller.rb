@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+
+  before_action :authenticate_user!, only: :profile
+
   def show
     
     if params[:page] == 'home'
@@ -10,6 +13,9 @@ class PagesController < ApplicationController
     else
       render file: "public/404.html", status: :not_found
     end
+  end
+
+  def profile
   end
 
   def search

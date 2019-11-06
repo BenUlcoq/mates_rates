@@ -38,14 +38,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  private
+  protected
 
-  def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :address, :password_confirmation)
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:first_name, :last_name, :email, :password, :address, :password_confirmation)
   end
 
-  def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :address, :password_confirmation, :current_password)
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:first_name, :last_name, :email, :password, :address, :password_confirmation, :current_password)
   end
 
 

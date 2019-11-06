@@ -45,7 +45,7 @@ users = [
   {
     first_name: 'Jeff',
     last_name: 'Epstein',
-    password: 'nfb3oywd87',
+    password: 'suicide',
     email: 'jeffpring@gmail.com',
     address: '123 Murderered place, Suicidenot',
     tools: Tool.create([

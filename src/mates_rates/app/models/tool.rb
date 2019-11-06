@@ -1,7 +1,7 @@
 class Tool < ApplicationRecord
   belongs_to :user
   has_many :rentals
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, presence: true
   has_many :renters, through: :rentals, class_name: 'User'
 
   validates_associated :user

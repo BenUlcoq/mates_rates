@@ -1,5 +1,7 @@
 class RentalsController < ApplicationController
   
+  before_action :authenticate_user!
+  before_action :
   
   def new
    @tool = Tool.find(params[:tool_id])
@@ -27,6 +29,7 @@ class RentalsController < ApplicationController
 
   def edit
     @rental = Rental.find(params[:id])
+    @unavailable_dates = @rental.tool.unavailable_dates
   end
 
   def show

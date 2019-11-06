@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def show
+    @user = current_user
     if valid_page?
       render template: "pages/#{params[:page]}"
     else

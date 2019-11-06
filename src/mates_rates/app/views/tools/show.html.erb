@@ -1,3 +1,19 @@
 <h1>Tools#show</h1>
 <p>Find me in app/views/tools/show.html.erb</p>
+<%= link_to 'Browse Tools', tools_path %>
+<%= @tool.price %>
+<br>
 <%= @tool.name %>
+<br>
+<%= @tool.brand %>
+<br><%= @tool.model %> <br>
+<%= @tool.description %><br>
+<%= @tool.availability %><br>
+<%= @tool.delivery_options %><br> 
+<%= @tool.delivery_fee %><br>
+<%= @tool.min_delivery_fee %><br>
+<%= link_to 'User', user_path_url(@tool.user) %>
+<% if can? :edit, @tool %>
+  <%= link_to 'Edit', edit_tool_url(@tool)%>
+<% end %>
+

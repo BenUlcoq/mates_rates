@@ -1,2 +1,25 @@
-<h1>Rentals#edit</h1>
-<p>Find me in app/views/rentals/edit.html.erb</p>
+
+<%= javascript_include_tag 'rentals' %>
+<%= javascript_include_tag 'auto_dates' %>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    createDatePicker(JSON.parse('<%= @unavailable_dates.to_json.html_safe %>'))
+  })
+</script>
+
+<h1>Rentals#new</h1>
+<p>Find me in app/views/rentals/new.html.erb</p>
+
+<%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
+<%= form.hidden_field :start_date, id: 'start_date' %>
+<%= form.hidden_field :end_date, id: 'end_date' %>
+<div class="field">
+  <%= form.label :dates %><br>
+  <%= form.text_field :dates, id:'dates' %>
+</div>
+<%= form.submit %>
+
+
+<% end %>
+

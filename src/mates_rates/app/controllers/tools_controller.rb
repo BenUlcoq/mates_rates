@@ -1,5 +1,7 @@
 class ToolsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
+
   def new
     @tool = Tool.new(tool_params)
   end

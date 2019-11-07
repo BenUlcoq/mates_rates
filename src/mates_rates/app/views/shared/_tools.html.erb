@@ -1,9 +1,18 @@
 <% @tools.each do |tool| %>
-    
+  <% if tool.photo.attached? %>
+    <%= image_tag tool.photo, width: 120 %>
+  <% end %>
   <%= tool.price %>
   <br>
-  <%= link_to tool.name, tool_url(tool) %>
-  <br>
+  <%= link_to tool.name, tool_url(tool) %><br>
+
+ <% if can? :edit, tool %>
+  <%= link_to 'Manage Tool', edit_tool_url(tool)%>
+  <% else %>
+  <%= link_to 'Rent this Tool', new_tool_rental_path(tool) %>
+<% end %>
+<br>
+
   <%= tool.brand %>
   <br><%= tool.model %> <br>
   <%= tool.description %><br>
@@ -12,9 +21,5 @@
   <%= tool.delivery_fee %><br>
   <%= tool.min_delivery_fee %><br>
   <%= link_to 'User', user_path_url(tool.user) %><br>
-  <% if can? :edit, tool %>
-    <%= link_to 'Edit', edit_tool_url(tool)%>
-    <br>
-  <% end %>
   <hr>
 <% end %>

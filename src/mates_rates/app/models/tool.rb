@@ -1,7 +1,7 @@
 class Tool < ApplicationRecord
   belongs_to :user
   has_many :rentals
-  has_and_belongs_to_many :categories, presence: true
+  has_and_belongs_to_many :categories
   has_many :renters, through: :rentals, class_name: 'User'
   has_one_attached :photo
 
@@ -33,7 +33,15 @@ class Tool < ApplicationRecord
 
   def self.search(query)
     if query
-      where("(availability = 'true') AND (name ILIKE ? OR brand ILIKE ? OR model ILIKE ?)", "%#{query}%", "%#{query}%", "%#{query}%")
+  
+      results1 = joins(:categories).where("categories.name ILIKE ? ", "%#{query}%")
+      results2 = where("(availability = 'true') AND (name ILIKE ? OR brand ILIKE ? OR model ILIKE ? )",  "%#{query}%", "%#{query}%", "%#{query}%")
+      
+      results = results1 + results2
+      results.uniq!
+    
+      return results
+  
     else
       # flash error
     end

@@ -1,17 +1,35 @@
 class RentalsController < ApplicationController
   
   before_action :authenticate_user!
+  before_action :user_check, only: [:show]
   
   def new
    @tool = Tool.find(params[:tool_id])
+
+   if @tool.delivery_options == 'Both'
+      @delivery_options = ['Delivery', 'Pickup']
+   else 
+    @delivery_options = [@tool.delivery_options]
+   end
+
    @rental = @tool.rentals.new
+   @rental.calculate_fee(current_user)
    @user = @tool.user
    @unavailable_dates = @tool.unavailable_dates
   end
 
   def create
+    @tool = Tool.find(params[:tool_id])
+
     @rental = current_user.rentals.new(rental_params)
+
     @rental.tool = Tool.find(params[:tool_id])
+
+    @rental.calculate_fee(current_user)
+
+    days = (@rental.end_date - @rental.start_date).to_i
+    
+    @rental.price = (@rental.tool.price * days)
 
     respond_to do |format|
       if @rental.save
@@ -47,8 +65,12 @@ class RentalsController < ApplicationController
 
   private
 
+  def user_check
+    redirect_to browse_path unless Rental.find(params[:id]).user == current_user 
+  end
+
   def rental_params
-    params.require(:rental).permit(:start_date, :end_date)
+    params.require(:rental).permit(:start_date, :end_date, :delivery_option, :price, :delivery_fee)
   end
 
 end

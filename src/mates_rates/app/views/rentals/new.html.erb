@@ -11,6 +11,9 @@
 <h1>Rentals#new</h1>
 <p>Find me in app/views/rentals/new.html.erb</p>
 
+
+<input disabled="true" type="submit" value="" id="price">
+
 <%= form_with model: @rental, url: tool_rentals_path(@tool), local: true do |form| %>
   <%= render 'form', form: form %>
   <%= form.submit %>

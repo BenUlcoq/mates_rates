@@ -1,5 +1,6 @@
 
 function createDatePicker(dates) {
+  console.log('here')
   const el = document.getElementById('dates')
   flatpickr(el, {
     mode: "range",

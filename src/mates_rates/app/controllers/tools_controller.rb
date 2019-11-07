@@ -44,7 +44,7 @@ class ToolsController < ApplicationController
   end
 
   def index
-      @tools = Tool.all
+      @tools = Tool.all.where(availability: true)
     # if browse page
     #     @tools = Tool.all
     # elsif search page

@@ -16,6 +16,8 @@
 
 <%= form_with model: @rental, url: tool_rentals_path(@tool), local: true do |form| %>
   <%= render 'form', form: form %>
+
+  
   <%= form.submit %>
 <% end %>
 

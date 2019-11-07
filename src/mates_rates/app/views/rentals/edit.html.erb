@@ -11,7 +11,29 @@
 <h1>Rentals#new</h1>
 <p>Find me in app/views/rentals/new.html.erb</p>
 
+<%= @rental.tool.user.first_name %>
+<%= @rental.tool.user.last_name %>
+<%= @rental.tool.name %>
+<%= @rental.tool.brand %>
+<%= @rental.tool.model %>
+<%= @rental.start_date %>
+<%= @rental.end_date %>
+<%= @rental.price %>
+<% if @rental.delivery_fee %>
+  <%= @rental.delivery_fee %>
+<% end %>
+
+<% if can? :delete, @rental %>
+  <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-rounded' %>
+<% end %>
+
 <%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
-  <%= render 'form', form: form %>
+  
+ <div class="field">
+    <%= form.label :returned %>
+    <%= form.check_box :returned %>
+  </div>
+
 <%= form.submit %>
+
 <% end %>

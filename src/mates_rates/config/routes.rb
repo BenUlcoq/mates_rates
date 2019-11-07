@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/browse', to: 'tools#index', as: 'browse'
   get '/users/:id', to: 'users#show', as: 'user_path'
   # get '/:category', to: 'pages#category', as: 'category'
-  get '/:page', to: 'pages#show'
+  get '/:page', to: 'pages#show', as: 'page'
 
   root "pages#show", page: "home"
 

@@ -16,9 +16,16 @@ class RentalsController < ApplicationController
    @rental.calculate_fee(current_user)
    @user = @tool.user
    @unavailable_dates = @tool.unavailable_dates
+
+   pp @delivery_options
+   pp @tool
   end
 
   def create
+    
+    pp "Yeet"
+    pp params
+
     @tool = Tool.find(params[:tool_id])
 
     @rental = current_user.rentals.new(rental_params)
@@ -28,11 +35,18 @@ class RentalsController < ApplicationController
     @rental.calculate_fee(current_user)
 
     days = (@rental.end_date - @rental.start_date).to_i
-    
+
     @rental.price = (@rental.tool.price * days)
 
+    # if @rental.save
+    #   puts "We Yeeting"
+    # else
+    #   puts "Sad bois"
+    # end
+
+
     respond_to do |format|
-      if @rental.save
+      if @rental.save!
         format.html { redirect_to @rental, notice: 'Your rental has been approved!' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -42,12 +56,23 @@ class RentalsController < ApplicationController
     end
   end
 
+  def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
+    respond_to do |format|
+      format.html { redirect_to '/profile', notice: 'Rental was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
+
 
 
   def edit
     if can? :edit, Rental.find(params[:id])
       @rental = Rental.find(params[:id])
       @unavailable_dates = @rental.tool.unavailable_dates
+      @tool = @rental.tool
     else
       redirect_back(fallback_location: root_path)
     end

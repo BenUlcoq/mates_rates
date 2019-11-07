@@ -16,7 +16,7 @@ def valid_delivery_option
   if tool.delivery_options.include?(delivery_option)
     return true
   else
-    errors.add(:delivery_option, 'invalid delivery option')
+    errors.add(:delivery_option, 'is not available for this tool.')
   end
 end
   

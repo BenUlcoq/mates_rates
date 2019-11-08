@@ -29,10 +29,12 @@
 
 <%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
   
- <div class="field">
-    <%= form.label :returned %>
-    <%= form.check_box :returned %>
+  
+  <div class="field">
+      <%= form.label :returned %>
+      <%= form.check_box :returned %>
   </div>
+  
 
 <%= form.submit %>
 

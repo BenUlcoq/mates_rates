@@ -11,6 +11,24 @@ class Rental < ApplicationRecord
   validates :start_date, :end_date, presence: true, availability: true
   validate :end_date_after_start_date
 
+def self.finished
+  if end_date < Date.today
+    return true
+  else
+    return false
+  end
+end
+
+def self.status
+  if end_date < Date.today
+    return 'past'
+  elsif start_date > Date.today
+    return 'future'
+  else 
+    return 'current'
+  end
+end
+
 
 def valid_delivery_option
   if tool.delivery_options.include?(delivery_option)

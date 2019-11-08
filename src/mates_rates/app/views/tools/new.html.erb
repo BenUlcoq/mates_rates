@@ -14,60 +14,7 @@
     </div>
   <% end %>
 
-<div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price, in: 0..100, step: 1 %>
-</div>
-
-<div class="field">
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-</div>
-
-<div class="field">
-  <%= form.label :brand %>
-  <%= form.text_field :brand %>
-</div>
-
-<div class="field">
-  <%= form.label :model %>
-  <%= form.text_field :model %>
-</div>
-
-<div class="field">
-  <%= form.label :description %>
-  <%= form.text_area :description %>
-</div>
-
-<div class="field">
-  <%= form.label :availability %>
-  <%= form.check_box :availability %>
-</div>
-
-<div class="field">
-  <%= form.label :delivery_options %>
-  <%= form.select(:delivery_options, ['Pickup','Delivery','Both']) %>
-</div>
-
-<div class="field">
-  <%= form.label :delivery_fee %>
-  <%= form.number_field :delivery_fee, in: 0..100, step: 0.25 %> 
-</div>
-
-<div class="field">
-  <%= form.label :min_delivery_fee %>
-  <%= form.number_field :min_delivery_fee, in: 0..1000, step: 1 %> 
-</div>
-
-<div class="field">
-  <%= form.label :categories %>
-  <%= form.checkbox %>
-
-
-<div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
+  <%= render 'form', form: form %>
 
   <%= form.submit %>
 

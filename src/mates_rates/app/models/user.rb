@@ -5,7 +5,7 @@ class User < ApplicationRecord
     add_role(:renter) if roles.blank?
   end
 
-  rolify
+  
   resourcify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -20,5 +20,7 @@ class User < ApplicationRecord
   has_many :tools
   has_many :rentals
   has_many :rented_tools, through: :rentals, class_name: 'Tool'
+
+  rolify
   # has_and_belongs_to_many :roles
 end

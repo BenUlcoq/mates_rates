@@ -1,0 +1,46 @@
+<h1>Future Rentals</h1>
+<% if @future %>
+<% @future.each do |rental| %>
+ <%= rental.id %>
+  <%= rental.user.first_name %>
+  <%= rental.tool.user.first_name %>
+  <%= rental.tool.user.last_name %>
+  <%= rental.tool.name %>
+  <%= rental.tool.brand %>
+  <%= rental.tool.model %>
+  <%= rental.start_date %>
+  <%= rental.end_date %>
+<hr>
+<% end %>
+<% end %>
+<h1>Past Rentals</h1>
+<% if @past %>
+<% @past.each do |rental| %>
+  <%= rental.id %>
+  <%= rental.user.first_name %>
+  <%= rental.tool.user.first_name %>
+  <%= rental.tool.user.last_name %>
+  <%= rental.tool.name %>
+  <%= rental.tool.brand %>
+  <%= rental.tool.model %>
+  <%= rental.start_date %>
+  <%= rental.end_date %>
+<hr>
+<% end %>
+<% end %>
+
+<h1>Current Rentals</h1>
+<% if @current %>
+<% @current.each do |rental| %>
+ <%= rental.id %>
+  <%= rental.user.first_name %>
+  <%= rental.tool.user.first_name %>
+  <%= rental.tool.user.last_name %>
+  <%= rental.tool.name %>
+  <%= rental.tool.brand %>
+  <%= rental.tool.model %>
+  <%= rental.start_date %>
+  <%= rental.end_date %>
+<hr>
+<% end %>
+<% end %>

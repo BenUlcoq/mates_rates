@@ -17,10 +17,10 @@ class Ability
         rental.start_date <= Time.now + 1.day
       end
       
-    if user.has_role? :admin
+    return unless user.has_role? :admin
       can :manage, :all
-    end
     
+
   end
   # Define abilities for the passed in user here. For example:
   #

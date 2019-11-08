@@ -7,6 +7,7 @@ class ToolsController < ApplicationController
 
   def create
     pp params
+    @categories = Category.all
     @tool = Tool.new(tool_params)
     # @tool.price = params[:price].to_i
     # @tool.delivery_fee = params[:delivery_fee].to_i
@@ -66,7 +67,7 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.require(:tool).permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id, :photo)
+    params.require(:tool).permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id, :photo, :categories)
   end
 
 

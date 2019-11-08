@@ -1,25 +1,49 @@
 class PagesController < ApplicationController
 
-  before_action :authenticate_user!, only: :profile
 
-  def show
-    
-    if params[:page] == 'home'
-      @tools = Tool.last(12)
-    end
+  before_action :authenticate_user!, except: [:home, :results, :search]
 
-    if valid_page?
-      render template: "pages/#{params[:page]}"
+  
+  def admin
+    if current_user.has_role? :admin
+      @tools = Tool.all
+      @rentals = Rental.all
+      @users = User.all
+      @categories = Category.all
     else
-      render file: "public/404.html", status: :not_found
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
     end
   end
 
+  def home
+    @tools = Tool.last(12)
+  end
+
   def profile
+
   end
 
   def search
 
+  end
+
+  def my_rentals
+    @rentals = Rental.where(user_id: current_user.id)
+    @past = []
+    @future = []
+    @current = []
+
+    @rentals.each do |rental|
+      puts "yeeting"
+      pp rental
+      if rental.end_date < Date.today
+        @past << rental
+      elsif rental.start_date > Date.today
+        @future << rental
+      else 
+        @current << rental
+      end
+    end
   end
 
   def results
@@ -40,4 +64,10 @@ class PagesController < ApplicationController
   def valid_page?
     File.exist?(Pathname.new(Rails.root + "app/views/pages/#{params[:page]}.html.erb"))
   end
+
+  def admin_check
+    return false unless current_user.has_role? :admin
+  end
+
+
 end

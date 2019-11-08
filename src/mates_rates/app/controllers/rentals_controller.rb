@@ -46,7 +46,7 @@ class RentalsController < ApplicationController
 
 
     respond_to do |format|
-      if @rental.save!
+      if @rental.save
         format.html { redirect_to @rental, notice: 'Your rental has been approved!' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -58,21 +58,29 @@ class RentalsController < ApplicationController
 
   def destroy
     @rental = Rental.find(params[:id])
-    @rental.destroy
-    respond_to do |format|
-      format.html { redirect_to '/profile', notice: 'Rental was successfully deleted.' }
-      format.json { head :no_content }
+    if @rental.start_date <= Time.now + 1.day 
+      @rental.destroy
+      respond_to do |format|
+        format.html { redirect_to '/profile', notice: 'Rental was successfully deleted.' }
+        format.json { head :no_content }
+      end
+    else 
+      format.html { redirect_to @rental, notice: 'It\'s too late to cancel this rental.' }
     end
   end
 
+  def tools
+    @future_rentals = Rental.where(status == 'future')
 
+  end
 
 
   def edit
-    if can? :edit, Rental.find(params[:id])
-      @rental = Rental.find(params[:id])
+    @rental = Rental.find(params[:id])
+
+    if can? :edit, @rental
+      @rental
       @unavailable_dates = @rental.tool.unavailable_dates
-      @tool = @rental.tool
     else
       redirect_back(fallback_location: root_path)
     end
@@ -80,10 +88,19 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    if can? :edit, @rental
+      @rental
+    else
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+    end
   end
 
   def index
-    @rentals = current_user.rentals
+    if current_user.has_role?(:admin)
+      @rentals = current_user.rentals
+    else
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+    end
   end
 
 

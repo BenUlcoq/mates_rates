@@ -1,0 +1,41 @@
+<h1>Tools</h1>
+<%= render partial: 'shared/tools', tools: @tools %>
+<hr>
+
+
+<h1>Rentals </h1>
+<% @rentals.each do |rental| %>
+  <%= rental.tool.user.first_name %>
+<%= rental.tool.user.last_name %>
+<%= rental.tool.name %>
+<%= rental.tool.brand %>
+<%= rental.tool.model %>
+<%= rental.start_date %>
+<%= rental.end_date %>
+<%= rental.price %>
+<%= rental.delivery_fee %>
+<% if can? :delete, rental %>
+  <%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-rounded' %>
+<% end %>
+<br>
+<br>
+
+<% end %> 
+<hr>
+<h1>Users</h1>
+<% @users.each do |user| %>
+  <%= "#{user.first_name} #{user.last_name}"%>
+  <br>
+  <br>
+<% end %>
+<hr>
+
+<h1>Categories</h1>
+<% @categories.each do |cat| %>
+<%= cat.name %>
+<br>
+<br>
+<% end %>
+
+
+

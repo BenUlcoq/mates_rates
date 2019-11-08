@@ -58,14 +58,14 @@ class RentalsController < ApplicationController
 
   def destroy
     @rental = Rental.find(params[:id])
-    if @rental.start_date <= Time.now + 1.day 
+    if @rental.start_date > Time.now + 1.day 
       @rental.destroy
       respond_to do |format|
         format.html { redirect_to '/profile', notice: 'Rental was successfully deleted.' }
         format.json { head :no_content }
       end
     else 
-      format.html { redirect_to @rental, notice: 'It\'s too late to cancel this rental.' }
+      redirect_to(@rental, notice: 'It\'s too late to cancel this rental.')
     end
   end
 
@@ -88,11 +88,6 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
-    if can? :edit, @rental
-      @rental
-    else
-      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
-    end
   end
 
   def index
@@ -103,12 +98,10 @@ class RentalsController < ApplicationController
     end
   end
 
-
-
   private
 
   def user_check
-    redirect_to browse_path unless Rental.find(params[:id]).user == current_user 
+    redirect_to browse_path unless Rental.find(params[:id]).user == current_user or current_user.has_role? :admin
   end
 
   def rental_params

@@ -10,6 +10,10 @@
 <%= @rental.end_date %>
 <%= @rental.price %>
 <%= @rental.delivery_fee %>
+<% if can? :delete, @rental %>
+  <%= link_to 'Manage Rental', edit_rental_url(@rental)%>
+<% end %>
+
 
 
 

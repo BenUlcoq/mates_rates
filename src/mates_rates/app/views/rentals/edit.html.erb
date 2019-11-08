@@ -27,13 +27,17 @@
   <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-rounded' %>
 <% end %>
 
+
+
+
 <%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
   
-  
+  <% if @rental.finished %>
   <div class="field">
       <%= form.label :returned %>
       <%= form.check_box :returned %>
   </div>
+  <% end %>
   
 
 <%= form.submit %>

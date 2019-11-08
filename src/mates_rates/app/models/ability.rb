@@ -13,6 +13,10 @@ class Ability
         user.id == rental.tool.user_id
       end
 
+      cannot :edit, Rental, Rental do |rental|
+        user.id == rental.user.id && rental.end_date < Date.today
+      end
+
       cannot :delete, Rental, Rental do |rental|
         rental.start_date <= Time.now + 1.day
       end

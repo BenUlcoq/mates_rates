@@ -11,18 +11,18 @@ class Rental < ApplicationRecord
   validates :start_date, :end_date, presence: true, availability: true
   validate :end_date_after_start_date
 
-def self.finished
-  if end_date < Date.today
+def finished
+  if self.end_date < Date.today
     return true
   else
     return false
   end
 end
 
-def self.status
-  if end_date < Date.today
+def status
+  if self.end_date < Date.today
     return 'past'
-  elsif start_date > Date.today
+  elsif self.start_date > Date.today
     return 'future'
   else 
     return 'current'

@@ -3,18 +3,28 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
+    
   end
 
   def create
-    pp params
-    @categories = Category.all
+    
     @tool = Tool.new(tool_params)
+
+    params[:tool][:categories].each do |category|
+      cat = category.to_i
+      if cat.positive?
+        @tool.categories << Category.find(cat)
+      end
+    end
+
+    
     # @tool.price = params[:price].to_i
     # @tool.delivery_fee = params[:delivery_fee].to_i
     # @tool.min_delivery_fee = params[:min_delivery_fee].to_i
     # @tool.availability = !params[:availability].to_i.zero?
     @tool.photo.attach(tool_params[:photo])
     @tool.user = current_user
+    
 
     pp @tool
 
@@ -29,6 +39,30 @@ class ToolsController < ApplicationController
     end
 
     # if @tool.save
+
+  end
+
+  def update
+    @tool = Tool.find(params[:id])
+
+    @tool.update(tool_params)
+
+    respond_to do |format|
+      if @tool.update(tool_params)
+        params[:tool][:categories].each do |category|
+          cat = category.to_i
+          if cat.positive?
+            @tool.categories << Category.find(cat)
+          end
+        end
+        @tool.image.attach(tool_params[:image]) if tool_params[:image]
+        format.html { redirect_to @tool, notice: 'Tweet was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tool }
+      else
+        format.html { render :edit }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
 
   end
 
@@ -67,7 +101,7 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.require(:tool).permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id, :photo, :categories)
+    params.require(:tool).permit(:id, :price, :name, :brand, :model, :description, :availability, :delivery_options, :delivery_fee, :min_delivery_fee, :user_id, :photo)
   end
 
 

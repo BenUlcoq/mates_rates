@@ -8,7 +8,7 @@ class Rental < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :delivery_option, presence: true
   validate :valid_delivery_option
-  validates :start_date, :end_date, presence: true, availability: true
+  validates :start_date, :end_date, presence: true, availability: true, on: :create
   validate :end_date_after_start_date
 
 def finished
@@ -31,7 +31,12 @@ end
 
 
 def valid_delivery_option
-  if tool.delivery_options.include?(delivery_option)
+
+  if tool.delivery_options == 'Both'
+    options = ['Delivery', 'Pickup']
+  end
+
+  if tool.delivery_options.include?(delivery_option) || options.include?(delivery_option)
     return true
   else
     errors.add(:delivery_option, 'is not available for this tool.')
@@ -47,7 +52,7 @@ end
     requestHelper("https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=#{renter_address}&destinations=#{owner_address}&key=#{Rails.application.credentials.google_places_api_key}") do |response|
       puts response
       distance = response['rows'].first['elements'].first['distance']['value']
-      self.delivery_fee = [tool.delivery_fee * distance/1000, tool.min_delivery_fee].max
+      self.delivery_fee = [(tool.delivery_fee * distance/1000).round(2), tool.min_delivery_fee].max
     end
   end
 

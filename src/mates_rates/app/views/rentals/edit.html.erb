@@ -29,17 +29,17 @@
 
 
 
-
-<%= form_with model: @rental, url: rentals_path(@rental), local: true do |form| %>
+<% if @rental.finished %>
+<%= form_with model: @rental, url: rental_path(@rental), local: true do |form| %>
   
-  <% if @rental.finished %>
+  
   <div class="field">
       <%= form.label :returned %>
       <%= form.check_box :returned %>
   </div>
-  <% end %>
+ 
   
 
 <%= form.submit %>
-
+ <% end %>
 <% end %>

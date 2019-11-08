@@ -6,8 +6,14 @@ class Ability
   def initialize(user)
     can :read, Tool
     return unless user.present?
-      can :manage, Tool, user_id: user.id
-      can :manage, Rental, user_id: user.id
+
+      can [:read], Rental, Rental do |rental|
+        user.id == rental.tool.user_id
+      end
+
+      can [:read, :create], Rental, user_id: user.id
+      
+      can :delete, Rental, user_id: user.id
 
       can :delete, Rental,  Rental do |rental|
         user.id == rental.tool.user_id
@@ -18,9 +24,16 @@ class Ability
       end
 
       cannot :delete, Rental, Rental do |rental|
-        rental.start_date <= Time.now + 1.day
+        rental.start_date <= Date.today + 1.day
       end
-      
+
+      can :edit, Rental, Rental do |rental|
+        user.id == rental.tool.user_id && rental.end_date < Date.today
+      end
+
+    return unless user.has_role? :owner
+      can :manage, Tool, user_id: user.id
+
     return unless user.has_role? :admin
       can :manage, :all
     

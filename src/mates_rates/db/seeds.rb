@@ -8,8 +8,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Rental.destroy_all
-User.destroy_all
 Tool.destroy_all
+User.destroy_all
+
 
 categories = [{
   name: 'Drills'},{
@@ -92,7 +93,12 @@ users = [
                            min_delivery_fee: 100.00
                          }
                        ])
-  }
+  },
+  { first_name: 'Santiago',
+    last_name: 'Smol',
+    password: 'smolboi',
+    email: 'santiago@gmail.com',
+    address: '3 Liberty Street, Forest Lake'}
 ]
 
 User.create(users)
@@ -107,12 +113,37 @@ User.first.add_role('admin')
 #   price: 200
 # )
 
-# User.last.rentals.create!(
-#   start_date: Date.new(2019, 12, 13),
-#   end_date: Date.new(2019, 12, 18),
-#   returned: false,
-#   tool: Tool.first
-# )
+# Santiago owned rental from jeff epstein
+# Past rental - jeff can update, santiago can't.
+User.last.rentals.create!(
+  start_date: Date.new(2019, 10, 10),
+  end_date: Date.new(2019, 10, 13),
+  returned: false,
+  delivery_option: 'Pickup',
+  price: 10,
+  tool: Tool.third
+)
+# Jeff owned rental from Ben
+# Current Rental - neither can edit or delete.
+User.second.rentals.create!(
+  start_date: Date.today,
+  end_date: Date.today + 3.days,
+  returned: false,
+  delivery_option: 'Delivery',
+  price: 10,
+  tool: Tool.first
+)
+
+# Santiago owned rental from Jeff
+# Future Rental - both can delete.
+User.last.rentals.create!(
+  start_date: Date.new(2019, 11, 20),
+  end_date: Date.new(2019, 11, 24),
+  returned: false,
+  delivery_option: 'Pickup',
+  price: 10,
+  tool: Tool.third
+)
 
 # User.first.rentals.create!(
 #   start_date: Date.new(2019, 12, 12),

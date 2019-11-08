@@ -12,6 +12,8 @@
 <%= @rental.delivery_fee %>
 <% if can? :delete, @rental %>
   <%= link_to 'Manage Rental', edit_rental_url(@rental)%>
+<% elsif can? :edit, @rental %>
+<%= link_to 'Manage Rental', edit_rental_url(@rental)%>
 <% end %>
 
 

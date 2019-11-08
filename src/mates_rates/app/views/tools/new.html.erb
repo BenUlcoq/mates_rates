@@ -1,6 +1,5 @@
 <h1>Tools#new</h1>
 <p>Find me in app/views/tools/new.html.erb</p>
-
 <%= form_with(model: @tool, url: tools_path(@tool), local: true) do |form| %>
   <% if @tool.errors.any? %>
     <div id="error_explanation">
@@ -13,11 +12,7 @@
       </ul>
     </div>
   <% end %>
-
   <%= render 'form', form: form %>
 
-  <%= form.submit %>
-
-<% end %>
-
+  <% end %>
 

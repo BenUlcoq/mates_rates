@@ -40,6 +40,11 @@
     <%= f.text_field :address, id: 'autocomplete', placeholder: 'Enter your address' %>
   </div>
 
+  <div class="field">
+    <%= f.label :roles %><br />
+    <%= f.select :roles, options_for_select(['Renter', 'Owner'])%>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

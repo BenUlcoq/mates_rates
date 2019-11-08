@@ -1,8 +1,7 @@
 <h1>Tools#edit</h1>
 <p>Find me in app/views/tools/edit.html.erb</p>
 <%= link_to 'Browse Tools', tools_path %>
-
-<%= form_with(model: @tool, url: tools_path(@tool), local: true) do |form| %>
+<%= form_with(model: @tool, url: tool_path(@tool), local: true) do |form| %>
   <% if @tool.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tool.errors.count, "error") %> prohibited this from being saved:</h2>
@@ -15,6 +14,5 @@
     </div>
   <% end %>
 
-  <%= render 'form', form: form %>
-
-  <%= form.submit %>
+ <%= render 'form', form: form %>
+  <% end %>

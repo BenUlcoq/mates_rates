@@ -1,7 +1,6 @@
 class RentalsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :user_check, only: [:show]
   
   def new
    @tool = Tool.find(params[:tool_id])
@@ -30,7 +29,7 @@ class RentalsController < ApplicationController
 
     @rental = current_user.rentals.new(rental_params)
 
-    @rental.tool = Tool.find(params[:tool_id])
+    @rental.tool = @tool
 
     @rental.calculate_fee(current_user)
 
@@ -74,21 +73,45 @@ class RentalsController < ApplicationController
 
   end
 
+  def update
+    puts params
+    puts 'params'
+    puts update_returned[:returned]
+    puts 'returned'
+  
+    @rental = Rental.find(params[:id])
+    if update_returned[:returned] == "1"
+      puts "Yeet"
+      @rental.returned = true
+      if @rental.save
+        redirect_to(@rental, notice: 'Rental Complete - payments will now be processed.')
+      end
+    end
+
+  end
+
 
   def edit
     @rental = Rental.find(params[:id])
 
-    if can? :edit, @rental
+    if can? :delete, @rental
       @rental
       @unavailable_dates = @rental.tool.unavailable_dates
+    elsif can? :edit, @rental
+      @rental
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
     end
   end
 
   def show
     @rental = Rental.find(params[:id])
-  end
+    if can? :read, @rental
+      @rental
+    else
+      redirect_back(fallback_location: root_path, notice: 'You do not have permissions to view that page.')
+    end
+    end
 
   def index
     if current_user.has_role?(:admin)
@@ -100,12 +123,12 @@ class RentalsController < ApplicationController
 
   private
 
-  def user_check
-    redirect_to browse_path unless Rental.find(params[:id]).user == current_user or current_user.has_role? :admin
-  end
-
   def rental_params
     params.require(:rental).permit(:start_date, :end_date, :delivery_option, :price, :delivery_fee)
+  end
+
+  def update_returned
+    params.require(:rental).permit(:returned)
   end
 
 end

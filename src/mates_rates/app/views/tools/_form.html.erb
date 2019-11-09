@@ -1,54 +1,81 @@
 
-
-<div class="field">
+<div class="row">
+<div class="field col s6">
     <%= form.label :price %>
     <%= form.number_field :price, in: 0..100, step: 1 %>
 </div>
 
-<div class="field">
+<div class="field col s6">
   <%= form.label :name %>
   <%= form.text_field :name %>
 </div>
+</div>
 
-<div class="field">
+<div class="row">
+<div class="field col s6">
   <%= form.label :brand %>
   <%= form.text_field :brand %>
 </div>
 
-<div class="field">
+<div class="field col s6">
   <%= form.label :model %>
   <%= form.text_field :model %>
 </div>
+</div>
 
-<div class="field">
+<div class="row">
+<div class="field col s12">
   <%= form.label :description %>
-  <%= form.text_area :description %>
+  <%= form.text_area :description, class: "materialize-textarea"%>
 </div>
-
-<div class="field">
-  <%= form.label :availability %>
-  <%= form.check_box :availability %>
 </div>
-
-<div class="field">
+<div class="row">
+<div class="field col s4">
   <%= form.label :delivery_options %>
   <%= form.select(:delivery_options, ['Pickup','Delivery','Both']) %>
 </div>
 
-<div class="field">
+<div class="field col s4">
   <%= form.label :delivery_fee %>
   <%= form.number_field :delivery_fee, in: 0..100, step: 0.25 %> 
 </div>
 
-<div class="field">
+<div class="field col s4">
   <%= form.label :min_delivery_fee %>
   <%= form.number_field :min_delivery_fee, in: 0..1000, step: 1 %> 
 </div>
+</div>
 
-<div class="field">
+
+
+<div class="row">
+<div class="field col s12">
+<%= form.label "Select Categories" %><br>
+<ul id="category-checkboxes">
   <%= form.collection_check_boxes(:categories, Category.all, :id, :name, {checked: @tool.categories.map(&:to_param)}) do |b| %>
-    <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
+   <li>
+    <label>
+  <%= b.check_box class: "filled-in col s1", id: 'available' %>
+<span> <%= b.text %> </span>
+  </label>
+  </li>
+  
+  <%# <label>
+     <%= b.check_box class >
+    <%= b.label(:"data-value" => b.value) { b.check_box } >
+    <span><%= b.text ></span>
+    </label> %>
   <% end %>
+  <ul>
+</div>
+</div>
+<div class="row">
+<div class="input-field col s2">
+<label>
+  <%= form.check_box :availability, class: "filled-in", id: 'available' %>
+<span> Available? </span>
+  </label>
+  <%# <%= form.label :availability, for: 'available', id: 'available' %> 
 </div>
 
 
@@ -56,7 +83,7 @@
     <%= form.label :photo %>
     <%= form.file_field :photo %>
   </div>
-
+</div>
     <%= form.submit %>
 
   

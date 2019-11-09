@@ -1,4 +1,8 @@
 <%= link_to 'Browse All Tools', tools_path %><br>
 <hr>
 
+<% unless @tools.empty? %>
 <%= render partial: 'shared/tools' %>
+<% else %>
+<h2> No Results Found </h2>
+<% end %>

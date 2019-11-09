@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'pages#profile', as: 'profile'
   get '/my_rentals', to: 'pages#my_rentals', as: 'my_rentals'
   get '/admin', to: 'pages#admin', as: 'admin_dash'
+  get '/search', to: 'pages#search', as: 'search'
   get '/users/:id', to: 'users#show', as: 'user_path'
   # get '/:category', to: 'pages#category', as: 'category'
   

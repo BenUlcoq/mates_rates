@@ -13,6 +13,24 @@
  *= require_tree .
  *= require_self
  *= require flatpickr
+ *= require material_icons
  */
-
+ @import "materialize/components/color-variables";
+//  $primary-color: color("blue", "lighten-2") !default;
+//  $secondary-color: color("yellow", "base") !default;
  @import "materialize";
+
+ .top-nav {
+   overflow: hidden;
+ }
+
+ [type="checkbox"] + span:not(.lever) {
+  padding-left: 25px;
+  line-height: 22px;
+ }
+
+#category-checkboxes {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}

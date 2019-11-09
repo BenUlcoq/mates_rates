@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
 
-  before_action :authenticate_user!, except: [:home, :results, :search]
+  before_action :authenticate_user!, except: [:home, :results, :search, :redirect_to_results]
 
   
   def admin
@@ -52,7 +52,7 @@ class PagesController < ApplicationController
     if @query
       @tools = Tool.search(params[:query])
     else
-      redirect_to tools_path
+      redirect_to browse
     end
   end
 

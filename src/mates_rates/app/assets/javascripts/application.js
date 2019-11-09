@@ -16,3 +16,4 @@
 //= require turbolinks_disable
 //= require flatpickr
 //= require materialize-sprockets
+//= require materialize

@@ -2,7 +2,12 @@ class ToolsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
 
   def new
+
     @tool = Tool.new
+
+    unless can? :create, Tool
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+    end
     
   end
 
@@ -70,7 +75,7 @@ class ToolsController < ApplicationController
     if can? :edit, Tool.find(params[:id])
       @tool = Tool.find(params[:id])
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
     end
   end
 
@@ -94,6 +99,7 @@ class ToolsController < ApplicationController
   end
 
   def destroy
+    
     tool = Tool.find(params[:id])
     tool.destroy
   end

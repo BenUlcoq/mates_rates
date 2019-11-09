@@ -76,3 +76,5 @@ gem 'activestorage-cloudinary-service'
 gem "flatpickr_rails", "~> 1.1"
 
 gem "cloudinary", "~> 1.12"
+
+gem "materialize-sass", "~> 1.0"

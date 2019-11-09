@@ -104,8 +104,8 @@ users = [
 User.create(users)
 
 User.first.add_role(:admin)
-User.first.add_role(:owner)
 User.first.add_role(:renter)
+User.first.add_role(:owner)
 
 # User.first.rentals.create!(
 #   start_date: Date.new(2019, 12, 12),

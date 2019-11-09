@@ -26,11 +26,6 @@ module ApplicationHelper
   end
 
     def current_class?(test_path)
-      pp "Request:"
-      pp request.path
-      pp "Current"
-      pp test_path
-      pp request.path == test_path
       request.path == test_path ? "active" : ""
     end
   

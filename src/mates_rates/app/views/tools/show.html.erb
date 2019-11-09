@@ -10,8 +10,10 @@
 <br>
 <% if can? :edit, @tool %>
   <%= link_to 'Manage Tool', edit_tool_url(@tool)%>
-  <% else %>
+  <% elsif can? :create, Rental %>
   <%= link_to 'Rent this Tool', new_tool_rental_path(@tool) %>
+  <% else %>
+  <%= link_to 'Sign up to rent this tool', new_user_registration_path %>
 <% end %>
 <%= @tool.brand %>
 <br><%= @tool.model %> <br>

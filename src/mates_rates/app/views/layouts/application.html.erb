@@ -36,14 +36,14 @@
 </g>
 </svg>
 </a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
           
           <ul id="nav-mobile" class="right hide-on-med-and-down">
            <li class=<%= current_class?(home_path) %><%= current_class?(root_path) %>><%= link_to 'Home', root_path%></li>
           <li class=<%= current_class?(browse_path) %>><%= link_to 'Browse', browse_path%></li>
          
              <% if user_signed_in? %>
-             <li id="profile-link"><%= link_to 'Profile', profile_path, class: current_class?(profile_path) %><li>
+             <li id="profile-link" class=<%= current_class?(profile_path) %> ><%= link_to 'Profile', profile_path%></li>
             <li><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></li>
           <% else %>
             <li class=<%= current_class?(new_user_session_path) %>><%= link_to 'Sign In', new_user_session_path %></li>
@@ -66,15 +66,15 @@
    
 
       <ul class="sidenav" id="mobile-demo">
-             <li id="home-link"><%= link_to 'Home', root_path, class: current_class?(home_path)%></li>
-          <li id="browse-link"><%= link_to 'Browse', browse_path, class: current_class?(browse_path) %></li>
+             <li class=<%= current_class?(home_path) %><%= current_class?(root_path)%>><%= link_to 'Home', root_path%></li>
+          <li class=<%= current_class?(browse_path) %>><%= link_to 'Browse', browse_path%></li>
          
              <% if user_signed_in? %>
-             <li id="profile-link"><%= link_to 'Profile', profile_path, class: current_class?(profile_path) %><li>
+             <li class=<%= current_class?(profile_path) %>><%= link_to 'Profile', profile_path %><li>
             <li><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></li>
           <% else %>
-            <li id="sign_in-link"><%= link_to 'Sign In', new_user_session_path, class: current_class?(new_user_registration_path) %></li>
-            <li id="sign_up-link"><%= link_to 'Sign Up', new_user_registration_path, :class => current_class?(new_user_session_path) %></li>
+            <li class=<%= current_class?(new_user_session_path)%>><%= link_to 'Sign In', new_user_session_path%></li>
+            <li class=<%= current_class?(new_user_registration_path)%>><%= link_to 'Sign Up', new_user_registration_path%></li>
           <% end %>
           <li>
           <%= form_with url: redirect_to_results_path, method: 'post' do |f| %>

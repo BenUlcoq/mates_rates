@@ -49,7 +49,7 @@
   <%= form.collection_check_boxes(:categories, Category.all, :id, :name, {checked: @tool.categories.map(&:to_param)}) do |b| %>
     <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
   <% end %>
-<div class="field">
+</div>
 
 
 <div class="field">

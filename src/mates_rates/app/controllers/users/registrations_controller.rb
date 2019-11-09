@@ -4,6 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+
+  def create
+    super do
+      resource.roles << Role.find(params[:user][:role_ids])
+      resource.save
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -41,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :address, :password_confirmation, :roles])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :address, :password_confirmation])
   end
 
   def configure_account_update_params

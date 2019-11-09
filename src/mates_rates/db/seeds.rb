@@ -103,7 +103,8 @@ users = [
 
 User.create(users)
 
-User.first.add_role('admin')
+User.first.add_role(:admin)
+User.last.add_role(:owner)
 
 # User.first.rentals.create!(
 #   start_date: Date.new(2019, 12, 12),

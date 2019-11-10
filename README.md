@@ -2,7 +2,7 @@
 ## T2A2 Coder Academy - Marketplace Project 
 ---
 
-Link to Application published on Heroku 
+[Link to Application published on Heroku](https://evening-dusk-09494.herokuapp.com/)
 
 [Link to Github Repo](https://github.com/BenUlcoq/mates_rates)
 
@@ -1019,6 +1019,8 @@ Managing the scope of the project was absolutely necessary for successfully buil
 Most notably, where Stripe was initially a key feature, the timeframe did not allow for its implementation in the initially conceived manner. Due to the platform handling rentals instead of purchases, the payment process is different from the norm and could not utilise Stripe's simple checkout functionality. The initial plan was to have payment processed on the creation of a rental and held by Stripe until the owner has marked the tool as returned. Although this functionality exists in the app, there was not enough time to conduct research and testing into setting up Stripe to enable this process, which meant it had to be ultimately cut from the MVP.
 
 Another big change was that Test Driven Development was not utilised. Given the scope management issues which led to time management problems and a lack of experience with RSpec, it was **assumed** that the delays which learning RSpec would cause outweighed the benefits of implementing it. Unfortunately, this did mean that the project suffered significantly, as it is impossible to produce code of the same quality that TDD would produce given the experience levels. Ultimately, it probably wasn't the right call to make, and other additional features should have been sacrificed before TDD was.
+
+[Screenshots of the MVP here](https://github.com/BenUlcoq/mates_rates/tree/master/docs/screenshots)
 
 
 

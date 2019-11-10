@@ -1,41 +1,52 @@
-<h1>Tools</h1>
-<%= render partial: 'shared/tools', tools: @tools %>
-<hr>
+<h1>Admin Dashboard</h1>
+
+<div class="card">
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a href="#tools">Tools</a></li>
+        <li class="tab col s6"><a href="#rentals">Rentals</a></li>
+      </ul>
+    </div>
+
+<div id="tools" class="col s12">
+  <h5 class="center-align"> Tools </h5>
+  <ul class="collection">
+    <% @tools.each do |tool| %>
+    <li class="collection-item">
+        <p><%= tool.name %> - <%= tool.brand %>-<% if tool.model %><%= tool.model %><% end %>
+        - <span class="red-text">$<%= tool.price %>/day</span></p>
+        <p>Owned by <%= link_to "#{tool.user.first_name}", user_url(tool.user), class: "red-text" %>
+        | 
+        <% if tool.delivery_options == 'Both' || tool.delivery_options == 'Delivery' %>
+            Delivery Available - $<%= tool.delivery_fee%>/km
+            <% else %>
+            Pickup Only
+        <% end %>
+        <%= link_to 'Manage Tool', edit_tool_url(tool), class: "secondary-content btn-small light-blue waves-effect waves-light white-text darken-3"%>
+  </p>
+        
+    </li>
+  <% end %>
+  </ul>
+</div>
 
 
-<h1>Rentals </h1>
-<% @rentals.each do |rental| %>
-  <%= rental.tool.user.first_name %>
-<%= rental.tool.user.last_name %>
-<%= rental.tool.name %>
-<%= rental.tool.brand %>
-<%= rental.tool.model %>
-<%= rental.start_date %>
-<%= rental.end_date %>
-<%= rental.price %>
-<%= rental.delivery_fee %>
-<% if can? :delete, rental %>
-  <%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-rounded' %>
-<% end %>
-<br>
-<br>
-
-<% end %> 
-<hr>
-<h1>Users</h1>
-<% @users.each do |user| %>
-  <%= "#{user.first_name} #{user.last_name}"%>
-  <br>
-  <br>
-<% end %>
-<hr>
-
-<h1>Categories</h1>
-<% @categories.each do |cat| %>
-<%= cat.name %>
-<br>
-<br>
-<% end %>
-
-
+<div id="rentals" class="col s12">
+<h5 class="center-align">Rentals</h5>
+<ul class="collection">
+    <% @rentals.each do |rental| %>
+    <li class="collection-item">
+    <p><%= link_to "#{rental.tool.user.first_name}", user_url(rental.tool.user) %> renting  <%= link_to "#{rental.tool.name}", rental_url(rental) %> to <%= link_to "#{rental.user.first_name}", user_url(rental.user) %></p>
+    
+    <p>From <%= rental.start_date %> to <%= rental.end_date %> </p>
+    <p>Cost: $<%= rental.price %>, <%= rental.delivery_option %><% if rental.delivery_option == 'Delivery' %>: $<%= rental.delivery_fee %><% end %>
+    
+        <%= link_to 'Manage Rental', edit_rental_url(rental), class: "secondary-content light-blue darken-3 btn-small waves-effect waves-light"%>
+      </p>
+    </li>
+    <% end %>
+</ul>
+</div>
+</div>
 

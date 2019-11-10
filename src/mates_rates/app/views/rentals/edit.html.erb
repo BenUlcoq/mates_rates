@@ -2,46 +2,85 @@
 <%= javascript_include_tag 'rentals' %>
 <%= javascript_include_tag 'auto_dates' %>
 
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function() {
-    createDatePicker(JSON.parse('<%= @unavailable_dates.to_json.html_safe %>'))
-  })
-</script>
 
-<h1>Rentals#new</h1>
-<p>Find me in app/views/rentals/new.html.erb</p>
 
-<%= @rental.tool.user.first_name %>
-<%= @rental.tool.user.last_name %>
-<%= @rental.tool.name %>
-<%= @rental.tool.brand %>
-<%= @rental.tool.model %>
-<%= @rental.start_date %>
-<%= @rental.end_date %>
-<%= @rental.price %>
-<% if @rental.delivery_fee %>
-  <%= @rental.delivery_fee %>
+<h1>Manage Rental</h1>
+
+<ul class="collection">
+<li class="collection-item">
+<% if @rental.user == current_user %>
+    <p>Renting  <%= @rental.tool.name %> off <%= link_to "#{@rental.tool.user.first_name}", user_url(@rental.tool.user) %></p>
+    <% else %>
+    <p>Renting <%= @rental.tool.name %> to <%= link_to "#{@rental.tool.user.first_name}" %></p>
+    <% end %>
+    <p>From <%= @rental.start_date %> to <%= @rental.end_date %> </p>
+    <p>Cost: $<%= @rental.price %>, <%= @rental.delivery_option %><% if @rental.delivery_option == 'Delivery' %>: $<%= @rental.delivery_fee %> for delivery to <%= @rental.user.address %><% end %>
+    <% if @rental.delivery_option == 'Pickup' %> from <%= @rental.tool.user.address %></p><% end %>
+   <% if can? :delete, @rental %>
+   <div class="row">
+  <%= link_to 'Cancel Rental', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-small red darken-3 waves-effect waves-light white-text' %>
+  </div>
 <% end %>
-
-<% if can? :delete, @rental %>
-  <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-rounded' %>
-<% end %>
-
-
-
-<% if @rental.finished %>
+      <% if @rental.finished %>
 <%= form_with model: @rental, url: rental_path(@rental), local: true do |form| %>
   
-  
-  <div class="field">
-      <%= form.label :returned %>
-      <%= form.check_box :returned %>
+  <div class="row">
+    <div id="returned-field" class="field">
+      <label>
+        <%= form.check_box :returned, class: "filled-in", id: 'returned', checked: @rental.returned %>
+        <span> This tool has been returned. </span>
+      </label>
+    </div>
   </div>
  
   
 
    <div class="row" class="center-align col s12">
-    <button class="btn-large waves-effect waves-light white-text" type="submit" name="action">Submit
+    <button class="btn-small waves-effect waves-light white-text" type="submit" name="action">Submit
     </div>
  <% end %>
 <% end %>
+
+</li>
+</ul>  
+
+
+
+
+
+
+
+
+
+
+<h3>Rental Tool</h3>
+<div class="card sticky-action hoverable large horizontal">
+    <div class="card-image">
+      <% if @rental.tool.photo.attached? %>
+       <%= image_tag @rental.tool.photo, class: "activator"%>
+      <% end %>
+
+    </div>
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4"><%= @rental.tool.name %> - <%= @rental.tool.brand %>-<% if @rental.tool.model %><%= @rental.tool.model %><% end %><i class="right red-text darken-4 card-title">$<%= @rental.tool.price %>/day</i></span>
+      
+      <p>Owned by <%= link_to "#{@rental.tool.user.first_name}", user_url(@rental.tool.user), class: "red-text" %>
+      | 
+      <% if @rental.tool.delivery_options == 'Both' || @rental.tool.delivery_options == 'Delivery' %>
+          Delivery Available - $<%= @rental.tool.delivery_fee%>/km
+          <% else %>
+          Pickup Only
+          <% end %></p>
+      <p><%= @rental.tool.description %></p>
+    </div>
+    <div class="card-action">
+          <% if can? :edit, @rental.tool %>
+            <%= link_to 'Manage Tool', edit_tool_url(@rental.tool), class: "light-blue waves-effect waves-light btn white-text darken-3"%>
+          <% elsif can? :create, Rental %>
+            <%= link_to 'Rent this Tool', new_tool_rental_path(@rental.tool), class: "teal waves-effect waves-light btn white-text darken-1" %>
+          <% else %>
+            <%= link_to 'Sign in to rent this tool', new_user_session_path, class: "cyan waves-effect waves-light btn white-text darken-1" %>
+          <% end %>
+          
+        </div>
+  </div>

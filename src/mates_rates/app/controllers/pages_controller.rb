@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     if current_user.has_role? :admin
 
       # Pass through instance variables to view.
+      # Fetches every instance from the database by calling a list of all.
       @tools = Tool.all
       @rentals = Rental.all
   
@@ -23,7 +24,8 @@ class PagesController < ApplicationController
 
   # Homepage Logic
   def home
-    # Pass through instance variable of latest 12 tools to the homepage view.
+    # Pass through instance variable of last 12 tools. Last 12 is determined by the order in the database
+    # In this, creation date determines the order, so latest creations are grabbed.
     @tools = Tool.last(12)
   end
 
@@ -37,9 +39,9 @@ class PagesController < ApplicationController
 
   # User's Tool Overview Logic
   def my_tools
-    # Checks the is an Owner
+    # Checks the user is an Owner
     if can? :create, Tool
-      # Pass through their own tools as instance variable
+      # Pass through their own tools as instance variable by searching the database for all records that match the user id.
       @tools = Tool.where(user_id: current_user.id)
     else
       # Failed Permissions check redirect

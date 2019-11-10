@@ -8,13 +8,13 @@ class ToolsController < ApplicationController
     unless can? :create, Tool
       redirect_to('/browse', alert: 'You do not have permissions to view that page.')
     end
-    # If authorised - intialize new tool.
+    # If authorised - intialize new tool instance
     @tool = Tool.new
   end
 
   # Logic for creating Tool
   def create
-    # Initialize the new tool
+    # Initialize the new tool instance
     @tool = Tool.new(tool_params)
 
     # Set categories based on categories selected
@@ -25,7 +25,7 @@ class ToolsController < ApplicationController
       # Rails checkbox collection select passes through blank value to help handle user input
       # So we check that the current iteration isn't this blank value.
       if cat.positive?
-        # Assign and Store the category
+        # Fetch the category from the database using the id of the current iteration and store it.
         @tool.categories << Category.find(cat)
       end
     end
@@ -61,7 +61,7 @@ class ToolsController < ApplicationController
 
   # Tool Update
   def update
-    # Grab the relevant tool
+    # Grab the relevant tool from the database using the id passed in the params
     @tool = Tool.find(params[:id])
 
     # Logic for valid update check.
@@ -72,6 +72,7 @@ class ToolsController < ApplicationController
           cat = category.to_i
           # Blank checkbox collection select value filtering
           if cat.positive?
+            # Grabs the category from the database using the current iteration id and stores it.
             @tool.categories << Category.find(cat)
           end
         end
@@ -88,10 +89,12 @@ class ToolsController < ApplicationController
 
   # Logic for Tool editing
   def edit
-    # Authorisation check
-    if can? :edit, Tool.find(params[:id])
-      # Grab the relevant tool
-      @tool = Tool.find(params[:id])
+    # Grab the relevant tool from the database using the id passed in the params
+    @tool = Tool.find(params[:id])
+
+     # Authorisation check
+    if can? :edit, @tool
+      @tool
     else
       # Failed permissions check redirect
       redirect_to('/browse', notice: 'You do not have permissions to view that page.')
@@ -101,7 +104,7 @@ class ToolsController < ApplicationController
 
   # Logic for showing Tool
   def show
-    # Grab the relevant tool
+    # Grab the relevant tool from the database using the id passed in the params
     @tool = Tool.find(params[:id])
     # Initialize variable for filtering
     @tools = []
@@ -120,6 +123,7 @@ class ToolsController < ApplicationController
 
     # Make sure we've got enough tools, otherwise grab latest.
     if @tools.length < 4
+      # Grabs the last four tools in the database based on their order (in this case, creation date)
       @tools = Tool.last(4)
     else
       @tools.uniq!.last(4)
@@ -128,6 +132,7 @@ class ToolsController < ApplicationController
 
   # Pass through all available tools to the index page.
   def index
+    # Grabs the relevant tools from the database by checking for the availability relation status.
       @tools = Tool.where(availability: true)
   end
 

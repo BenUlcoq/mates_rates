@@ -5,7 +5,7 @@ class RentalsController < ApplicationController
   
   # Logic for passing data to new rental page
   def new
-  # Grabs the relevant tool from the database.
+  # Grabs the relevant tool from the database using the is passed in the params
    @tool = Tool.find(params[:tool_id])
 
   # Checks delivery settings for the tool to populate the select field in the form.
@@ -30,7 +30,7 @@ class RentalsController < ApplicationController
 
   # Rental Creation Logic
   def create
-    # Grabs the relevant tool
+    # Grabs the relevant tool from the database using the id passed in the params.
     @tool = Tool.find(params[:tool_id])
     # Initializes the rental for the current user
     @rental = current_user.rentals.new(rental_params)
@@ -65,7 +65,7 @@ class RentalsController < ApplicationController
   # Logic for cancelling rentals
   def destroy
 
-    # Grabs the relevant rental
+    # Grabs the relevant rental from the database using the id passed in the params
     @rental = Rental.find(params[:id])
     # Rentals less than 24 hours away can't be cancelled - company policy.
     if @rental.start_date > Time.now + 1.day 
@@ -83,7 +83,7 @@ class RentalsController < ApplicationController
 
   # Update Rental Method
   def update
-    # Grabs the relevant rental
+    # Grabs the relevant rental from the database using the id passed in the params
     @rental = Rental.find(params[:id])
     # Checks whether the rental has already been set to complete by the tool owner.
     if update_returned[:returned] == "1"
@@ -98,7 +98,7 @@ class RentalsController < ApplicationController
 
   # Rental edit page logic
   def edit
-    # Grab the relevant rental.
+    # Grab the relevant rental from the database using the id passed in the params
     @rental = Rental.find(params[:id])
 
     # Check what the user can do to the rental.
@@ -117,7 +117,7 @@ class RentalsController < ApplicationController
 
   # Logic for showing Rental page
   def show
-    # Grab the relevant rental
+    # Grab the relevant rental from the database using the id passed in the params
     @rental = Rental.find(params[:id])
   # Check the user permissions
     if can? :read, @rental

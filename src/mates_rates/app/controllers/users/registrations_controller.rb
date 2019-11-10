@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-
+  # Set User Role based on params for sign-up
   def create
     super do
       resource.roles << Role.find(params[:user][:role_ids])
@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # Set User Role based on params for user update
   def update
     super do
       resource.roles << Role.find(params[:user][:role_ids])
@@ -55,10 +56,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  # Allow devise to accept additional params
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :address, :password_confirmation])
   end
 
+  # Allow devise to accept additional params
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :email, :password, :address, :password_confirmation, :current_password])
   end

@@ -1,8 +1,14 @@
 <h2>My Profile</h2>
 <div class="row">
-<%= link_to 'My Tools', my_tools_path, class: "btn waves-effect waves-light light-blue darken-3 s10 col offset-s1 m5" %>
-<%= link_to 'My Rentals', my_rentals_path, class: "btn waves-effect waves-light light-blue darken-3 col s10 offset-s1 m5 offset-m2" %>
 
+<% if can? :create, Tool %>
+  <%= link_to 'My Tools', my_tools_path, class: "btn waves-effect waves-light light-blue darken-3 s10 col offset-s1 m4" %>
+  <%= link_to 'My Rentals', my_rentals_path, class: "btn waves-effect waves-light teal darken-3 col s10 offset-s1 m4" %>
+  <%= link_to 'List a Tool', new_tool_path, class: "btn waves-effect waves-light light-blue darken-3 col s10 offset-s1 m4" %>
+<% else %>
+  <%= link_to 'My Tools', my_tools_path, class: "btn waves-effect waves-light light-blue darken-3 s10 col offset-s1 m5" %>
+  <%= link_to 'My Rentals', my_rentals_path, class: "btn waves-effect waves-light light-blue darken-3 col s10 offset-s1 m5 offset-m2" %>
+<% end %>
 </div>
 
 <h4>My Details</h4>

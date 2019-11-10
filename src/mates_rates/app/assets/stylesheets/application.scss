@@ -15,10 +15,14 @@
  *= require flatpickr
  *= require material_icons
  */
+
+// Import materialize framework colors so they can be overwritten
  @import "materialize/components/color-variables";
  $primary-color: #D60000 !default;
-//  $secondary-color: color("yellow", "base") !default;
+
+ // Imports the rest of the materialize framework.
  @import "materialize";
+
 
  html {
   font-family: 'Montserrat', 'Roboto', sans-serif;
@@ -29,7 +33,6 @@
    .brand-logo {
      margin-left: 2%;
    }
-
  }
 
 
@@ -54,7 +57,6 @@
 
  .hero {
     background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(0,0,0,0.7777485994397759)), image-url("hero.jpg") no-repeat;
-  //  background-image: image-url("hero.jpg");
    background-size: cover;
    background-position: center;
    height: 500px;

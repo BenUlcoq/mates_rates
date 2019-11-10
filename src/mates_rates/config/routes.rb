@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get '/admin', to: 'pages#admin', as: 'admin_dash'
   get '/search', to: 'pages#search', as: 'search'
   get '/users/:id', to: 'users#show', as: 'user'
-  # get '/:category', to: 'pages#category', as: 'category'
   
 
   root "pages#home"

@@ -1,4 +1,5 @@
 
+// Initializes the Flatpickr with unavailable dates passed through as args.
 function createDatePicker(dates) {
   console.log('here')
   const el = document.getElementById('dates')

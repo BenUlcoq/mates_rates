@@ -142,12 +142,6 @@ Working alongside product searching, users will be able to search products using
 Users and products will be able to have images uploaded to a server and displayed alongside other information. Users will have a profile picture which will aid in verification when transferring tools in person, while tools will have images for Renters to look at before choosing to rent the product.
 </details>
 
-<details>
-	<summary>
-		<b>Stripe Payment Processing</b>
-	</summary>
-In order to handle monetary exchange, a payment processing system has to be implemented. Stripe is extremely powerful, secure and easy to use and served as the perfect starting point for payment processing.
-</details>
 
 <details>
 	<summary>
@@ -165,6 +159,14 @@ Providing a platform for tool rental is valuable to users, but without proper ch
 
 
 ### Extensible Features
+
+<details>
+	<summary>
+		<b>Stripe Payment Processing</b>
+	</summary>
+In order to handle monetary exchange, a payment processing system has to be implemented. Stripe is extremely powerful, secure and easy to use and served as the perfect starting point for payment processing.
+</details>
+
 
 <details>
 	<summary>
@@ -246,11 +248,6 @@ The Ruby language (and by extension, Rails) uses Gems as a way of easily using p
 		<b>List of Gems</b>
 	</summary>
 
-**Geocoder**
-TODO - Update
-
-**jQuery Rails**
-TODO - Update
 
 **Bundler**
 
@@ -274,28 +271,46 @@ TODO - Update
 
 **RSpec**
 
-[RSpec](https://rspec.info/) allows for efficient **testing** of classes to support Test Driven Development (TDD). It allows us to simulate user requests in order to determine whether our application is returning the desired output.
-
-
-**Stripe**
-
-The Stripe Gem allows us to quickly and easily integrate the [Stripe](https://stripe.com/au) **payment service** into our application. (See below)
+[RSpec](https://rspec.info/) allows for efficient **testing** of classes to support Test Driven Development (TDD). It allows us to simulate user requests in order to determine whether our application is returning the desired output. Unfortunately this gem did not get used properly due to project scope and management issues.
 
 
 **Cloudinary**
 
 Using ActiveStorage we can implement **file uploads** using [Cloudinary](https://cloudinary.com/) - a cloud based asset management software. (See below)
 
+
+**ActiveStorage Cloudinary Service**
+
+ActiveStorage Cloudinary Service acts as a middleman to allow seamless integration between Cloudinary and ActiveStorage.
+
+
+**Flatpickr Rails**
+
+Flatpickr Rails provides an easy way to make use of the Flatpickr datepicker which was used for selecting dates of rentals.
+
+**Materialize Sass**
+
+Materialize Sass gem provides an easy way for Ruby applications to make use of the Materialize Framework for front-end styling and events.
+
+**Materialize Icons**
+
+Materialize Icons is a helper for Materialize Sass that provides an easy way to implement Material Design icons.
+
+**Activestorage Validator**
+
+With Rails 5, Activestorage doesn't handle validation of file uploads. Activestorage Validator allows for simple validation of files.
+
 </details>
+
+
 
 
 ### Third Party Services
 
 
-**Stripe**
+**Google Maps API**
 
- [Stripe](https://stripe.com/au)  is a secure payment processing application that is easy to use through API calls. By directing users through Stripe (which is [PCI](https://www.pcisecuritystandards.org/) compliant), it means the complexity of payment processing is handled outside of our application.
-
+Google provides a massive range of [services](https://developers.google.com/maps/documentation) which can be utilised through API calls. The services all relate to locations, routes and distances.
 
 
 **Cloudinary**
@@ -354,7 +369,7 @@ Relational databases use what are known as foreign and primary keys to help esta
 
 ## Database Relations
 ### User Model
-As can be seen in the ERD above, within Mates Rates the User is the foundational model upon which the application is built. Without the User model as a starting point, all other models have no point of ownership for their existence, whether direct or indirect. In the context of Mates Rates, a Tool must be owned by a User, it doesn’t make sense for a tool to exist without one. Subsequently, if Tools don’t exist, Rentals and Categories existing also doesn’t make sense. In much the same way, if Users didn’t exist, the Role model has no point of reference either.
+As can be seen in the ERD, within Mates Rates the User is the foundational model upon which the application is built. Without the User model as a starting point, all other models have no point of ownership for their existence, whether direct or indirect. In the context of Mates Rates, a Tool must be owned by a User, it doesn’t make sense for a tool to exist without one. Subsequently, if Tools don’t exist, Rentals and Categories existing also doesn’t make sense. In much the same way, if Users didn’t exist, the Role model has no point of reference either.
 
 The User model contains data relating to personal information of a user. As shown in the ERD above, this information is as follows;
 
@@ -374,8 +389,8 @@ User’s will also be required to set a `first_name` when signing up so that oth
 #### last_name, type: string
 User’s also set a `last_name`  when signing up. Both `first_name` and `last_name` are used to identify users as they use the application. These fields do not need to be unique amongst users.
 
-#### ADDRESS
-HOW WE DOING ADDRESSES?
+#### address, type: string
+Users are required to enter an address on signup so that rentals can be managed between users. The address field on signup provides an autocomplete funcrtion using Google Maps API in order to push users to store addresses in a recognisable format so that later calls can be made.
 
 ### Tool Model
 Similarly to the User model, the tool model is also critical to the functionality of Mates Rates. Without Tools, there is no reason for the application to exist.
@@ -427,13 +442,25 @@ Rentals are only allowed to go for a certain amount of time, as such dates need 
 The end date behaves in exactly the same way as the start date, but (as the name suggests) specifies the end of the rental period, not the start.
 
 #### returned, type: boolean
-Given that the rental transaction is not an immediate, single event trigger, there needs to be some way of specifying that the rental period has been completed successfully. As such, a boolean value will be set to track this status. Once the tool owner has indicated that the tool is returned, this value will update - allowing payment to happen using Stripe.
+Given that the rental transaction is not an immediate, single event trigger, there needs to be some way of specifying that the rental period has been completed successfully. As such, a boolean value will be set to track this status. Once the tool owner has indicated that the tool is returned, this value will update.
+
+#### delivery_fee, type: decimal
+Delivery fees are calculated using the Google Maps API. By passing the address of the user and the tool owner to the Routes Distance Matrix API, we can determine the distance  between them (importantly: via routes - not 'as the crow flies'). Using the calculated distance, we multiply it by the tool's delivery price to get the delivery fee.
+
+#### price, type: integer
+Similarly to delivery_fee, price is dynamically calculated based on the length of a rental and the price of the tool. However, given that they are static values, no API calls are needed - just a bit of math. As tool price and number of day will both be integers, we can keep this as an integer.
+
+#### delivery_option, type: string
+Depending on the delivery options available for the tool, the user can choose between pickup and delivery. Although only two possibly options are available, this is stored as a string for easy comparison to the delivery options of the tool.
+
 
 #### tool_id, type: integer, foreign key
 Each rental must reference a tool, because if there is no Tool being referenced, there is no reason for the rental to exist. The `tool_id` is tracked as a foreign key with the type integer to identify which tool the rental refers to. The label ‘FK’ in the table represents that this is a foreign key.
 
 #### user_id, type: integer, foreign key
 As with the `tool_id`, each rental must belong to a user, so that the person renting the tool can be identified. In the same way as the `tool_id`, the `user_id` is tracked as a foreign key with the type integer, as can be seen in the ERD. As two separate foreign keys are referenced within the Rental table, it is technically a join table. However, as there is additional information that it also holds it is used slightly differently when compared to other join tables (such as RolesUsers and CategoriesTools). This has been identified in the ERD by using a slightly different colour to the other join tables.
+
+
 
 ### Role Model
 #### role_id, type: integer, primary key
@@ -499,9 +526,13 @@ A `has_and_belongs_to_many` association specifies a many-to-many connection with
 ### User Model
 #### devise
 
-Devise is used to generate the User model with certain attributes for the purposes of authentication. 
-**Authenticatable, Recoverable, Registerable, Rememberable, Validateable**
-**LIST OF DEVISE IMPLEMENTATIONS AND DESCRIPTIONS HERE.**
+[Devise](https://github.com/plataformatec/devise) is used to generate the User model with certain attributes for the purposes of authentication. 
+**Authenticatable** - stores passwords to ensure that details are correct on login.
+**Recoverable** - Allows users to reset passwords.
+**Registerable** - Allows users to sign up.
+**Rememberable** - Manages session tokens so that users will be remembered when returning to the site.
+**Validateable** - Validates that fields will be stored correctly.
+
 
 #### has_many :tools
 A User can have many Tools that they own and wish to rent out. The ability to create and manage tools is restricted to a User with the role of ‘Owner’.  This relationship specifies that a User does not need to have Tools (they may just be looking to rent tools). However, if they do have tools to rent out, they can have many tools associated in the model.
@@ -545,12 +576,12 @@ A rental must reference a tool, otherwise there is no way of knowing what the re
 #### belongs_to :user
 A rental must also reference the user that is renting the tool (Note - this is different to the tool owner!). Without someone paying money to rent the tool, there is no rental. As such, a rental must belong to a user.
 
-#### Category Model
-* has_and_belongs_to_many :tools
+### Category Model
+#### has_and_belongs_to_many :tools
 As discussed in the tool model section, a tool can fall under a wide range of different categories, but categories can also contain a wide range of different tools! As such, categories have and belong to many different tools. Using a CategoriesTools join table, categories, their tools and vice versa can be tracked.
 
-#### Role Model
-* has_and_belongs_to_many :users
+### Role Model
+#### has_and_belongs_to_many :users
 Users can be assigned different roles which will determine what they can see and do within the application. Roles can also have many different users. Although this functionality is not utilised as part of the MVP, it was included for easy extensibility in the future.
 
 Roles are created and assigned using Rolify. Users and their roles are stored in a join table generated by Rolify called UsersRoles. 
@@ -852,7 +883,6 @@ The initial design for the project sprints are as follows:
     - Rental
     - Category
     - Image Upload via Cloudinary
-    - Stripe Payment Processing
   - Deployment
 </details>
 

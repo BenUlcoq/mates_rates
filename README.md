@@ -367,6 +367,24 @@ Rails uses Active Record associations to set up and determine the relationships 
 
 Relational databases use what are known as foreign and primary keys to help establish these connections between models.
 
+<details>
+	<summary><b>
+		Database Schema Design
+	</summary></b>
+	
+<img src="docs/mates_rates_schema.png" alt="Mates Rates Schema" width="auto" height="500">
+
+</details>
+
+<details>
+	<summary><b>
+		Database ERD
+	</summary></b>
+	
+<img src="docs/mates_rates_ERD.png" alt="Mates Rates Schema" width="auto" height="500">
+
+</details>
+
 ## Database Relations
 ### User Model
 As can be seen in the ERD, within Mates Rates the User is the foundational model upon which the application is built. Without the User model as a starting point, all other models have no point of ownership for their existence, whether direct or indirect. In the context of Mates Rates, a Tool must be owned by a User, it doesn’t make sense for a tool to exist without one. Subsequently, if Tools don’t exist, Rentals and Categories existing also doesn’t make sense. In much the same way, if Users didn’t exist, the Role model has no point of reference either.
@@ -870,6 +888,15 @@ The initial design for the project sprints are as follows:
 	</summary></b>
   
 *Thursday 31/10 - Saturday 2/11*
+
+<details>
+	<summary><b>
+		Sprint 4 Screenshots
+	</summary></b>
+	
+<img src="docs/progress/model-sprint.png" alt="Model Sprint Progress" width="auto" height="500">
+
+</details>
   
   - Rails Setup
   - Gem Bundling
@@ -892,6 +919,15 @@ The initial design for the project sprints are as follows:
 	</summary></b>
 
  *Sunday 3/11 - Tuesday 5/11*
+ 
+ <details>
+	<summary><b>
+		Sprint 5 Screenshots
+	</summary></b>
+	
+<img src="docs/progress/controller-sprint.png" alt="Controller Sprint Cards" width="auto" height="500">
+
+</details>
     
    - RSpec Tests
    - Controller Generation
@@ -910,6 +946,15 @@ The initial design for the project sprints are as follows:
 	</summary></b>
 
 *Wednesday 6/11- Friday 8/11*
+
+<details>
+	<summary><b>
+		Sprint 3 Screenshots
+	</summary></b>
+	
+<img src="docs/progress/views-sprint.png" alt="Views Sprint Cards" width="auto" height="500">
+
+</details>
     
    - CSS Framework Setup
    - View Modification / Updates
@@ -927,6 +972,15 @@ The initial design for the project sprints are as follows:
 	</summary></b>
 
 *Saturday 9/11*
+
+<details>
+	<summary><b>
+		Sprint 7 Screenshots
+	</summary></b>
+	
+<img src="docs/progress/review-sprint.png" alt="Documentation Review" width="auto" height="500">
+
+</details>
    
    - Review Documentation
    - Update Documentation
@@ -955,3 +1009,16 @@ The initial design for the project sprints are as follows:
    - Assemble Submission File
    - Submit!
 </details>
+
+## Project Progress and Review
+
+Although generally the sprints for the project were observed there were a number of things that could certainly have improved the project. Now that the application MVP has been completed it is easy to look back and see where the failures were made during the project.
+
+Managing the scope of the project was absolutely necessary for successfully building an application that satisfied all of the requirements of the task in the given timeframe. Although the project was planned extensively, a lack of experience with Rails in general made the initial scoping very difficult. As the project progressed it became clear that the scope was too ambitious. A huge number of decisions that had been made early on in the planning process came back to haunt development as things had inevitably been forgotten. Unfortunately though, as the time had already been invested in this idea, it was too late to start over with the new knowledge. This led to significant shortcuts in the development process and cutting features in order to develop an appropriate MVP.
+
+Most notably, where Stripe was initially a key feature, the timeframe did not allow for its implementation in the initially conceived manner. Due to the platform handling rentals instead of purchases, the payment process is different from the norm and could not utilise Stripe's simple checkout functionality. The initial plan was to have payment processed on the creation of a rental and held by Stripe until the owner has marked the tool as returned. Although this functionality exists in the app, there was not enough time to conduct research and testing into setting up Stripe to enable this process, which meant it had to be ultimately cut from the MVP.
+
+Another big change was that Test Driven Development was not utilised. Given the scope management issues which led to time management problems and a lack of experience with RSpec, it was **assumed** that the delays which learning RSpec would cause outweighed the benefits of implementing it. Unfortunately, this did mean that the project suffered significantly, as it is impossible to produce code of the same quality that TDD would produce given the experience levels. Ultimately, it probably wasn't the right call to make, and other additional features should have been sacrificed before TDD was.
+
+
+

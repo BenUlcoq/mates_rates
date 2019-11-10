@@ -8,17 +8,37 @@
   })
 </script>
 
-<h1>Rentals#new</h1>
-<p>Find me in app/views/rentals/new.html.erb</p>
+<h1>Rent this tool</h1>
+<div class="row">
+<div class="card sticky-action hoverable small col s12 m6 l4">
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4"><%= @tool.name %> - <%= @tool.brand %>-<% if @tool.model %><%= @tool.model %><% end %></span>
+      <p class="red-text darken-4 card-title">$<%= @tool.price %>/day</p>
+      <p>Owned by <%= link_to "#{@tool.user.first_name}", user_url(@tool.user), class: "red-text" %>
+      | 
+      <% if @tool.delivery_options == 'Both' || @tool.delivery_options == 'Delivery' %>
+          Delivery Available - $<%= @tool.delivery_fee%>/km
+          <% else %>
+          Pickup Only
+          <% end %></p>
 
+    </div>
+  </div>
+<div class="col s12 m6">
 
-<input disabled="true" type="submit" value="" id="price">
+<div class="field">
+<label>Price</label>
+<input disabled="true" type="text" value="" id="price">
+</div>
 
 <%= form_with model: @rental, url: tool_rentals_path(@tool), local: true do |form| %>
   <%= render 'form', form: form %>
 
   
-  <%= form.submit %>
+    <div class="row" class="center-align col s12">
+    <button class="btn-large waves-effect waves-light white-text" type="submit" name="action">Submit
+    </div>
 <% end %>
-
+</div>
+</div>
 

@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   get '/home', to: 'pages#home', as: 'home'
   get '/profile', to: 'pages#profile', as: 'profile'
   get '/my_rentals', to: 'pages#my_rentals', as: 'my_rentals'
+  get '/my_tools', to: 'pages#my_tools', as: 'my_tools'
   get '/admin', to: 'pages#admin', as: 'admin_dash'
   get '/search', to: 'pages#search', as: 'search'
-  get '/users/:id', to: 'users#show', as: 'user_path'
+  get '/users/:id', to: 'users#show', as: 'user'
   # get '/:category', to: 'pages#category', as: 'category'
   
 

@@ -1,6 +1,5 @@
-<h1>Tools#edit</h1>
-<p>Find me in app/views/tools/edit.html.erb</p>
-<%= link_to 'Browse Tools', tools_path %>
+<h1>Update your Tool</h1>
+<p>Complete the form below to update your listing.</p>
 <%= form_with(model: @tool, url: tool_path(@tool), local: true) do |form| %>
   <% if @tool.errors.any? %>
     <div id="error_explanation">

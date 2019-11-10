@@ -16,9 +16,125 @@
  *= require material_icons
  */
  @import "materialize/components/color-variables";
-//  $primary-color: color("blue", "lighten-2") !default;
+ $primary-color: #D60000 !default;
 //  $secondary-color: color("yellow", "base") !default;
  @import "materialize";
+
+ html {
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+
+ }
+
+ @media only screen and (min-width: 993px) {
+   .brand-logo {
+     margin-left: 2%;
+   }
+
+ }
+
+
+ .welcome {
+   font-weight: 900;
+   text-shadow: 0px 3px 15px black;
+
+   @media only screen and (max-width: 600px) {
+     font-size: 3em;
+   }
+ }
+
+ .tagline {
+  text-shadow: 0px 5px 8px black;
+  font-weight: 100;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 2em;
+  }
+ }
+
+
+ .hero {
+    background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(0,0,0,0.7777485994397759)), image-url("hero.jpg") no-repeat;
+  //  background-image: image-url("hero.jpg");
+   background-size: cover;
+   background-position: center;
+   height: 500px;
+   width: 100vw;
+   margin-left: calc(50% - 50vw);
+   top: 0;
+   text-align: center;
+   
+ }
+
+ body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+ .tools-list {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between;
+ }
+
+ .section .section-title {
+  text-align: center;
+  width: 100%;
+ }
+
+.card-action {
+   text-align: center;
+ }
+
+ .card.horizontal.large{
+
+  .card-image {
+   min-width: 300px;
+   overflow: hidden;
+  }
+   img {
+     width: 100%;
+     height: auto;
+   }
+   .card-content {
+    height: 100%;
+    max-height: none;
+    overflow: scroll;
+  }
+
+  @media only screen and (max-width:700px){
+    flex-flow: column;
+
+    .card-image {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+
+      img {
+        height: auto;
+      }
+    }
+  }
+ }
+
+
+ .tools-list .card.large {
+   flex-basis: 450px;
+   flex-grow: 1;
+   margin: 1em;
+ }
+
+@media(max-width: 960px) {
+  .tools-list .card.large  {
+    flex-basis: 100%;
+  }
+}
+
+
 
  .top-nav {
    overflow: hidden;
@@ -29,8 +145,21 @@
   line-height: 22px;
  }
 
-#category-checkboxes {
+ #availability-field {
+   text-align: center;
+ }
+
+ #category-checkboxes {
   columns: 3;
   -webkit-columns: 3;
   -moz-columns: 3;
 }
+ 
+
+ @media only screen and (max-width: 550px) {
+#category-checkboxes {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+ }

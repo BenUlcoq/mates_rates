@@ -1,7 +1,8 @@
-<h1>Tools#new</h1>
-<p>Find me in app/views/tools/new.html.erb</p>
+<h1>List your Tool</h1>
+<p>Complete the form below to list your tool and start earning money!</p>
 <%= form_with(model: @tool, url: tools_path(@tool), local: true) do |form| %>
   <% if @tool.errors.any? %>
+  <div class="section">
     <div id="error_explanation">
       <h2><%= pluralize(@tool.errors.count, "error") %> prohibited this from being saved:</h2>
 
@@ -11,8 +12,12 @@
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
+  <div class="section">
+  
   <%= render 'form', form: form %>
-
+ 
+</div>
   <% end %>
 

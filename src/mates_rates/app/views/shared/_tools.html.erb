@@ -1,27 +1,50 @@
 <% @tools.each do |tool| %>
-  <% if tool.photo.attached? %>
-    <%= image_tag tool.photo, width: 120 %>
-  <% end %>
-  <%= tool.price %>
-  <br>
-  <%= link_to tool.name, tool_url(tool) %><br>
+<div class="card sticky-action hoverable large">
+    <div class="card-image">
+      <% if tool.photo.attached? %>
+       <%= image_tag tool.photo, class: "activator"%>
+      <% end %>
 
- <% if can? :edit, tool %>
-  <%= link_to 'Manage Tool', edit_tool_url(tool)%>
-  <% elsif can? :create, Rental %>
-  <%= link_to 'Rent this Tool', new_tool_rental_path(tool) %>
-  <% else %>
-  <%= link_to 'Sign up to rent this tool', new_user_registration_path %>
-<% end %>
-<br>
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4"><%= tool.name %> - <%= tool.brand %>-<% if tool.model %><%= tool.model %><% end %><i class=" material-icons right">more_vert</i></span>
+      <p class="red-text darken-4 card-title">$<%= tool.price %>/day</p>
+      <p>Owned by <%= link_to "#{tool.user.first_name}", user_url(tool.user), class: "red-text" %>
+      | 
+      <% if tool.delivery_options == 'Both' || tool.delivery_options == 'Delivery' %>
+          Delivery Available - $<%= tool.delivery_fee%>/km
+          <% else %>
+          Pickup Only
+          <% end %></p>
 
-  <%= tool.brand %>
-  <br><%= tool.model %> <br>
-  <%= tool.description %><br>
-  <%= tool.availability %><br>
-  <%= tool.delivery_options %><br> 
-  <%= tool.delivery_fee %><br>
-  <%= tool.min_delivery_fee %><br>
-  <%= link_to 'User', user_path_url(tool.user) %><br>
-  <hr>
+    </div>
+
+
+   
+    <div class="card-reveal">
+<span class="card-title grey-text text-darken-4"><%= tool.name %> - <%= tool.brand %>-<% if tool.model %><%= tool.model %><% end %><i class=" material-icons right">close</i></span>
+      <p class="red-text darken-4 card-title">$<%= tool.price %>/day</p>
+      <p>Owned by <%= link_to "#{tool.user.first_name}", user_url(tool.user), class: "red-text" %>
+      | 
+      <% if tool.delivery_options == 'Both' || tool.delivery_options == 'Delivery' %>
+          Delivery Available - $<%= tool.delivery_fee%>/km
+          <% else %>
+          Pickup Only
+          <% end %></p>
+      <p class="truncate"><%= tool.description %></p>
+    </div>
+    <div class="card-action">
+          <%= link_to 'More Details', tool_path(tool), class: "red waves-effect waves-light btn white-text darken-1"%>
+          <% if can? :edit, tool %>
+            <%= link_to 'Manage Tool', edit_tool_url(tool), class: "light-blue waves-effect waves-light btn white-text darken-3"%>
+          <% elsif can? :create, Rental %>
+            <%= link_to 'Rent this Tool', new_tool_rental_path(tool), class: "teal waves-effect waves-light btn white-text darken-1" %>
+          <% else %>
+            <%= link_to 'Sign in to rent this tool', new_user_session_path, class: "cyan waves-effect waves-light btn white-text darken-1" %>
+          <% end %>
+          
+        </div>
+      
+  </div>
+
 <% end %>

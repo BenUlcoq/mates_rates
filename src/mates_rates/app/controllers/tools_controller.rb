@@ -3,11 +3,13 @@ class ToolsController < ApplicationController
 
   def new
 
-    @tool = Tool.new
+    
 
     unless can? :create, Tool
-      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+      redirect_to('/browse', alert: 'You do not have permissions to view that page.')
     end
+
+    @tool = Tool.new
     
   end
 
@@ -61,7 +63,7 @@ class ToolsController < ApplicationController
           end
         end
         @tool.image.attach(tool_params[:image]) if tool_params[:image]
-        format.html { redirect_to @tool, notice: 'Tweet was successfully updated.' }
+        format.html { redirect_to @tool, notice: 'Tool was successfully updated.' }
         format.json { render :show, status: :ok, location: @tool }
       else
         format.html { render :edit }
@@ -81,6 +83,19 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+    @tools = []
+    @tool.categories.each do |category|
+      category.tools.each do |tool|
+        if tool
+          @tools << tool
+        end
+      end
+    end
+    if @tools.length < 4
+      @tools = Tool.last(4)
+    else
+      @tools.uniq!.last(4)
+    end
   end
 
   def index

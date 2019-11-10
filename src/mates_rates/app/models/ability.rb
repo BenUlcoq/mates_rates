@@ -11,9 +11,8 @@ class Ability
         user.id == rental.tool.user_id
       end
 
-      can [:read, :create], Rental, user_id: user.id
+      can [:read, :create, :delete], Rental, user_id: user.id
       
-      can :delete, Rental, user_id: user.id
 
       can :delete, Rental,  Rental do |rental|
         user.id == rental.tool.user_id
@@ -30,6 +29,12 @@ class Ability
       can :edit, Rental, Rental do |rental|
         user.id == rental.tool.user_id && rental.end_date < Date.today
       end
+
+      cannot :edit, Rental, Rental do |rental|
+        rental.returned == true
+      end
+
+      # cannot [:create, :edit, :update, :delete], Tool, user_id: user.id
 
     return unless user.has_role? :owner
       can :manage, Tool, user_id: user.id

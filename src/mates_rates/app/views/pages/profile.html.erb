@@ -1,9 +1,7 @@
-<%= current_user.first_name %>
-<br>
-<%= current_user.last_name %>
-<br>
-<%= link_to 'Browse Tools', tools_path %>
-<hr>
+<h2>My Profile</h2>
+<%= link_to 'View My Rentals', my_rentals_path, class: "btn waves-effect waves-light red darken-3" %>
+<%= link_to 'Update Details', edit_user_registration_path, class: "btn waves-effect waves-light teal darken-2" %>
+
 <% current_user.tools.each do |tool| %>
 
   <%= tool.price %>

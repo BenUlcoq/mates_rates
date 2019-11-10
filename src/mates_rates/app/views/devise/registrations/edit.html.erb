@@ -1,63 +1,76 @@
-<%= content_for :page_scripts do %>
-    <%= javascript_include_tag "autocomplete" %>
-<% end %>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= javascript_include_tag "autocomplete" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+<h2>Update My Details</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+<div class="row">
+  <div class="field col s12">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+<div class="row">
+  <div class="field col s12 m6">
+    <%= f.label :password %>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <span class="helper-text" data-error="wrong" data-success="right">(<%= @minimum_password_length %> characters minimum)</span>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="field col s12 m6">
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+</div>
 
-  <div class="field">
+<div class="row">
+  <div class="field col s12 m6">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field col s12 m6">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col s12">
+    <%= f.label :address %>
+    <%= f.text_field :address, id: 'autocomplete', placeholder: 'Enter your address' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="field col s12 m6">
+  <%= f.label :role_ids, 'Role' %>
+  <%= f.collection_select(:role_ids, Role.all.where.not(name: 'admin'), :id, :name) %>
+  </div>    
+
+
+ <div class="field col s12 m6">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
   </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, id: 'autocomplete', placeholder: 'Enter your address' %>
-  </div>
-
 
   <div class="actions">
-    <%= f.submit "Update" %>
+       <div class="row" class="center-align col s12">
+    <button class="btn-large waves-effect waves-light white-text" type="submit" name="action">Update
+    </div>
   </div>
+
+ 
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>

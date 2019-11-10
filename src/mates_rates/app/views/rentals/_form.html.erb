@@ -1,22 +1,22 @@
-<%= form.hidden_field :start_date, id: 'start_date' %>
-<%= form.hidden_field :end_date, id: 'end_date' %>
-<%= form.hidden_field :tool_price, id: 'tool_price', value: @tool.price %>
-<div class="field">
-  <%= form.label :dates %><br>
-  <%= form.text_field :dates, id:'dates' %>
-
-  <div class="field">
+  <div class="field col s12 m6">
+    <%= form.label :delivery_fee %>
+    <%= form.number_field :delivery_fee, disabled: "true" %>
+  </div>
+  <div class="field col s12 m6">
     <%= form.label :delivery_option %>
     <%# <%= form.select(:delivery_option, @delivery_options ) %> <%#%%>
     <%= form.select(:delivery_option, options_for_select(@delivery_options)) %>
   </div>
-
-  <div class="field">
-    <%= form.label :delivery_fee %>
-    <%= form.number_field :delivery_fee %>
-  </div>
-
+  <div class="field col s12">
+  <%= form.label :dates %><br>
+  <%= form.text_field :dates, id:'dates' %>
 </div>
+
+<%= form.hidden_field :start_date, id: 'start_date' %>
+<%= form.hidden_field :end_date, id: 'end_date' %>
+<%= form.hidden_field :tool_price, id: 'tool_price', value: @tool.price %>
+
+
 
 
 

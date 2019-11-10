@@ -1,4 +1,14 @@
-<%= link_to 'Browse Tools', tools_path %>
-<br>
-<hr>
-Form goes here!
+<div class="section">
+<h2>Search for a tool</h2>
+<%= form_with url: redirect_to_results_path, method: 'post' do |f| %>
+      <div class="input-field">
+        <%= f.text_field :query, id: 'search', type: 'search' %>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+</div>
+      <% end %>
+      </div>
+<div class="section">
+<h4>Just Looking?<h4>
+<%= link_to 'Browse All Tools', tools_path, class: "btn-large waves-effect waves-light white-text" %>
+</div>

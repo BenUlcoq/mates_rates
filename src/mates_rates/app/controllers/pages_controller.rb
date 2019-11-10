@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       @users = User.all
       @categories = Category.all
     else
-      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+      redirect_to('/browse', alert: 'You do not have permissions to view that page.')
     end
   end
 
@@ -27,15 +27,21 @@ class PagesController < ApplicationController
 
   end
 
+  def my_tools
+    if can? :create, Tool
+      @tools = Tool.where(user_id: current_user.id)
+    else
+      redirect_to('/browse', alert: 'You do not have permissions to view that page.')
+    end
+  end
+
   def my_rentals
-    @rentals = Rental.where(user_id: current_user.id)
+    @rentals = current_user.rentals
     @past = []
     @future = []
     @current = []
 
     @rentals.each do |rental|
-      puts "yeeting"
-      pp rental
       if rental.end_date < Date.today
         @past << rental
       elsif rental.start_date > Date.today
@@ -44,7 +50,31 @@ class PagesController < ApplicationController
         @current << rental
       end
     end
+
+  @renting = []
+  current_user.tools.each do |tool|
+    @renting << tool
   end
+
+  @past_rentals = []
+  @future_rentals = []
+  @current_rentals = []
+
+  unless @renting.empty?
+   @renting.each do |tool|
+      tool.rentals.each do |rental|
+        if rental.end_date < Date.today
+          @past_rentals << rental
+        elsif rental.start_date > Date.today
+          @future_rentals << rental
+        else 
+          @current_rentals << rental
+        end
+      end
+    end
+  end
+
+end
 
   def results
     pp params

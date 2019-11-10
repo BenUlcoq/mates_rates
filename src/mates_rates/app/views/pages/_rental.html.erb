@@ -1,0 +1,17 @@
+
+    <% if rental.user == current_user %>
+    <p>Renting  <%= link_to "#{rental.tool.name}", rental_url(rental) %> off <%= link_to "#{rental.tool.user.first_name}", user_url(rental.tool.user) %></p>
+    <% else %>
+    <p>Renting <%= link_to "#{rental.tool.name}", rental_url(rental) %> to <%= link_to "#{rental.tool.user.first_name}" %></p>
+    <% end %>
+    <p>From <%= rental.start_date %> to <%= rental.end_date %> </p>
+    <p>Cost: $<%= rental.price %>, <%= rental.delivery_option %><% if rental.delivery_option == 'Delivery' %>: $<%= rental.delivery_fee %><% end %>
+    
+      <% if can? :delete, rental %>
+        <%= link_to 'Manage Rental', edit_rental_url(rental), class: "secondary-content btn-small waves-effect waves-light"%>
+      <% elsif can? :edit, rental %>
+        <%= link_to 'Manage Rental', edit_rental_url(rental), class: "secondary-content btn-small waves-effect waves-light"%>
+        
+      <% end %>
+      <%= link_to 'View Details', rental_url(rental), class: "red darken-2 secondary-content btn-small waves-effect waves-light"%>
+  

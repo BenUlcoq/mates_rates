@@ -1,27 +1,45 @@
-<h1>Tools#show</h1>
-<p>Find me in app/views/tools/show.html.erb</p>
-<%= link_to 'Browse Tools', tools_path %>
-<% if @tool.photo.attached? %>
-<%= image_tag @tool.photo, width: 120 %>
-<% end %>
-<%= @tool.price %>
-<br>
-<%= link_to @tool.name, tool_url(@tool) %>
-<br>
-<% if can? :edit, @tool %>
-  <%= link_to 'Manage Tool', edit_tool_url(@tool)%>
-  <% elsif can? :create, Rental %>
-  <%= link_to 'Rent this Tool', new_tool_rental_path(@tool) %>
-  <% else %>
-  <%= link_to 'Sign up to rent this tool', new_user_registration_path %>
-<% end %>
-<%= @tool.brand %>
-<br><%= @tool.model %> <br>
-<%= @tool.description %><br>
-<%= @tool.availability %><br>
-<%= @tool.delivery_options %><br> 
-<%= @tool.delivery_fee %><br>
-<%= @tool.min_delivery_fee %><br>
-<%= link_to 'User', user_path_url(@tool.user) %>
+<h2><%= @tool.name %></h2>
+<div class="card sticky-action hoverable large horizontal">
+    <div class="card-image">
+      <% if @tool.photo.attached? %>
+       <%= image_tag @tool.photo, class: "activator"%>
+      <% end %>
+
+    </div>
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4"><%= @tool.name %> - <%= @tool.brand %>-<% if @tool.model %><%= @tool.model %><% end %><i class="right red-text darken-4 card-title">$<%= @tool.price %>/day</i></span>
+      
+      <p>Owned by <%= link_to "#{@tool.user.first_name}", user_url(@tool.user), class: "red-text" %>
+      | 
+      <% if @tool.delivery_options == 'Both' || @tool.delivery_options == 'Delivery' %>
+          Delivery Available - $<%= @tool.delivery_fee%>/km
+          <% else %>
+          Pickup Only
+          <% end %></p>
+      <p><%= @tool.description %></p>
+    </div>
+    <div class="card-action">
+          <% if can? :edit, @tool %>
+            <%= link_to 'Manage Tool', edit_tool_url(@tool), class: "light-blue waves-effect waves-light btn white-text darken-3"%>
+          <% elsif can? :create, Rental %>
+            <%= link_to 'Rent this Tool', new_tool_rental_path(@tool), class: "teal waves-effect waves-light btn white-text darken-1" %>
+          <% else %>
+            <%= link_to 'Sign in to rent this tool', new_user_session_path, class: "cyan waves-effect waves-light btn white-text darken-1" %>
+          <% end %>
+          
+        </div>
+  </div>
+
+
+<div class="section tools-list">
+<h3 class="section-title">Similar Tools</h3>
+<%= render 'shared/tools' %>
+</div>
+
+
+
+
+
+
 
 

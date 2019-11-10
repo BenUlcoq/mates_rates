@@ -1,23 +1,23 @@
 
 <div class="row">
-<div class="field col s6">
+<div class="field col s12 m6">
     <%= form.label :price %>
     <%= form.number_field :price, in: 0..100, step: 1 %>
 </div>
 
-<div class="field col s6">
+<div class="field col s12 m6">
   <%= form.label :name %>
   <%= form.text_field :name %>
 </div>
 </div>
 
 <div class="row">
-<div class="field col s6">
+<div class="field col s12 m6">
   <%= form.label :brand %>
   <%= form.text_field :brand %>
 </div>
 
-<div class="field col s6">
+<div class="field col s12 m6">
   <%= form.label :model %>
   <%= form.text_field :model %>
 </div>
@@ -30,17 +30,17 @@
 </div>
 </div>
 <div class="row">
-<div class="field col s4">
+<div class="field col s12 m4">
   <%= form.label :delivery_options %>
   <%= form.select(:delivery_options, ['Pickup','Delivery','Both']) %>
 </div>
 
-<div class="field col s4">
+<div class="field col s12 m4">
   <%= form.label :delivery_fee %>
   <%= form.number_field :delivery_fee, in: 0..100, step: 0.25 %> 
 </div>
 
-<div class="field col s4">
+<div class="field col s12 m4">
   <%= form.label :min_delivery_fee %>
   <%= form.number_field :min_delivery_fee, in: 0..1000, step: 1 %> 
 </div>
@@ -70,20 +70,27 @@
 </div>
 </div>
 <div class="row">
-<div class="input-field col s2">
+    
+    <div class="file-field input-field col s12">
+    <label>Photo Upload</label>
+    <%= form.file_field :photo, class: "btn col s12 waves-effect waves-light white-text" %>
+    <input class="file-path validate col s12" type="text"/>
+    </div>
+ </div>
+<div class="row">
+<div id="availability-field" class="field">
 <label>
   <%= form.check_box :availability, class: "filled-in", id: 'available' %>
-<span> Available? </span>
+<span> This tool is available for rentals now. </span>
   </label>
   <%# <%= form.label :availability, for: 'available', id: 'available' %> 
 </div>
-
-
-<div class="field col s10">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
 </div>
-    <%= form.submit %>
+<div class="row" style="text-align: center;">
+    <button class="btn-large waves-effect waves-light white-text" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+    </div>
+    
+</div>
 
   

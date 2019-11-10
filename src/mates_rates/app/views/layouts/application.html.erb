@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
 
 
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps_api_key %>&libraries=places"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +16,7 @@
   </head>
 
   <body>
-  
+  <header>
     <nav class="top-nav">
     <%# <div class="container"> %>
         <div class="nav-wrapper">
@@ -86,18 +89,37 @@
       <% end %>
       </li>
   </ul>
-
-    <%# <header> %>
-     
-
-     
-
-    <%# </header> %>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+</header>
+<main>
+       
     <div class="container">
+    <% if notice %>
+    <div class="row">
+      <p class="notice col s12 green lighten-2 white-text"><%= notice %></p>
+      </div>
+      <% end %>
+      <% if alert%>
+      <div class="row">
+       <p class="alert col s12 red lighten-2 white-text"><%= alert %></p>
+       </div>
+       <% end %>
     <%= yield %>
+
+
+   
+
     </div>
+</main>
+    <footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            <span class="right">
+            © 2019 Mates Rates
+            </span>
+            </div>
+          </div>
+        </footer>
     
   </body>
 </html>

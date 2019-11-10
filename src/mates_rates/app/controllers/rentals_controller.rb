@@ -22,8 +22,6 @@ class RentalsController < ApplicationController
 
   def create
     
-    pp "Yeet"
-    pp params
 
     @tool = Tool.find(params[:tool_id])
 
@@ -33,15 +31,13 @@ class RentalsController < ApplicationController
 
     @rental.calculate_fee(current_user)
 
+    if @rental.delivery_option == 'Pickup'
+      @rental.delivery_fee = 0
+    end
+
     days = (@rental.end_date - @rental.start_date).to_i
 
     @rental.price = (@rental.tool.price * days)
-
-    # if @rental.save
-    #   puts "We Yeeting"
-    # else
-    #   puts "Sad bois"
-    # end
 
 
     respond_to do |format|
@@ -64,7 +60,7 @@ class RentalsController < ApplicationController
         format.json { head :no_content }
       end
     else 
-      redirect_to(@rental, notice: 'It\'s too late to cancel this rental.')
+      redirect_to(@rental, alert: 'It\'s too late to cancel this rental.')
     end
   end
 
@@ -81,7 +77,6 @@ class RentalsController < ApplicationController
   
     @rental = Rental.find(params[:id])
     if update_returned[:returned] == "1"
-      puts "Yeet"
       @rental.returned = true
       if @rental.save
         redirect_to(@rental, notice: 'Rental Complete - payments will now be processed.')
@@ -100,7 +95,7 @@ class RentalsController < ApplicationController
     elsif can? :edit, @rental
       @rental
     else
-      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+      redirect_to('/browse', alert: 'You do not have permissions to view that page.')
     end
   end
 
@@ -109,7 +104,7 @@ class RentalsController < ApplicationController
     if can? :read, @rental
       @rental
     else
-      redirect_back(fallback_location: root_path, notice: 'You do not have permissions to view that page.')
+      redirect_back(fallback_location: root_path, alert: 'You do not have permissions to view that page.')
     end
     end
 
@@ -117,7 +112,7 @@ class RentalsController < ApplicationController
     if current_user.has_role?(:admin)
       @rentals = current_user.rentals
     else
-      redirect_to('/browse', notice: 'You do not have permissions to view that page.')
+      redirect_to('/browse', alert: 'You do not have permissions to view that page.')
     end
   end
 

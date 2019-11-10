@@ -1,3 +1,29 @@
-<h1>big oof</h1>
 
+  <div class="hero white-text valign-wrapper">
+  <div class="container">
+  <div class="section">
+    <h1 class="welcome"> Welcome to Mates Rates </h1>
+    <h4 class="tagline"> Find affordable rental tools for your DIY project.</h4>
+  </div>
+  <div class="section">
+  <% unless user_signed_in? %>
+    <%= link_to 'Sign In', new_user_session_path, class: "btn-large waves-effect waves-light red darken-2" %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: "btn-large waves-effect waves-light teal darken-3" %>
+  <% end %>
+
+  <p class=" flow-text tagline">What are you looking for?</p>
+  <%= form_with url: redirect_to_results_path, method: 'post' do |f| %>
+      <div class="input-field">
+        <%= f.text_field :query, id: 'search', type: 'search', class: "white" %>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+</div>
+      <% end %>
+
+  </div>
+</div>
+  </div>
+<h2 class="center-align">Recent Listings</h2>
+<div class="section tools-list">
 <%= render partial: 'shared/tools' %>
+</div>

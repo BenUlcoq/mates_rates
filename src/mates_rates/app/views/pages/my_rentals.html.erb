@@ -1,46 +1,125 @@
-<h1>Future Rentals</h1>
-<% if @future %>
-<% @future.each do |rental| %>
- <%= rental.id %>
-  <%= rental.user.first_name %>
-  <%= rental.tool.user.first_name %>
-  <%= rental.tool.user.last_name %>
-  <%= rental.tool.name %>
-  <%= rental.tool.brand %>
-  <%= rental.tool.model %>
-  <%= rental.start_date %>
-  <%= rental.end_date %>
-<hr>
-<% end %>
-<% end %>
-<h1>Past Rentals</h1>
-<% if @past %>
-<% @past.each do |rental| %>
-  <%= rental.id %>
-  <%= rental.user.first_name %>
-  <%= rental.tool.user.first_name %>
-  <%= rental.tool.user.last_name %>
-  <%= rental.tool.name %>
-  <%= rental.tool.brand %>
-  <%= rental.tool.model %>
-  <%= rental.start_date %>
-  <%= rental.end_date %>
-<hr>
-<% end %>
-<% end %>
+<div class="section">
+<div class="card">
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a href="#my-rentals">My Rentals</a></li>
+        <li class="tab col s6"><a href="#my-tool-rentals">My Tool Rentals</a></li>
+      </ul>
+      </div>
 
-<h1>Current Rentals</h1>
-<% if @current %>
+
+<div class="row" id="my-rentals">
+<div class="col s12">
+<ul class="tabs">
+      <li class="tab col s4"><a href="#my-future-rentals">Future</a></li>
+      <li class="tab col s4"><a href="#my-current-rentals">Current</a></li>
+      <li class="tab col s4"><a href="#my-past-rentals">Past</a></li>
+</ul>
+</div>
+
+<div id="my-future-rentals" class="col s12">
+<h5 class="center-align">Future Rentals</h5>
+<ul class="collection">
+<% unless @future.empty? %>
+    <% @future.each do |rental| %>
+    <li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
+    <% end %>
+<% else %>
+  <li class="collection-item"> No Future Rentals </li>
+<% end %>
+</ul>
+</div>
+
+<div id="my-past-rentals" class="col s12">
+<h5 class="center-align">Past Rentals</h5>
+<ul class="collection">
+<% unless @past.empty? %>
+<% @past.each do |rental| %>
+<li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
+
+<% end %>
+<% else %>
+  <li class="collection-item"> No Future Rentals </li>
+<% end %>
+</ul>
+</div>
+<div id="my-current-rentals" class="col s12">
+<h5 class="center-align">Current Rentals</h5>
+<ul class="collection">
+<% unless @current.empty? %>
 <% @current.each do |rental| %>
- <%= rental.id %>
-  <%= rental.user.first_name %>
-  <%= rental.tool.user.first_name %>
-  <%= rental.tool.user.last_name %>
-  <%= rental.tool.name %>
-  <%= rental.tool.brand %>
-  <%= rental.tool.model %>
-  <%= rental.start_date %>
-  <%= rental.end_date %>
-<hr>
+<li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
 <% end %>
+<% else %>
+  <li class="collection-item"> No Future Rentals </li>
 <% end %>
+</ul>
+</div>
+</div>
+
+<div class="row" id="my-tool-rentals">
+<div class="col s12">
+<ul class="tabs">
+      <li class="tab col s4"><a href="#future-rentals">Future</a></li>
+      <li class="tab col s4"><a href="#current-rentals">Current</a></li>
+      <li class="tab col s4"><a href="#past-rentals">Past</a></li>
+</ul>
+</div>
+
+<div id="future-rentals" class="col s12">
+<h5 class="center-align">Future Rent Outs</h5>
+<ul class="collection">
+<% unless @future_rentals.empty? %>
+    <% @future_rentals.each do |rental| %>
+    <li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
+    <% end %>
+<% else %>
+  <li class="collection-item"> No Future Rent Outs </li>
+<% end %>
+</ul>
+</div>
+
+<div id="past-rentals" class="col s12">
+<h5 class="center-align">Past Rent Outs</h5>
+<ul class="collection">
+<% unless @past_rentals.empty? %>
+<% @past_rentals.each do |rental| %>
+<li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
+
+<% end %>
+<% else %>
+  <li class="collection-item"> No Past Rent Outs </li>
+<% end %>
+</ul>
+</div>
+<div id="current-rentals" class="col s12">
+<h5 class="center-align">Current Rent Outs</h5>
+<ul class="collection">
+<% unless @current_rentals.empty? %>
+<% @current_rentals.each do |rental| %>
+<li class="collection-item">
+    <%= render 'rental', rental: rental %>
+    </li>
+<% end %>
+<% else %>
+  <li class="collection-item"> No Current Rent Outs </li>
+<% end %>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>

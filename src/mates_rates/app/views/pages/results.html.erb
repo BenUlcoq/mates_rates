@@ -1,8 +1,18 @@
-<%= link_to 'Browse All Tools', tools_path %><br>
-<hr>
+<h1>Search Results for: '<%= params[:query] %>'</h1>
+<p>Here's what we could find..</p>
 
 <% unless @tools.empty? %>
-<%= render partial: 'shared/tools' %>
+  <div class="section">
+  <%= render partial: 'shared/tools' %>
+  </div>
+  <div class="divider"></div>
+  <div class="section center-align">
+  <h3>Not what you're looking for?</h3>
+  <%= link_to 'Browse All Tools', tools_path, class:'btn waves-effect waves-light white-text' %><br>
+  </div>
 <% else %>
-<h2> No Results Found </h2>
+  <div class="section">
+  <h2> No Results Found </h2>
+  <%= link_to 'Browse All Tools', tools_path, class:'btn waves-effect waves-light white-text' %><br>
+  </div>
 <% end %>

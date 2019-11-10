@@ -12,6 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    super do
+      resource.roles << Role.find(params[:user][:role_ids])
+      resource.save
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super

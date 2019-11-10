@@ -2,7 +2,7 @@ class Tool < ApplicationRecord
   belongs_to :user
   has_many :rentals
   has_and_belongs_to_many :categories
-  has_many :renters, through: :rentals, class_name: 'User'
+  has_many :renters, through: :rentals, source: :user
   has_one_attached :photo
 
   validates_associated :user
@@ -14,8 +14,8 @@ class Tool < ApplicationRecord
   # validates :description ??
   validates :availability, inclusion: { in: [true,false] }
   validates :delivery_options, presence: true, inclusion: {in: %w[Pickup Delivery Both]}
-  validates :delivery_fee, numericality: { less_than: 100 }, if: :includes_delivery
-  validates :min_delivery_fee, presence: true, if: :includes_delivery
+  validates :delivery_fee, presence: true, numericality: { less_than: 100 }
+  validates :min_delivery_fee, presence: true
 
   def unavailable_dates
     rentals.pluck(:start_date, :end_date).map do |range|
@@ -23,13 +23,13 @@ class Tool < ApplicationRecord
     end
   end
 
-  def includes_delivery
-    if :delivery_options == 'Delivery' || :delivery_options == 'Both'
-      return true
-    else
-      return false
-    end
-  end
+  # def includes_delivery
+  #   if :delivery_options == 'Delivery' || :delivery_options == 'Both'
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
 
   def self.search(query)
     if query

@@ -27,6 +27,7 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+
 </div>
 <div class="row">
   <div class="field col s6">
@@ -54,12 +55,15 @@
   </div>    
 </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+       <div class="row" class="center-align col s12">
+    <button class="btn-large waves-effect waves-light white-text" type="submit" name="action">Sign Up
+    </div>
   </div>
+  
 
   
 <% end %>
-
+<h4> Already a member? </h4>
 <%= render "devise/shared/links" %>
 
 

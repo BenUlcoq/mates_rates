@@ -1,22 +1,25 @@
 <h2>My Profile</h2>
-<%= link_to 'View My Rentals', my_rentals_path, class: "btn waves-effect waves-light red darken-3" %>
-<%= link_to 'Update Details', edit_user_registration_path, class: "btn waves-effect waves-light teal darken-2" %>
+<div class="row">
+<%= link_to 'My Tools', my_tools_path, class: "btn waves-effect waves-light light-blue darken-3 s10 col offset-s1 m5" %>
+<%= link_to 'My Rentals', my_rentals_path, class: "btn waves-effect waves-light light-blue darken-3 col s10 offset-s1 m5 offset-m2" %>
 
-<% current_user.tools.each do |tool| %>
+</div>
 
-  <%= tool.price %>
-  <br>
-  <%= tool.name %>
-  <br>
-  <%= tool.brand %>
-  <br><%= tool.model %> <br>
-  <%= tool.description %><br>
-  <%= tool.availability %><br>
-  <%= tool.delivery_options %><br> 
-  <%= tool.delivery_fee %><br>
-  <%= tool.min_delivery_fee %><br>
-  <% if can? :edit, tool %>
-    <%= link_to 'Edit', edit_tool_url(tool)%>
-  <% end %>
-<% end %>
-
+<h4>My Details</h4>
+<ul class="collection">
+<li class="collection-item">
+<span>Name:</span><span class="secondary-content"><%= current_user.first_name %> <%= current_user.last_name%></span>
+</li>
+<li class="collection-item">
+<span>Email:</span><span class="secondary-content"><%= current_user.email %></span>
+</li>
+<li class="collection-item">
+<span>Address:</span><span class="secondary-content"><%= current_user.address %> <%= current_user.last_name%></span>
+</li>
+<li class="collection-item">
+<span>Status:</span><span class="secondary-content"><%= current_user.roles.last.name.capitalize %> </span>
+</li>
+<li class="collection-item center-align">
+<%= link_to 'Update Details', edit_user_registration_path, class: "btn waves-effect waves-light teal darken-2 col s10 offset-s1 m3 offset-m1" %>
+</li>
+</ul>

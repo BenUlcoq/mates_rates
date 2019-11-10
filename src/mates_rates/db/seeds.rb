@@ -32,10 +32,10 @@ Category.create(categories)
 
 users = [
   {
-    first_name: 'Ben',
-    last_name: 'Ulcoq',
-    password: 'spammage',
-    email: 'spam.ulcoq@gmail.com',
+    first_name: 'Admin',
+    last_name: 'User',
+    password: 'admin',
+    email: 'admin@admin.com',
     address: '98 Butterfield Street, Herston',
     tools: Tool.create([
                          {
@@ -64,9 +64,9 @@ users = [
   },
   {
     first_name: 'Jeff',
-    last_name: 'Epstein',
-    password: 'suicide',
-    email: 'jeffpring@gmail.com',
+    last_name: 'Smith',
+    password: 'password',
+    email: 'jeff@gmail.com',
     address: '60 Gloucester Street, Spring Hill',
     tools: Tool.create([
                          {
@@ -79,7 +79,7 @@ users = [
                            delivery_options: 'Both',
                            delivery_fee: 0.50,
                            min_delivery_fee: 5.00
-                          #  categories: [{name: "Drills"}, {name: "Saws"}]
+        
                          },
                          {
                            price: 30,
@@ -94,11 +94,11 @@ users = [
                          }
                        ])
   },
-  { first_name: 'Santiago',
-    last_name: 'Smol',
-    password: 'smolboi',
-    email: 'santiago@gmail.com',
-    address: '3 Liberty Street, Forest Lake'}
+  { first_name: 'John',
+    last_name: 'Gregory',
+    password: '123abc',
+    email: 'john@gmail.com',
+    address: '3 Queen Street, Brisbane'}
 ]
 
 User.create(users)
